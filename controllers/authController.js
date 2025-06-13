@@ -4,7 +4,7 @@ import bcrypt from "bcrypt"; // <- ✅ Important
 class AuthController {
   async login(req, res) {
     try {
-      const doctor = await Doctor.findOne({ name: req.body.name }).select("+password");
+      const doctor = await Doctor.findOne({ phone: req.body.phone }).select("+password");
 
       if (!doctor) {
         return res.status(404).json({ message: "Doctor not found" });

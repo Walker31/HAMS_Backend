@@ -50,7 +50,7 @@ const DoctorSchema = new mongoose.Schema(
       select: false,
     },
   },
-  { timestamps: true, collection: "doctors" }
+  { timestamps: true, collection: "Doctors" }
 );
 
 // 👇 Hash password before saving
@@ -66,5 +66,5 @@ DoctorSchema.pre("save", async function (next) {
   }
 });
 
-const Doctor = mongoose.model("Doctor", DoctorSchema);
+const Doctor = mongoose.model("Doctors", DoctorSchema);
 export default Doctor;
