@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 
 const DoctorSchema = new mongoose.Schema(
   {
-    doctor_id: {
+    doctorId: {
       type: Number,
       required: true,
       unique: true,

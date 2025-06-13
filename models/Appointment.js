@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const AppointmentSchema = new mongoose.Schema({
     Date: Date,
-    Time: Date.now,
+    Time: Date,
     PatientId: String,
     DoctorId: String,
     AppStatus: String,
@@ -10,6 +10,9 @@ const AppointmentSchema = new mongoose.Schema({
     ClinicId: String,
     SlotNumber: String,
     AppId: String
+}, {
+  timestamps: true,
+  collection: 'Appointments'
 })
     
 
