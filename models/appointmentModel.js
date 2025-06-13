@@ -6,7 +6,7 @@ const AppointmentSchema = new mongoose.Schema({
     patientId: String,
     doctorId: String,
     appStatus: String,
-    payStatus: String,
+    payStatus: Boolean,
     clinicId: String,
     slotNumber: String,
     appId: String
