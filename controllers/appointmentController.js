@@ -14,13 +14,15 @@ class appointmentController {
       clinicId,
       slotNumber,
       appId,
-    } = req.body();
-    AppointmentModel.findOne({ $and: [{ doctorId }, { slotNumber }] })
-      .then((user) => {
-        if (user) {
-          res.status(409).json({ message: "Slot Already Booked" });
-        } else {
-          RegisterModel.create({
+    } = req.body;
+
+    try{
+      const existingAppointment = await AppointmentModel.findOne({ doctorId , slotNumber  })
+
+      if(existingAppointment){
+        return res.status(409).json({message: "slot Already Booked"})
+      }
+      await AppointmentModel.create({
             Date,
             time,
             patientId,
@@ -29,19 +31,17 @@ class appointmentController {
             clinicId,
             slotNumber,
             appId,
-          })
-            .then(() => res.status(201).json({ message: "Slot Booked" }))
-            .catch((err) =>
-              res
-                .status(500)
-                .json({ message: "Error Booking contact", error: err })
-            );
-        }
+      });
+      return res.status(201).json({message: "Slot Booked"});
+  }
+    catch(err){
+      return res.status(500).json({
+        message: "Error booing appointment",
+        error: err.message
       })
-      .catch((err) =>
-        res
-          .status(500)
-          .json({ message: "Error checking existing contact", error: err })
-      );
+    }
   }
 }
+
+
+export default new appointmentController();
