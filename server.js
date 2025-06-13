@@ -2,14 +2,16 @@ import express from 'express';
 import authRoutes from './routes/authRoutes.js';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 const app = express();
 const PORT = 3000;
+
 
 app.use(cors());
 app.use(express.json())
 
-const MONGO_URL = 'mongodb://localhost:27017/HAMS';
-mongoose.connect(MONGO_URL)
+mongoose.connect(process.env.MONGO_URL)
     .then(() => {
         console.log('MongoDB Connected');
         app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
