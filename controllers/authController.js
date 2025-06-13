@@ -53,7 +53,7 @@ class AuthController {
 
   async patientSignup(req, res) {
     try {
-      const patient = await Doctor.create(req.body);
+      const patient = await Patient.create(req.body);
       console.log("Patient account created");
       return res.status(201).json(patient);
     } catch (error) {
