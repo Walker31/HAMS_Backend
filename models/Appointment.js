@@ -10,6 +10,9 @@ const AppointmentSchema = new mongoose.Schema({
     clinicId: String,
     slotNumber: String,
     appId: String
+},
+{
+    timestamps: true
 })
     
 

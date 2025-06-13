@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
-const DoctorSchema = new mongoose.Schema(
+const PatientSchema = new mongoose.Schema(
   {
-    doctorId: {
+    patientId: {
       type: Number,
       required: true,
       unique: true,
@@ -16,32 +16,33 @@ const DoctorSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
-      required: true, // fixed typo here
+      required: true,
+      match: /^[0-9]{10}$/, // Assuming a 10-digit phone number
     },
     email: {
       type: String,
       required: true,
-      match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, // Basic email validation
     },
     gender: {
       type: String,
       required: true,
       enum: ["Male", "Female", "Other"],
     },
-    location: {
-      latitude: {
-        type: String,
-      },
-      longitude: {
-        type: String,
-      },
+    dateOfBirth: {
+      type: Date,
+      required: true,
     },
-    medicalReg: {
-      type: String,
-      trim: true,
+    address: {
+      street: { type: String, trim: true },
+      city: { type: String, trim: true },
+      state: { type: String, trim: true },
+      postalCode: { type: String, trim: true },
     },
-    photo: {
-      type: String,
+    emergencyContact: {
+      name: { type: String, trim: true },
+      phone: { type: String, match: /^[0-9]{10}$/ },
+      relation: { type: String, trim: true },
     },
     password: {
       type: String,
@@ -50,11 +51,11 @@ const DoctorSchema = new mongoose.Schema(
       select: false,
     },
   },
-  { timestamps: true, collection: "Doctors" }
+  { timestamps: true, collection: "Patients" }
 );
 
 // 👇 Hash password before saving
-DoctorSchema.pre("save", async function (next) {
+PatientSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
   try {
@@ -66,5 +67,5 @@ DoctorSchema.pre("save", async function (next) {
   }
 });
 
-const Doctor = mongoose.model("Doctors", DoctorSchema);
-export default Doctor;
+const Patient = mongoose.model("Patients", PatientSchema);
+export default Patient;
