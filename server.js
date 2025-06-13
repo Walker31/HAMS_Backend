@@ -8,7 +8,7 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json())
 
-const MONGO_URL = 'mongodb+srv://HAMS_DB:HAMS_DB@cluster-hams.4svzuyn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster-HAMS';
+const MONGO_URL = 'mongodb+srv://HAMS_DB:HAMS_DB@cluster-hams.4svzuyn.mongodb.net/HAMS?retryWrites=true&w=majority&appName=Cluster-HAMS';
 mongoose.connect(MONGO_URL)
     .then(() => {
         console.log('MongoDB Connected');
