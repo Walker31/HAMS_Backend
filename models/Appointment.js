@@ -1,15 +1,15 @@
 import mongoose from 'mongoose';
 
 const AppointmentSchema = new mongoose.Schema({
-    Date: Date,
-    Time: Date.now,
-    PatientId: String,
-    DoctorId: String,
-    AppStatus: String,
-    PayStatus: String,
-    ClinicId: String,
-    SlotNumber: String,
-    AppId: String
+    date: Date,
+    time: Date.now,
+    patientId: String,
+    doctorId: String,
+    appStatus: String,
+    payStatus: String,
+    clinicId: String,
+    slotNumber: String,
+    appId: String
 })
     
 
