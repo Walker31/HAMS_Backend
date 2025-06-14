@@ -1,6 +1,7 @@
 import Doctor from "../models/doctorModel.js";
 import bcrypt from "bcrypt";
 import Patient from "../models/patientModel.js";
+import { nanoid } from 'nanoid';
 
 class AuthController {
   async doctorLogin(req, res) {
@@ -20,17 +21,28 @@ class AuthController {
     } catch (error) {
       return res.status(500).json({ message: error.message });
     }
-  }
+  };
 
-  async doctorSignup(req, res) {
-    try {
-      const doctor = await Doctor.create(req.body);
-      console.log("Doctor account created");
-      return res.status(201).json(doctor);
-    } catch (error) {
-      return res.status(500).json({ message: error.message });
-    }
+
+async doctorSignup(req, res) {
+   try {
+    const doctorId = Math.floor(1000 + Math.random() * 9000);
+
+    console.log('Generated doctorId:', doctorId);
+
+    const doctor = await Doctor.create({
+      ...req.body,
+      doctorId: doctorId,
+    });
+
+    console.log('Doctor account created:', doctor);
+    return res.status(201).json(doctor);
+  } catch (error) {
+    console.error('Doctor signup error:', error);
+    return res.status(500).json({ message: error.message });
   }
+};
+
 
   async patientLogin(req, res) {
     try {

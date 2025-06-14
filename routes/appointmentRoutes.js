@@ -9,3 +9,4 @@ router.put("/rescheduleAppointment", Appointment.rescheduleAppointment);
 router.put("/cancelAppointment", Appointment.cancelAppointment);
 
 export default router;
+

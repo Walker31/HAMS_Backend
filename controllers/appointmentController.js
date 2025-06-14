@@ -14,7 +14,6 @@ class appointmentController {
       payStatus,
       clinicId,
       slotNumber,
-      // Don't accept appId from the user anymore!
     } = req.body;
 
     try {
