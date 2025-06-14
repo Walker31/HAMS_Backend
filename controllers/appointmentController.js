@@ -1,7 +1,8 @@
 import Patient from "../models/patientModel.js";
 import Doctor from "../models/doctorModel.js";
 import mongoose from "mongoose";
-import Appointment from "../models/appointmentModel.js";
+import AppointmentModel from "../models/appointmentModel.js";
+import { nanoid } from 'nanoid';
 
 class appointmentController {
   async bookAppointment(req, res) {
@@ -22,8 +23,8 @@ class appointmentController {
       if (existingAppointment) {
         return res.status(409).json({ message: "Slot Already Booked" });
       }
-
-      const appId = Math.floor(10000 + Math.random() * 90000).toString();
+      
+      const appId = nanoid(5);
 
       await AppointmentModel.create({
         Date,
