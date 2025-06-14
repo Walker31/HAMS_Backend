@@ -1,5 +1,6 @@
 import express from 'express';
 import authRoutes from './routes/authRoutes.js';
+import appointmentRoutes from './routes/appointmentRoutes.js'
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -25,3 +26,4 @@ app.get('/',(req,res) => {
 })
 
 app.use('/doctors',authRoutes);
+app.use('/appointments',appointmentRoutes)
