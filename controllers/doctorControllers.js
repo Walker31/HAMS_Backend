@@ -16,7 +16,17 @@ class doctorControllers {
         } catch (error) {
                   res.status(500).json({ message: "Error fetching appointments", error: error.message });
         }
-        
+    }
+
+    async profile(req,res){
+        const {doctorId} = req.params;
+        try {
+            const doctor = await Doctor.findOne({doctorId});
+            if (!doctor)return res.status(404).json({ message: "Doctor not found" });
+            res.status(200).json({doctor});
+        } catch (error) {
+            res.status(500).json({ message: "Error fetching profile", error: error.message });
+        }
     }
 }
 
