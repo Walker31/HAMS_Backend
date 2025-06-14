@@ -1,7 +1,7 @@
 import Patient from "../models/patientModel.js";
 import Doctor from "../models/doctorModel.js";
 import mongoose from "mongoose";
-import AppointmentModel from "../models/appointmentModel.js";
+import Appointment from "../models/appointmentModel.js";
 
 class appointmentController {
   async bookAppointment(req, res) {
@@ -16,58 +16,60 @@ class appointmentController {
       appId,
     } = req.body;
 
-    try{
-      const existingAppointment = await AppointmentModel.findOne({ doctorId , slotNumber  })
-
-      if(existingAppointment){
-        return res.status(409).json({message: "slot Already Booked"})
-      }
-      await AppointmentModel.create({
-            Date,
-            time,
-            patientId,
-            doctorId,
-            payStatus,
-            clinicId,
-            slotNumber,
-            appId,
+    try {
+      const existingAppointment = await Appointment.findOne({
+        doctorId,
+        slotNumber,
       });
-      return res.status(201).json({message: "Slot Booked"});
-  }
-    catch(err){
+
+      if (existingAppointment) {
+        return res.status(409).json({ message: "slot Already Booked" });
+      }
+      await Appointment.create({
+        Date,
+        time,
+        patientId,
+        doctorId,
+        payStatus,
+        clinicId,
+        slotNumber,
+        appId,
+      });
+      return res.status(201).json({ message: "Slot Booked" });
+    } catch (err) {
       return res.status(500).json({
         message: "Error booking appointment",
-        error: err.message
-      })
+        error: err.message,
+      });
     }
   }
 
   async cancelAppointment(req, res) {
-    try{
-        await AppointmentModel.findOneAndDelete({doctorId, slotNumber, appId});
-        res.json({ message: "Appointment Cancelled Successfully"});
+    const { doctorId, slotNumber, appId } = req.body;
+    try {
+      await Appointment.findOneAndDelete({ doctorId, slotNumber, appId });
+      res.json({ message: "Appointment Cancelled Successfully" });
+    } catch (err) {
+      res
+        .status(500)
+        .json({ message: "Error Cancelling Appointment", error: err });
     }
-    catch (err) {
-    res.status(500).json({ message: "Error Cancelling Appointment", error: err });
-  }
   }
 
   async rescheduleAppointment(req, res) {
-    const date = req.params.date;
-    const doctorId = req.params.doctorId;
-    const clinicId = req.params.clinicId;
-    const slotNumber = req.params.slotNumber;
-    const appId = req.params.appId;
-
-    try{
-        const update = await AppointmentModel.findOneAndUpdate({date, doctorId, clinicId, slotNumber, appId}, req.body, {new:true});
-        res.json(update);
+    const { date, doctorId, clinicId, slotNumber, appId } = req.body;
+    try {
+      const update = await Appointment  .findOneAndUpdate(
+        { date, doctorId, clinicId, slotNumber, appId },
+        { new: true }
+      );
+      res.json(update);
+    } catch (err) {
+      res
+        .status(500)
+        .json({ message: "Error updating Appointment", error: err });
     }
-    catch (err) {
-    res.status(500).json({ message: "Error updating Appointment", error: err });
-  }
   }
 }
-
 
 export default new appointmentController();
