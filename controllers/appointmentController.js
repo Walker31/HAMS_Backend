@@ -41,6 +41,32 @@ class appointmentController {
       })
     }
   }
+
+  async cancelAppointment(req, res) {
+    try{
+        await AppointmentModel.findOneAndDelete({doctorId, slotNumber, appId});
+        res.json({ message: "Appointment Cancelled Successfully"});
+    }
+    catch (err) {
+    res.status(500).json({ message: "Error Cancelling Appointment", error: err });
+  }
+  }
+
+  async rescheduleAppointment(req, res) {
+    const date = req.params.date;
+    const doctorId = req.params.doctorId;
+    const clinicId = req.params.clinicId;
+    const slotNumber = req.params.slotNumber;
+    const appId = req.params.appId;
+
+    try{
+        const update = await AppointmentModel.findOneAndUpdate({date, doctorId, clinicId, slotNumber, appId}, req.body, {new:true});
+        res.json(update);
+    }
+    catch (err) {
+    res.status(500).json({ message: "Error updating contact", error: err });
+  }
+  }
 }
 
 
