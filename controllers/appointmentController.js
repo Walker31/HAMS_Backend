@@ -36,7 +36,7 @@ class appointmentController {
   }
     catch(err){
       return res.status(500).json({
-        message: "Error booing appointment",
+        message: "Error booking appointment",
         error: err.message
       })
     }
@@ -64,7 +64,7 @@ class appointmentController {
         res.json(update);
     }
     catch (err) {
-    res.status(500).json({ message: "Error updating contact", error: err });
+    res.status(500).json({ message: "Error updating Appointment", error: err });
   }
   }
 }
