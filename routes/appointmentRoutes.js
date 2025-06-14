@@ -3,10 +3,10 @@ import Appointment from "../controllers/appointmentController.js";
 
 const router = express.Router();
 
-router.post("/bookAppointment", Appointment.bookAppointment);
-router.delete("/deleteAppointment", Appointment.deleteAppointment);
-router.put("/rescheduleAppointment", Appointment.rescheduleAppointment);
-router.put("/cancelAppointment", Appointment.cancelAppointment);
+router.post("/book", Appointment.bookAppointment);
+router.delete("/delete", Appointment.deleteAppointment);
+router.put("/reschedule", Appointment.rescheduleAppointment);
+router.put("/cancel", Appointment.cancelAppointment);
 
 export default router;
 

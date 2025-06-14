@@ -1,5 +1,6 @@
 import express from 'express';
-import authRoutes from './routes/authRoutes.js';
+import patientRoutes from './routes/patientRoutes.js';
+import doctorRoutes from './routes/doctorRoutes.js';
 import appointmentRoutes from './routes/appointmentRoutes.js'
 import cors from 'cors';
 import mongoose from 'mongoose';
@@ -25,5 +26,6 @@ app.get('/',(req,res) => {
     });
 })
 
-app.use('/doctors',authRoutes);
+app.use('/doctors',doctorRoutes);
+app.use('/patients',patientRoutes);
 app.use('/appointments',appointmentRoutes)
