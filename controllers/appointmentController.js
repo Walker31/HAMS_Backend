@@ -1,7 +1,7 @@
 import Patient from "../models/patientModel.js";
 import Doctor from "../models/doctorModel.js";
 import mongoose from "mongoose";
-import AppointmentModel from "../models/appointmentModel.js";
+import Appointment from "../models/appointmentModel.js";
 
 class appointmentController {
   async bookAppointment(req, res) {
