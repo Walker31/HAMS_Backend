@@ -1,5 +1,5 @@
-import Patient from "../models/patientModel";
-import Doctor from "../models/doctorModel";
+import Patient from "../models/patientModel.js";
+import Doctor from "../models/doctorModel.js";
 import mongoose from "mongoose";
 import AppointmentModel from "../models/appointmentModel.js";
 
