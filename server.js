@@ -26,6 +26,7 @@ app.get('/',(req,res) => {
     });
 })
 
+
 app.use('/doctors',doctorRoutes);
 app.use('/patients',patientRoutes);
 app.use('/appointments',appointmentRoutes)
