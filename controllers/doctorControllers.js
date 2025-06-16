@@ -4,7 +4,7 @@ import Doctor from '../models/doctorModel.js';
 class doctorControllers {
 
     async getNearbyDoctors(req, res) {
-        const { lat, lon } = req.body;
+        const { lat, lon } = req.params;
 
         if (!lat || !lon) {
             return res.status(400).json({ message: "Latitude and longitude required" });
