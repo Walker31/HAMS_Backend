@@ -7,7 +7,7 @@ const nanoidNumeric = customAlphabet("1234567890", 6);
 const DoctorSchema = new mongoose.Schema(
   {
     doctorId: {
-      type: Number,
+      type: String,
       unique: true,
       index: true,
       default: () => nanoid(6),
@@ -35,13 +35,18 @@ const DoctorSchema = new mongoose.Schema(
       enum: ["Male", "Female", "Other"],
     },
     location: {
-      latitude: {
+      type: {
         type: String,
+        enum: ['Point'],
+        required: true,
+        default: 'Point',
       },
-      longitude: {
-        type: String,
-      },
+      coordinates: {
+        type: [Number], // [longitude, latitude]
+        required: true,
+      }
     },
+
     medicalReg: {
       type: String,
       trim: true,

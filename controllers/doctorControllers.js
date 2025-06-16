@@ -3,6 +3,34 @@ import Doctor from '../models/doctorModel.js';
 
 class doctorControllers {
 
+    async getNearbyDoctors(req, res) {
+        const { lat, lon } = req.body;
+
+        if (!lat || !lon) {
+            return res.status(400).json({ message: "Latitude and longitude required" });
+        }
+
+        try {
+            const doctors = await Doctor.find({
+            location: {
+                $near: {
+                $geometry: {
+                    type: "Point",
+                    coordinates: [parseFloat(lon), parseFloat(lat)],
+                },
+                $maxDistance: 5000, // 5 km
+                },
+            },
+            });
+
+            res.json(doctors);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send("Server Error");
+        }
+    }
+
+
     async getAppointments(req,res) {
         const {doctorId} = req.params;
         try {

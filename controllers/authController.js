@@ -26,14 +26,11 @@ class AuthController {
 
 async doctorSignup(req, res) {
    try {
-    const doctorId = Math.floor(1000 + Math.random() * 9000);
-
-    console.log('Generated doctorId:', doctorId);
-
-    const doctor = await Doctor.create({
-      ...req.body,
-      doctorId: doctorId,
-    });
+    const exists = await Doctor.findOne({ phone: req.body.phone });
+      if (exists) {
+        return res.status(400).json({ message: "Doctor already exists with this phone number" });
+      }
+    const doctor = await Doctor.create(req.body);
 
     console.log('Doctor account created:', doctor);
     return res.status(201).json(doctor);
@@ -65,6 +62,10 @@ async doctorSignup(req, res) {
 
   async patientSignup(req, res) {
     try {
+      const exists = await Doctor.findOne({ phone: req.body.phone });
+        if (exists) {
+          return res.status(400).json({ message: "Patient already exists with this phone number" });
+        }
       const patient = await Patient.create(req.body);
       console.log("Patient account created");
       return res.status(201).json(patient);
