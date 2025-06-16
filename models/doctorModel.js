@@ -16,15 +16,18 @@ const DoctorSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      required: true,
     },
     phone: {
       type: String,
       required: true, // fixed typo here
+
     },
     email: {
       type: String,
       required: true,
       match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+
     },
     gender: {
       type: String,
@@ -42,16 +45,23 @@ const DoctorSchema = new mongoose.Schema(
     medicalReg: {
       type: String,
       trim: true,
+      required: true,
+    },
+    specialization:{
+      type: String,
+      required: true,
+
     },
     photo: {
       type: String,
+      required: true,
     },
     password: {
       type: String,
       required: true,
       minlength: 6,
       select: false,
-    },
+    }
   },
   { timestamps: true, collection: "Doctors" }
 );
