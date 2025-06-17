@@ -1,7 +1,7 @@
 import Doctor from "../models/doctorModel.js";
 import bcrypt from "bcrypt";
 import Patient from "../models/patientModel.js";
-import { nanoid } from 'nanoid';
+import { generateToken } from "../middlewares/JWTmiddleware.js";
 
 class AuthController {
   async doctorLogin(req, res) {
@@ -17,29 +17,30 @@ class AuthController {
         return res.status(401).json({ message: "Invalid credentials" });
       }
 
-      return res.status(200).json({ message: "Login successful" });
+      const token = generateToken(doctor);
+      return res.status(200).json({ message: "Login successful", token });
     } catch (error) {
       return res.status(500).json({ message: error.message });
     }
-  };
+  }
 
-
-async doctorSignup(req, res) {
-   try {
-    const exists = await Doctor.findOne({ phone: req.body.phone });
+  async doctorSignup(req, res) {
+    try {
+      const exists = await Doctor.findOne({ phone: req.body.phone });
       if (exists) {
         return res.status(400).json({ message: "Doctor already exists with this phone number" });
       }
-    const doctor = await Doctor.create(req.body);
 
-    console.log('Doctor account created:', doctor);
-    return res.status(201).json(doctor);
-  } catch (error) {
-    console.error('Doctor signup error:', error);
-    return res.status(500).json({ message: error.message });
+      const doctor = await Doctor.create(req.body);
+      const token = generateToken(doctor);
+
+      console.log('Doctor account created:', doctor);
+      return res.status(201).json({ doctor, token });
+    } catch (error) {
+      console.error('Doctor signup error:', error);
+      return res.status(500).json({ message: error.message });
+    }
   }
-};
-
 
   async patientLogin(req, res) {
     try {
@@ -54,7 +55,8 @@ async doctorSignup(req, res) {
         return res.status(401).json({ message: "Invalid credentials" });
       }
 
-      return res.status(200).json({ message: "Login successful" });
+      const token = generateToken(patient);
+      return res.status(200).json({ message: "Login successful", token });
     } catch (error) {
       return res.status(500).json({ message: error.message });
     }
@@ -62,20 +64,20 @@ async doctorSignup(req, res) {
 
   async patientSignup(req, res) {
     try {
-      const exists = await Doctor.findOne({ phone: req.body.phone });
-        if (exists) {
-          return res.status(400).json({ message: "Patient already exists with this phone number" });
-        }
+      const exists = await Patient.findOne({ phone: req.body.phone }); // fixed: should check Patient, not Doctor
+      if (exists) {
+        return res.status(400).json({ message: "Patient already exists with this phone number" });
+      }
+
       const patient = await Patient.create(req.body);
+      const token = generateToken(patient);
+
       console.log("Patient account created");
-      return res.status(201).json(patient);
+      return res.status(201).json({ patient, token });
     } catch (error) {
       return res.status(500).json({ message: error.message });
     }
-  } catch (error) {
-    return res.status(500).json({ message: error.message });
   }
 }
-
 
 export default new AuthController();

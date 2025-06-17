@@ -12,4 +12,5 @@ router.get('/top',doctorControllers.topDoctors);
 router.get('/:doctorId/appointments', doctorControllers.getAppointments);
 router.get('/:doctorId/profile', doctorControllers.profile);
 
+
 export default router;
