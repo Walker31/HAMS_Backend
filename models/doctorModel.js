@@ -10,7 +10,7 @@ const DoctorSchema = new mongoose.Schema(
       type: String,
       unique: true,
       index: true,
-      default: () => nanoid(6),
+      default: () => nanoid(),
     },
     name: {
       type: String,
