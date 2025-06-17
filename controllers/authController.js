@@ -4,7 +4,7 @@ import Patient from "../models/patientModel.js";
 import { generateToken } from "../middlewares/JWTmiddleware.js";
 import Hospital from "../models/hospitalModel.js";
 
-class AuthController {
+class authController {
   async doctorLogin(req, res) {
     try {
       const doctor = await Doctor.findOne({ phone: req.body.phone }).select(
@@ -104,7 +104,6 @@ class AuthController {
           Number(coord)
         );
 
-        // Validate coords: must have 2 numbers, not NaN
         if (coords.length !== 2 || coords.some((coord) => isNaN(coord))) {
           return res.status(400).json({
             message:
@@ -130,4 +129,4 @@ class AuthController {
     }
   }
 }
-export default new AuthController();
+export default new authController;

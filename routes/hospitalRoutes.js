@@ -1,10 +1,8 @@
 import express from 'express';
-import authController from '../controllers/authController.js';
-import hospitalControllers from '../controllers/hospitalControllers.js';
+import controllers from '../controllers/authController.js';
 
 const router = express.Router();
 
-router.post("/login", authController.hospitalLogin);
-router.post("/signup", authController.);
+router.post("/signup", controllers.hospitalSignup);
 
 export default router;
