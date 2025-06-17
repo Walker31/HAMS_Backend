@@ -6,6 +6,12 @@ const nanoidNumeric = customAlphabet("1234567890", 6);
 
 const HospitalSchema = new mongoose.Schema(
   {
+     hospitalId: {
+      type: String,
+      unique: true,
+      index: true,
+      default: () => nanoid(6),
+    },
     hospitalName: {
       type: String,
       required: true,
@@ -48,7 +54,7 @@ const HospitalSchema = new mongoose.Schema(
       select: false,
     }
   },
-  { timestamps: true, collection: "Doctors" }
+  { timestamps: true, collection: "Hospitals" }
 );
 
 // 👇 Hash password before saving

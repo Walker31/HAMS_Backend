@@ -15,7 +15,7 @@ export function authenticateToken(req,res,next) {
 
 export function generateToken(user) {
   const payload = {
-    id: user.doctorId || user.patientId,
+    id: user.doctorId || user.patientId || user.hospitalId ,
     phone: user.phone
   };
   const secret = process.env.JWT_SECRET;
