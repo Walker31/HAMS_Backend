@@ -23,22 +23,30 @@ class AuthController {
     }
   };
 
+async doctorSignup(req, res) { 
+  try { 
+    const { name, phone, email, gender } = req.body;
+    
+    // Check if all fields are present
+    if (!name || !phone || !email || !gender) {
+      return res.status(400).json({ message: "All fields (name, phone, email, gender) are required." });
+    }
 
-async doctorSignup(req, res) {
-   try {
-    const exists = await Doctor.findOne({ phone: req.body.phone });
-      if (exists) {
-        return res.status(400).json({ message: "Doctor already exists with this phone number" });
-      }
-    const doctor = await Doctor.create(req.body);
-
+    const exists = await Doctor.findOne({ phone }); 
+    if (exists) { 
+      return res.status(400).json({ message: "Doctor already exists with this phone number" }); 
+    } 
+    
+    const doctor = await Doctor.create({ name, phone, email, gender });
     console.log('Doctor account created:', doctor);
     return res.status(201).json(doctor);
-  } catch (error) {
-    console.error('Doctor signup error:', error);
-    return res.status(500).json({ message: error.message });
-  }
-};
+
+  } catch (error) { 
+    console.error('Doctor signup error:', error); 
+    return res.status(500).json({ message: error.message }); 
+  } 
+}
+
 
 
   async patientLogin(req, res) {
