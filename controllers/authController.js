@@ -90,6 +90,7 @@ class authController {
   async hospitalSignup(req, res) {
     try {
       console.log(req.body);
+      console.log(new Date());
 
       const exists = await Hospital.findOne({ RegId: req.body.RegId });
       if (exists) {
