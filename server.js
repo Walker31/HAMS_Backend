@@ -1,31 +1,40 @@
 import express from 'express';
 import patientRoutes from './routes/patientRoutes.js';
 import doctorRoutes from './routes/doctorRoutes.js';
-import appointmentRoutes from './routes/appointmentRoutes.js'
+import appointmentRoutes from './routes/appointmentRoutes.js';  // CRUD operations for appointments
+import emailRoutes from './routes/appointments.js';            // Booking & email scheduling
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+
+// Load environment variables
 dotenv.config();
+
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-
+// Middleware
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
 
-mongoose.connect(process.env.MONGO_URL)
-    .then(() => {
-        console.log('MongoDB Connected');
-        app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-    })
-    .catch(err => console.error('MongoDB connection error:', err));
+// Health-check route
+app.get('/', (req, res) => {
+  res.send({ message: 'Route working perfectly' });
+});
 
-app.get('/',(req,res) => {
-    res.send({
-        "message":"Route working perfectly"
-    });
-})
+// Mount domain routes
+app.use('/doctors', doctorRoutes);
+app.use('/patients', patientRoutes);
+app.use('/appointments', appointmentRoutes);   // base CRUD
+app.use('/appointmentsEmail', emailRoutes);   // booking & email notifications
 
-app.use('/doctors',doctorRoutes);
-app.use('/patients',patientRoutes);
-app.use('/appointments',appointmentRoutes)
+// Connect to MongoDB and start server
+// server.js (excerpt)
+
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(() => {
+    console.log('MongoDB Connected');
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  })
+  .catch((err) => console.error('MongoDB connection error:', err));
