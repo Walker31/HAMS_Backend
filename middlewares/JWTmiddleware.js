@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
-function authenticateToken(req,res,next) {
-    const authHeader = req.header['authorization'];
+export function authenticateToken(req,res,next) {
+    const authHeader = req.headers['authorization'];
 
     const token = authHeader && authHeader.split(' ')[1];
     if(!token) return res.status(401).json({"message": "Token Required"});
@@ -11,4 +11,13 @@ function authenticateToken(req,res,next) {
         req.user = user;
         next();
     })
+}
+
+export function generateToken(user) {
+  const payload = {
+    id: user.doctorId || user.patientId || user.hospitalId ,
+    phone: user.phone
+  };
+  const secret = process.env.JWT_SECRET;
+  return jwt.sign(payload, secret, { expiresIn: "7d" });
 }
