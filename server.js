@@ -2,7 +2,9 @@ import express from 'express';
 import patientRoutes from './routes/patientRoutes.js';
 import doctorRoutes from './routes/doctorRoutes.js';
 import appointmentRoutes from './routes/appointmentRoutes.js';  // CRUD operations for appointments
+import hospitalRoutes from './routes/hospitalRoutes.js'
 import emailRoutes from './routes/appointments.js';            // Booking & email scheduling
+import reviewRoutes from './routes/reviewRoutes.js';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -27,6 +29,8 @@ app.use('/doctors', doctorRoutes);
 app.use('/patients', patientRoutes);
 app.use('/appointments', appointmentRoutes);   // base CRUD
 app.use('/appointmentsEmail', emailRoutes);   // booking & email notifications
+app.use('/reviews',reviewRoutes);
+app.use('/hospitals', hospitalRoutes);
 
 // Connect to MongoDB and start server
 // server.js (excerpt)
