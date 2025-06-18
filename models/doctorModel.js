@@ -61,6 +61,12 @@ const DoctorSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    averageRating: {
+      type: Number,
+      default: 0,
+      min: 0,
+      max: 5,
+    },
     password: {
       type: String,
       required: true,
@@ -81,6 +87,12 @@ DoctorSchema.pre("save", async function (next) {
   } catch (err) {
     next(err);
   }
+});
+
+DoctorSchema.virtual("reviews", {
+  ref: "Review",
+  foreignField: "doctor",
+  localField: "_id"
 });
 
 const Doctor = mongoose.model("Doctors", DoctorSchema);
