@@ -1,0 +1,112 @@
+[
+  {
+    "hospitalName": "City General Hospital",
+    "phone": "91444001001",
+    "email": "citygeneral@example.com",
+    "location": {
+      "type": "Point",
+      "coordinates": [80.2091, 13.0852]
+    },
+    "RegId": 100011,
+    "password": "123456"
+  },
+  {
+    "hospitalName": "Metro Multi-Speciality",
+    "phone": "91444001002",
+    "email": "metromulti@example.com",
+    "location": {
+      "type": "Point",
+      "coordinates": [80.2173, 13.0925]
+    },
+    "RegId": 100012,
+    "password": "123456"
+  },
+  {
+    "hospitalName": "Unity Care Hospital",
+    "phone": "91444001003",
+    "email": "unitycare@example.com",
+    "location": {
+      "type": "Point",
+      "coordinates": [80.2254, 13.0768]
+    },
+    "RegId": 100013,
+    "password": "123456"
+  },
+  {
+    "hospitalName": "Sunrise Medical Center",
+    "phone": "91444001004",
+    "email": "sunrisemed@example.com",
+    "location": {
+      "type": "Point",
+      "coordinates": [80.2387, 13.0813]
+    },
+    "RegId": 100014,
+    "password": "123456"
+  },
+  {
+    "hospitalName": "Prime Critical Care",
+    "phone": "91444001005",
+    "email": "primecritical@example.com",
+    "location": {
+      "type": "Point",
+      "coordinates": [80.2519, 13.0672]
+    },
+    "RegId": 100015,
+    "password": "123456"
+  },
+  {
+    "hospitalName": "LifeLine Hospital",
+    "phone": "91444001006",
+    "email": "lifelineh@example.com",
+    "location": {
+      "type": "Point",
+      "coordinates": [80.2638, 13.0991]
+    },
+    "RegId": 100016,
+    "password": "123456"
+  },
+  {
+    "hospitalName": "FirstMed Emergency Care",
+    "phone": "91444001007",
+    "email": "firstmed@example.com",
+    "location": {
+      "type": "Point",
+      "coordinates": [80.2724, 13.0887]
+    },
+    "RegId": 100017,
+    "password": "123456"
+  },
+  {
+    "hospitalName": "CarePlus Institute",
+    "phone": "91444001008",
+    "email": "careplus@example.com",
+    "location": {
+      "type": "Point",
+      "coordinates": [80.2851, 13.0714]
+    },
+    "RegId": 100018,
+    "password": "123456"
+  },
+  {
+    "hospitalName": "MediCure Hospital",
+    "phone": "91444001009",
+    "email": "medicure@example.com",
+    "location": {
+      "type": "Point",
+      "coordinates": [80.2947, 13.0836]
+    },
+    "RegId": 100019,
+    "password": "123456"
+  },
+  {
+    "hospitalName": "HealthFirst Center",
+    "phone": "91444001010",
+    "email": "healthfirst@example.com",
+    "location": {
+      "type": "Point",
+      "coordinates": [80.2033, 13.0789]
+    },
+    "RegId": 100020,
+    "password": "123456"
+  }
+]

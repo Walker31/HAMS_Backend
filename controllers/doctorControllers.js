@@ -18,7 +18,7 @@ class doctorControllers {
                     type: "Point",
                     coordinates: [parseFloat(lon), parseFloat(lat)],
                 },
-                $maxDistance: 5000, // 5 km
+                $maxDistance: 50000, // 5 km
                 },
             },
             });
@@ -70,6 +70,18 @@ class doctorControllers {
             res.status(200).json({doctor});
         } catch (error) {
             res.status(500).json({ message: "Error fetching profile", error: error.message });
+        }
+    }
+
+    async getTopDoctor(req,res){
+        try {
+            const topDoctors = await Doctor.find()
+            .sort({avgRating: -1})
+            .limit(10);
+
+            res.join({doctors: topDoctors})
+        } catch (error) {
+            res.status(500).json({message: "Unable to fetch top doctors", error})            
         }
     }
 }

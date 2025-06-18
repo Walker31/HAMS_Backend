@@ -20,7 +20,7 @@ const DoctorSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
-      required: true, // fixed typo here
+      required: true, 
 
     },
     email: {
@@ -59,19 +59,36 @@ const DoctorSchema = new mongoose.Schema(
     },
     photo: {
       type: String,
-      required: true,
+      required: false,
+    },
+    averageRating: {
+      type: Number,
+      default: 0,
+      min: 0,
+      max: 5,
     },
     password: {
       type: String,
       required: true,
       minlength: 6,
       select: false,
+    },
+    avgRating: {
+      type: Number,
+    default: 0,
+    min: 0,
+    max: 5
+    },
+    reviewsCount:{
+      type: Number,
+    default: 0
+
     }
   },
   { timestamps: true, collection: "Doctors" }
 );
 
-// 👇 Hash password before saving
+
 DoctorSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
@@ -82,6 +99,12 @@ DoctorSchema.pre("save", async function (next) {
   } catch (err) {
     next(err);
   }
+});
+
+doctorSchema.virtual("reviews", {
+  ref: "Review",
+  foreignField: "doctor",
+  localField: "_id"
 });
 
 const Doctor = mongoose.model("Doctors", DoctorSchema);
