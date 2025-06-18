@@ -28,6 +28,18 @@ class doctorControllers {
             res.status(500).json({ message: "Error fetching profile", error: error.message });
         }
     }
+
+    async getTopDoctor(req,res){
+        try {
+            const topDoctors = await Doctor.find()
+            .sort({avgRating: -1})
+            .limit(10);
+
+            res.join({doctors: topDoctors})
+        } catch (error) {
+            res.status(500).json({message: "Unable to fetch top doctors", error})            
+        }
+    }
 }
 
 export default new doctorControllers;

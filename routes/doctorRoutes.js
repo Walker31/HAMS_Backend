@@ -10,4 +10,9 @@ router.post("/signup", authController.doctorSignup);
 router.get('/:doctorId/appointments', doctorControllers.getAppointments);
 router.get('/:doctorId/profile', doctorControllers.profile);
 
+router.get('/top', async(req,res) =>{
+    const topDocs = await Doctor.find().sort({raing: -1}).limit(10);
+    res.json({doctors: topDocs});
+});
+
 export default router;
