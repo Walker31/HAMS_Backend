@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+
 import { nanoid } from 'nanoid';
 
 const AppointmentSchema = new mongoose.Schema({
