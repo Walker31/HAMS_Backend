@@ -101,7 +101,7 @@ DoctorSchema.pre("save", async function (next) {
   }
 });
 
-doctorSchema.virtual("reviews", {
+DoctorSchema.virtual("reviews", {
   ref: "Review",
   foreignField: "doctor",
   localField: "_id"
