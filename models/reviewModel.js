@@ -1,6 +1,12 @@
 import mongoose from "mongoose";
 
 const ReviewSchema = new mongoose.Schema({
+  reviewId:{
+    type: String,
+    unique: true,
+    index: true,
+    default: () => nanoid(6),
+  },
   doctorId: {
     type:String,
     required: true,
