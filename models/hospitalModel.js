@@ -29,7 +29,6 @@ const HospitalSchema = new mongoose.Schema(
       match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
 
     },
-    
     location: {
       type: {
         type: String,

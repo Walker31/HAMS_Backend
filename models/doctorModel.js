@@ -46,7 +46,6 @@ const DoctorSchema = new mongoose.Schema(
         required: true,
       }
     },
-
     medicalReg: {
       type: String,
       trim: true,
@@ -95,7 +94,7 @@ DoctorSchema.pre("save", async function (next) {
   }
 });
 
-doctorSchema.virtual("reviews", {
+DoctorSchema.virtual("reviews", {
   ref: "Review",
   foreignField: "doctor",
   localField: "_id"

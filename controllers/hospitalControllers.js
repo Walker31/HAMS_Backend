@@ -33,7 +33,7 @@ class hospitalControllers {
           parseFloat(lat), parseFloat(lon),
           hLat, hLon
         );
-        return distance <= 5000;
+        return distance <= 50000;
       });
 
       res.json(nearbyHospitals);
