@@ -2,7 +2,6 @@ import Appointment from "../models/appointmentModel.js";
 import Doctor from '../models/doctorModel.js';
 
 class doctorControllers {
-
     async getNearbyDoctors(req, res) {
         const { lat, lon } = req.params;
 
@@ -18,7 +17,7 @@ class doctorControllers {
                     type: "Point",
                     coordinates: [parseFloat(lon), parseFloat(lat)],
                 },
-                $maxDistance: 5000, // 5 km
+                $maxDistance: 50000, // 5 km
                 },
             },
             });
