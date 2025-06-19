@@ -1,5 +1,5 @@
 import Appointment from "../models/appointmentModel.js";
-import { sendConfirmationEmail, sendReminderEmail } from './services/emailService.js';
+
 
 class appointmentController {
   async bookAppointment(req, res) {
