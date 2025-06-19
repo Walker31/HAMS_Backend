@@ -7,9 +7,7 @@ import Hospital from "../models/hospitalModel.js";
 class authController {
   async doctorLogin(req, res) {
     try {
-      const doctor = await Doctor.findOne({ phone: req.body.phone }).select(
-        "+password"
-      );
+      const doctor = await Doctor.findOne({ phone: req.body.phone }).select("+password");
 
       if (!doctor) {
         return res.status(404).json({ message: "Doctor not found" });
@@ -49,9 +47,7 @@ class authController {
 
   async patientLogin(req, res) {
     try {
-      const patient = await Patient.findOne({ phone: req.body.phone }).select(
-        "+password"
-      );
+      const patient = await Patient.findOne({ phone: req.body.phone }).select("+password");
 
       if (!patient) {
         return res.status(404).json({ message: "Patient not found" });
@@ -69,24 +65,66 @@ class authController {
     }
   }
 
+  // ✅ Updated only this method to structure nested fields
   async patientSignup(req, res) {
-    try {
-      const exists = await Patient.findOne({ phone: req.body.phone }); // fixed: should check Patient, not Doctor
-      if (exists) {
-        return res
-          .status(400)
-          .json({ message: "Patient already exists with this phone number" });
-      }
-
-      const patient = await Patient.create(req.body);
-      const token = generateToken(patient);
-
-      console.log("Patient account created");
-      return res.status(201).json({ patient, token });
-    } catch (error) {
-      return res.status(500).json({ message: error.message });
+  console.log("Incoming patient data:", req.body);
+  try {
+    const exists = await Patient.findOne({ phone: req.body.phone });
+    if (exists) {
+      return res
+        .status(400)
+        .json({ message: "Patient already exists with this phone number" });
     }
+
+    // Pull out only what needs transformation
+    const {
+      fullName,
+      street,
+      city,
+      state,
+      postalCode,
+      emergencyName,
+      emergencyPhone,
+      emergencyRelation,
+      phone,
+      email,
+      gender,
+      dateOfBirth,
+      password,
+    } = req.body;
+
+    const patientData = {
+      name: fullName,
+      phone,
+      email,
+      gender,
+      dateOfBirth,
+      password,
+      address: {
+        street,
+        city,
+        state,
+        postalCode,
+      },
+      emergencyContact: {
+        name: emergencyName,
+        phone: emergencyPhone,
+        relation: emergencyRelation,
+      },
+    };
+
+    const patient = await Patient.create(patientData);
+    const token = generateToken(patient);
+
+    console.log("Patient account created");
+    return res.status(201).json({ patient, token });
+  } catch (error) {
+    console.error("Patient signup error:", error);
+    return res.status(500).json({ message: error.message });
   }
+}
+     
+
   async hospitalSignup(req, res) {
     try {
       console.log(req.body);
@@ -100,23 +138,17 @@ class authController {
       }
 
       if (req.body.location && Array.isArray(req.body.location.coordinates)) {
-        // Convert coordinates to numbers
-        const coords = req.body.location.coordinates.map((coord) =>
-          Number(coord)
-        );
+        const coords = req.body.location.coordinates.map((coord) => Number(coord));
 
         if (coords.length !== 2 || coords.some((coord) => isNaN(coord))) {
           return res.status(400).json({
-            message:
-              "Invalid location coordinates. Must be an array of two numbers [longitude, latitude].",
+            message: "Invalid location coordinates. Must be an array of two numbers [longitude, latitude].",
           });
         }
 
         req.body.location.coordinates = coords;
       } else {
-        return res
-          .status(400)
-          .json({ message: "Location coordinates are required." });
+        return res.status(400).json({ message: "Location coordinates are required." });
       }
 
       const hospital = await Hospital.create(req.body);
@@ -130,4 +162,5 @@ class authController {
     }
   }
 }
-export default new authController;
+
+export default new authController();
