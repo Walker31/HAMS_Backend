@@ -9,12 +9,19 @@ class reviewController {
       const newReview = new Review({ doctorId, patientId, rating, comment });
       await newReview.save();
 
-      // Recalculate average rating for the doctor
+      
       const reviews = await Review.find({ doctorId });
       const avgRating =
         reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length;
 
-      await Doctor.findOneAndUpdate({ doctorId }, { averageRating: avgRating });
+      
+      await Doctor.findOneAndUpdate(
+        { doctorId }, 
+        { 
+          avgRating: avgRating,
+          reviewsCount: reviews.length 
+        }
+      );
 
       res
         .status(201)
@@ -25,7 +32,7 @@ class reviewController {
     }
   }
 
-  // Get all reviews for a doctor
+
   async getReviewsByDoctor(req, res) {
     try {
       const { doctorId } = req.params;
@@ -38,7 +45,6 @@ class reviewController {
     }
   }
 
-  // Optional: Delete a review by ID
   async deleteReview(req, res) {
     try {
       const { reviewId } = req.params;
@@ -48,7 +54,6 @@ class reviewController {
         return res.status(404).json({ message: "Review not found" });
       }
 
-      // Recalculate average rating after deletion
       const reviews = await Review.find({ doctorId: deletedReview.doctorId });
       const avgRating =
         reviews.length > 0
@@ -57,7 +62,10 @@ class reviewController {
 
       await Doctor.findOneAndUpdate(
         { doctorId: deletedReview.doctorId },
-        { averageRating: avgRating }
+        { 
+          avgRating: avgRating,
+          reviewsCount: reviews.length 
+        }
       );
 
       res.status(200).json({ message: "Review deleted successfully" });

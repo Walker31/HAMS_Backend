@@ -95,11 +95,14 @@ DoctorSchema.pre("save", async function (next) {
   }
 });
 
-doctorSchema.virtual("reviews", {
+DoctorSchema.virtual("reviews", {
   ref: "Review",
   foreignField: "doctor",
   localField: "_id"
 });
+
+
+DoctorSchema.index({ location: "2dsphere" });
 
 const Doctor = mongoose.model("Doctors", DoctorSchema);
 export default Doctor;

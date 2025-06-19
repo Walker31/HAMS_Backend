@@ -46,18 +46,33 @@ class doctorControllers {
         }
     }
 
-    async topDoctors(req, res) {
+
+     async getTopDoctorsByLocation(req, res) {
+        const { lat, lon } = req.params;
+        
+        if (!lat || !lon) {
+            return res.status(400).json({ message: "Latitude and longitude required" });
+        }
+
         try {
-            const doctors = await Doctor.find({}).limit(5);
-            
-            if (!doctors || doctors.length === 0) {
-                return res.status(404).json({ message: "No doctors found" });
-            }
+            const doctors = await Doctor.find({
+                location: {
+                    $near: {
+                        $geometry: {
+                            type: "Point",
+                            coordinates: [parseFloat(lon), parseFloat(lat)],
+                        },
+                        $maxDistance: 50000, // 30 km radius
+                    },
+                },
+            })
+            .sort({ avgRating: -1 }) 
+            .limit(10); 
 
             res.status(200).json({ doctors });
-        } catch (err) {
-            console.error("Error fetching top doctors:", err);
-            res.status(500).json({ message: "Error fetching top doctors", error: err.message });
+        } catch (error) {
+            console.error("Error fetching top doctors by location:", error);
+            res.status(500).json({ message: "Error fetching top doctors by location", error: error.message });
         }
     }
 
@@ -73,17 +88,7 @@ class doctorControllers {
         }
     }
 
-    async getTopDoctor(req,res){
-        try {
-            const topDoctors = await Doctor.find()
-            .sort({avgRating: -1})
-            .limit(10);
-
-            res.join({doctors: topDoctors})
-        } catch (error) {
-            res.status(500).json({message: "Unable to fetch top doctors", error})            
-        }
-    }
+    
 }
 
 export default new doctorControllers;
