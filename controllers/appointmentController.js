@@ -1,4 +1,5 @@
 import Appointment from "../models/appointmentModel.js";
+import { sendConfirmationEmail, sendReminderEmail } from './services/emailService.js';
 
 class appointmentController {
   async bookAppointment(req, res) {
@@ -176,6 +177,9 @@ async getPreviousAppointments(req, res) {
         .json({ message: "Error Cancelling Appointment", error: err.message });
     }
   }
+  
+  
+  
 }
 
 export default new appointmentController();
