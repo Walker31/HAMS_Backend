@@ -2,7 +2,6 @@ import Appointment from "../models/appointmentModel.js";
 import Doctor from '../models/doctorModel.js';
 
 class doctorControllers {
-
     async getNearbyDoctors(req, res) {
         const { lat, lon } = req.params;
 
