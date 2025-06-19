@@ -6,8 +6,9 @@ const router = express.Router();
 
 router.post("/login", authController.doctorLogin);
 router.post("/signup", authController.doctorSignup);
-router.get('/nearby/:lat/:lon',doctorControllers.getNearbyDoctors);
-router.get('/top',doctorControllers.topDoctors);
+router.get('/nearby/:lat/:lon', doctorControllers.getNearbyDoctors);
+
+router.get('/top/:lat/:lon', doctorControllers.getTopDoctorsByLocation);
 
 router.get('/:doctorId/appointments', doctorControllers.getAppointments);
 router.get('/:doctorId/profile', doctorControllers.profile);
