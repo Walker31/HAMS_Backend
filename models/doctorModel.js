@@ -94,5 +94,8 @@ DoctorSchema.virtual("reviews", {
   localField: "_id"
 });
 
+
+DoctorSchema.index({ location: "2dsphere" });
+
 const Doctor = mongoose.model("Doctors", DoctorSchema);
 export default Doctor;
