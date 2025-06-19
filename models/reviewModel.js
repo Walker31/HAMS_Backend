@@ -1,15 +1,14 @@
 import mongoose from "mongoose";
-import { nanoid } from "nanoid";
 
 const ReviewSchema = new mongoose.Schema({
-  reviewId:{
+  reviewId: {
     type: String,
     unique: true,
     index: true,
     default: () => nanoid(6),
   },
   doctorId: {
-    type:String,
+    type: String,
     required: true,
   },
   patientId: {
@@ -30,7 +29,7 @@ const ReviewSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-},{timestamps: true, collection: 'Reviews'});
+}, { timestamps: true, collection: 'Reviews' });
 
 const Review = mongoose.model("Reviews", ReviewSchema);
 export default Review;
