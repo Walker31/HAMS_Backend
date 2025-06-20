@@ -75,6 +75,10 @@ const DoctorSchema = new mongoose.Schema(
       minlength: 6,
       select: false,
     },
+    Organisation: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true, collection: "Doctors" }
 );
