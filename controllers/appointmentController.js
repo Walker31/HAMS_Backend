@@ -1,5 +1,6 @@
 import Appointment from "../models/appointmentModel.js";
 
+
 class appointmentController {
   async bookAppointment(req, res) {
     const { date, patientId, doctorId, payStatus, clinicId, slotNumber } =
@@ -176,6 +177,9 @@ async getPreviousAppointments(req, res) {
         .json({ message: "Error Cancelling Appointment", error: err.message });
     }
   }
+  
+  
+  
 }
 
 export default new appointmentController();
