@@ -11,5 +11,7 @@ router.put("/update-status/:appId", AppointmentController.updateAppStatus);
 router.get("/pending/:date", AppointmentController.showAppointments);
 router.get("/previous", AppointmentController.getPreviousAppointments);
 
+// 🔥 New route for patient dashboard:
+router.get("/patient/:patientId", AppointmentController.getAppointmentsByPatient);
 
 export default router;

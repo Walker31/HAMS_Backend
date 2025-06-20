@@ -1,48 +1,48 @@
 import mongoose from 'mongoose';
-
 import { nanoid } from 'nanoid';
 
 const AppointmentSchema = new mongoose.Schema({
-  appId: {
+  appointmentId: {
     type: String,
     unique: true,
-    index: true,
-    default: () => nanoid(6),
-  },
-  date: {
-    type: Date,
-    default: Date.now,
-  },
-  doctorId: {
-    type: String,
-    required: true,
+    default: () => nanoid(8),
   },
   patientId: {
     type: String,
-    required: true,
+    required: true
+  },
+  doctorId: {
+    type: String,
+    required: true
   },
   clinicId: {
     type: String,
-    required: true,
+    required: true
+  },
+  date: {
+    type: String,  // you can also use Date type, but since you're saving date string, I'm keeping it simple
+    required: true
   },
   slotNumber: {
     type: String,
-    required: true,
+    required: true
   },
-  payStatus: {
+  reason: {
     type: String,
-    default: 'Unpaid',
-    enum:['Paid','Unpaid']
+    required: true
   },
   appStatus: {
     type: String,
-    enum: ['Pending', 'Confirmed', 'Cancelled', 'Completed', 'Rescheduled', 'Incomplete'],
-    default: 'Pending',
+    enum: ['Pending', 'Confirmed','Cancelled','Completed','Rescheduled','Incomplete'],
+    default: 'Pending'
   },
-}, {
-  timestamps: true,
-  collection: "Appointments",
-});
 
-const Appointment = mongoose.model("Appointments", AppointmentSchema);
-export default Appointment;
+  payStatus: {
+    type: String,
+    enum: ['Paid', 'Unpaid'],
+    default: 'Unpaid'
+  }
+}, { timestamps: true });
+
+export default mongoose.model('Appointment', AppointmentSchema);
+
