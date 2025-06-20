@@ -29,6 +29,10 @@ const AppointmentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  reason: {
+    type: String,
+    required: true,
+  },
   payStatus: {
     type: String,
     default: 'Unpaid',
@@ -44,5 +48,5 @@ const AppointmentSchema = new mongoose.Schema({
   collection: "Appointments",
 });
 
-const Appointment = mongoose.model("Appointments", AppointmentSchema);
+const Appointment = mongoose.model("Appointment", AppointmentSchema);
 export default Appointment;
