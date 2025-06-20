@@ -1,5 +1,6 @@
 import Appointment from "../models/appointmentModel.js";
 
+
 class appointmentController {
   // EXISTING BOOK APPOINTMENT FUNCTION
   async bookAppointment(req, res) {
@@ -188,6 +189,9 @@ class appointmentController {
       res.status(500).json({ message: "Error Cancelling Appointment", error: err.message });
     }
   }
+  
+  
+  
 }
 
 export default new appointmentController();
