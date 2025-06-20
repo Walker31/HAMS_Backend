@@ -3,7 +3,6 @@ import controllers from '../controllers/reviewController.js';
 
 const router = express.Router();
 
-// POST a new review
 router.post("/", controllers.createReview);
 
 router.post("/multiple",controllers.createMultipleReviews);
@@ -11,7 +10,6 @@ router.post("/multiple",controllers.createMultipleReviews);
 // GET all reviews for a specific doctor
 router.get("/:doctorId", controllers.getReviewsByDoctor);
 
-// DELETE a review by ID
 router.delete("/:reviewId", controllers.deleteReview);
 
 export default router;

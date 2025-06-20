@@ -1,14 +1,19 @@
 import Appointment from "../models/appointmentModel.js";
 
+
 class appointmentController {
+  // EXISTING BOOK APPOINTMENT FUNCTION
   async bookAppointment(req, res) {
-    const { date, patientId, doctorId, payStatus, clinicId, slotNumber } =
-      req.body;
+    const { date, patientId, doctorId, payStatus, clinicId, slotNumber, reason } = req.body;
 
     try {
+      if (!reason || reason.trim() === "") {
+        return res.status(400).json({ message: "Reason is required" });
+      }
+
       const existingAppointment = await Appointment.findOne({
         doctorId,
-        date, // fix added here
+        date,
         slotNumber,
       });
 
@@ -17,13 +22,14 @@ class appointmentController {
       }
 
       const data = await Appointment.create({
-        date: new Date(date), // store as proper Date object
+        date: new Date(date),
         patientId,
         doctorId,
         payStatus,
         clinicId,
         slotNumber,
-        appStatus: "Pending", // VERY IMPORTANT!
+        appStatus: "Pending",
+        reason,
       });
 
       return res.status(201).json({
@@ -37,54 +43,70 @@ class appointmentController {
       });
     }
   }
+
+  // ADDITIONAL FUNCTION: Patient Dashboard API
+  async getAppointmentsByPatient(req, res) {
+    const { patientId } = req.params;
+
+    if (!patientId) {
+      return res.status(400).json({ message: "Patient ID is required" });
+    }
+
+    try {
+      const appointments = await Appointment.find({ patientId })
+      .populate('doctorId', 'name')  // populate doctor name only
+      .sort({ createdAt: -1});  
+              // newest first
+      res.status(200).json(appointments);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  }
+
+  // EXISTING Doctor dashboard methods
+
   async showAppointments(req, res) {
-  const { date } = req.params;
-  const { doctorId } = req.query;
+    const { date } = req.params;
+    const { doctorId } = req.query;
 
-  const startOfDay = new Date(`${date}T00:00:00.000Z`);
-  const endOfDay = new Date(`${date}T23:59:59.999Z`);
+    const startOfDay = new Date(`${date}T00:00:00.000Z`);
+    const endOfDay = new Date(`${date}T23:59:59.999Z`);
 
-  const query = {
-    appStatus: "Pending",
-    date: { $gte: startOfDay, $lte: endOfDay }   // CORRECT RANGE QUERY ✅
-  };
+    const query = {
+      appStatus: "Pending",
+      date: { $gte: startOfDay, $lte: endOfDay }
+    };
 
-  if (doctorId) {
-    query.doctorId = doctorId;
+    if (doctorId) {
+      query.doctorId = doctorId;
+    }
+
+    try {
+      const appointments = await Appointment.find(query);
+      res.json(appointments);
+    } catch (error) {
+      res.status(500).json({ error: "Internal Server Error", details: error.message });
+    }
   }
 
-  console.log("Querying with:", query);
+  async getPreviousAppointments(req, res) {
+    const { doctorId } = req.query;
 
-  try {
-    const appointments = await Appointment.find(query);
-    console.log("Appointments fetched:", appointments);
-    res.json(appointments);
-  } catch (error) {
-    console.error("Error fetching appointments:", error);
-    res.status(500).json({ error: "Internal Server Error", details: error.message });
+    if (!doctorId) {
+      return res.status(400).json({ message: "Doctor ID is required" });
+    }
+
+    try {
+      const appointments = await Appointment.find({
+        doctorId,
+        appStatus: { $ne: "Pending" }
+      }).populate('patientId', 'name');
+
+      res.json(appointments);
+    } catch (error) {
+      res.status(500).json({ message: "Error fetching previous appointments", error: error.message });
+    }
   }
-}
-
-async getPreviousAppointments(req, res) {
-  const { doctorId } = req.query;
-
-  if (!doctorId) {
-    return res.status(400).json({ message: "Doctor ID is required" });
-  }
-
-  try {
-    const appointments = await Appointment.find({
-      doctorId,
-      appStatus: { $ne: "Pending" } // Not Pending appointments
-    })
-    .populate('patientId', 'name'); // show patient name
-
-    res.json(appointments);
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching previous appointments", error: error.message });
-  }
-}
-
 
   async updateAppStatus(req, res) {
     const { appId } = req.params;
@@ -111,10 +133,7 @@ async getPreviousAppointments(req, res) {
         appointment: updatedAppointment,
       });
     } catch (error) {
-      console.error("Error updating appointment status:", error);
-      res
-        .status(500)
-        .json({ message: "Internal Server Error", error: error.message });
+      res.status(500).json({ message: "Internal Server Error", error: error.message });
     }
   }
 
@@ -127,9 +146,7 @@ async getPreviousAppointments(req, res) {
       }
       return res.json({ message: "Appointment deleted successfully" });
     } catch (err) {
-      res
-        .status(500)
-        .json({ message: "Error Deleting the History", error: err });
+      res.status(500).json({ message: "Error Deleting the History", error: err });
     }
   }
 
@@ -151,9 +168,7 @@ async getPreviousAppointments(req, res) {
       }
       res.json(update);
     } catch (err) {
-      res
-        .status(500)
-        .json({ message: "Error updating Appointment", error: err.message });
+      res.status(500).json({ message: "Error updating Appointment", error: err.message });
     }
   }
 
@@ -171,11 +186,13 @@ async getPreviousAppointments(req, res) {
       }
       res.json(update);
     } catch (err) {
-      res
-        .status(500)
-        .json({ message: "Error Cancelling Appointment", error: err.message });
+      res.status(500).json({ message: "Error Cancelling Appointment", error: err.message });
     }
   }
+  
+  
+  
 }
 
 export default new appointmentController();
+
