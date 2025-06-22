@@ -11,7 +11,7 @@ const PatientSchema = new mongoose.Schema(
       required: true,
       unique: true,
       index: true,
-      default: () => nanoid(6),
+      default: () => nanoid(6)
     },
     name: {
       type: String,
@@ -58,7 +58,7 @@ const PatientSchema = new mongoose.Schema(
   { timestamps: true, collection: "Patients" }
 );
 
-// 👇 Hash password before saving
+
 PatientSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
