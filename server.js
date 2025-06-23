@@ -35,13 +35,10 @@ app.get('/', (req, res) => {
 // Mount domain routes
 app.use('/doctors', doctorRoutes);
 app.use('/patients', patientRoutes);
-app.use('/appointments', appointmentRoutes);   // base CRUD
-app.use('/appointmentsEmail', emailRoutes);   // booking & email notifications
+app.use('/appointments', appointmentRoutes);
+app.use('/appointmentsEmail', emailRoutes);
 app.use('/reviews',reviewRoutes);
 app.use('/hospitals', hospitalRoutes);
-
-// Connect to MongoDB and start server
-// server.js (excerpt)
 
 mongoose
   .connect(process.env.MONGO_URL)
