@@ -56,12 +56,15 @@ const DoctorSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-
     overview: {
       type: String,
       default: "",
     },
-
+    availableSlots: {
+      type: Map,
+      of: [String], // Slots per date
+      default: {},
+    },
     averageRating: {
       type: Number,
       default: 0,
