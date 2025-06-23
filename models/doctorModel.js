@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import { customAlphabet,nanoid } from "nanoid";
+import { customAlphabet } from "nanoid";
 
 const nanoidNumeric = customAlphabet("1234567890", 6);
 
@@ -10,24 +10,21 @@ const DoctorSchema = new mongoose.Schema(
       type: String,
       unique: true,
       index: true,
-      default: () => nanoid(6),
+      default: () => nanoidNumeric(6),
     },
     name: {
       type: String,
       required: true,
       trim: true,
-      required: true,
     },
     phone: {
       type: String,
-      required: true, 
-
+      required: true,
     },
     email: {
       type: String,
       required: true,
       match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-
     },
     gender: {
       type: String,
@@ -37,30 +34,35 @@ const DoctorSchema = new mongoose.Schema(
     location: {
       type: {
         type: String,
-        enum: ['Point'],
+        enum: ["Point"],
         required: true,
-        default: 'Point',
+        default: "Point",
       },
       coordinates: {
-        type: [Number], 
+        type: [Number], // [longitude, latitude]
         required: true,
-      }
+      },
     },
-
     medicalReg: {
       type: String,
       trim: true,
       required: true,
     },
-    specialization:{
+    specialization: {
       type: String,
       required: true,
-
     },
     photo: {
       type: String,
       required: false,
     },
+
+    // ✅ Added field
+    overview: {
+      type: String,
+      default: "",
+    },
+
     averageRating: {
       type: Number,
       default: 0,
@@ -72,7 +74,11 @@ const DoctorSchema = new mongoose.Schema(
       required: true,
       minlength: 6,
       select: false,
-    }
+    },
+    Organisation: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true, collection: "Doctors" }
 );
@@ -92,9 +98,8 @@ DoctorSchema.pre("save", async function (next) {
 DoctorSchema.virtual("reviews", {
   ref: "Review",
   foreignField: "doctor",
-  localField: "_id"
+  localField: "_id",
 });
-
 
 DoctorSchema.index({ location: "2dsphere" });
 
