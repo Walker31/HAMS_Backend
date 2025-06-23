@@ -254,4 +254,3 @@ class appointmentController {
 }
 
 export default new appointmentController();
-
