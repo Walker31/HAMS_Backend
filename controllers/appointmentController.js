@@ -34,47 +34,83 @@ class appointmentController {
 
   // EXISTING BOOK APPOINTMENT FUNCTION
   async bookAppointment(req, res) {
-    const { date, patientId, doctorId, payStatus, clinicId, slotNumber, reason } = req.body;
+  const {
+    date,
+    patientId,
+    doctorId,
+    payStatus,
+    clinicId,
+    slotNumber,
+    reason,
+    time, // if needed for email
+  } = req.body;
 
-    try {
-      if (!reason || reason.trim() === "") {
-        return res.status(400).json({ message: "Reason is required" });
-      }
+  console.log("📥 Incoming appointment request:", req.body);
 
-      const existingAppointment = await Appointment.findOne({
-        doctorId,
-        date,
-        slotNumber,
-      });
-
-      if (existingAppointment) {
-        return res.status(409).json({ message: "Slot Already Booked" });
-      }
-
-      const data = await Appointment.create({
-        date: new Date(date),
-        patientId,
-        doctorId,
-        payStatus,
-        clinicId,
-        slotNumber,
-        appStatus: "Pending",
-        reason,
-      });
-
-      await this.processAppointmentEmails({ email, patientName, date, time: req.body.time, location });
-
-      return res.status(201).json({
-        message: "Appointment slot booked successfully",
-        appId: data.appId,
-      });
-    } catch (err) {
-      return res.status(500).json({
-        message: "Error booking appointment",
-        error: err.message,
-      });
+  try {
+    if (!reason || reason.trim() === "") {
+      console.warn("❌ Reason is missing");
+      return res.status(400).json({ message: "Reason is required" });
     }
+
+    // Check for existing appointment
+    const existingAppointment = await Appointment.findOne({
+      doctorId,
+      date,
+      slotNumber,
+    });
+
+    if (existingAppointment) {
+      console.warn("⚠️ Slot already booked:", { doctorId, date, slotNumber });
+      return res.status(409).json({ message: "Slot Already Booked" });
+    }
+
+    // Create new appointment
+    const newAppointment = await Appointment.create({
+      date: new Date(date),
+      patientId,
+      doctorId,
+      payStatus,
+      clinicId,
+      slotNumber,
+      appStatus: "Pending",
+      reason,
+    });
+
+    console.log("✅ Appointment created:", newAppointment);
+
+    // Optional email processing
+    // These values must exist, but aren't defined in your function:
+    const email = req.body.email;
+    const patientName = req.body.patientName;
+    const location = req.body.location;
+
+    if (!email || !patientName || !location || !time) {
+      console.warn("⚠️ Missing email details, skipping email...");
+    } else {
+      await this.processAppointmentEmails({
+        email,
+        patientName,
+        date,
+        time,
+        location,
+      });
+      console.log("📧 Email sent");
+    }
+
+    return res.status(201).json({
+      message: "Appointment slot booked successfully",
+      appId: newAppointment.appId,
+    });
+  } catch (err) {
+    console.error("💥 Error booking appointment:", err);
+    return res.status(500).json({
+      message: "Error booking appointment",
+      error: err.message,
+    });
   }
+}
+
 
   // ADDITIONAL FUNCTION: Patient Dashboard API
   async getAppointmentsByPatient(req, res) {
