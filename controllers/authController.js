@@ -7,6 +7,7 @@ import Hospital from "../models/hospitalModel.js";
 class authController {
   async doctorLogin(req, res) {
     try {
+      console.log("Doc Login")
       const doctor = await Doctor.findOne({ phone: req.body.phone }).select("+password");
 
       if (!doctor) {
@@ -26,14 +27,17 @@ class authController {
   }
 
   async doctorSignup(req, res) {
+    console.log("Entered func")
     try {
       const exists = await Doctor.findOne({ phone: req.body.phone });
       if (exists) {
+        console.log("Doctor Found")
         return res
           .status(400)
           .json({ message: "Doctor already exists with this phone number" });
       }
-
+      console.log("Doctor New")
+      console.log(req.body)
       const doctor = await Doctor.create(req.body);
       const token = generateToken(doctor);
 
@@ -47,6 +51,7 @@ class authController {
 
   async patientLogin(req, res) {
     try {
+      console.log("enterrrrrr")
       const patient = await Patient.findOne({ phone: req.body.phone }).select("+password");
 
       if (!patient) {
