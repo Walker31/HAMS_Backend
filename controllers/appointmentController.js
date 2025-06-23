@@ -1,34 +1,59 @@
 import Appointment from "../models/appointmentModel.js";
+import Patient from "../models/patientModel.js";
+import Hospital from "../models/hospitalModel.js";
+import Doctor from "../models/doctorModel.js";
 import {
   sendConfirmationEmail,
   sendReminderEmail
 } from '../services/emailService.js';
-
-
+import schedule from 'node-schedule';
 
 class appointmentController {
-    // Separate async helper within the class
-  async processAppointmentEmails({ email, patientName, date, time, location }) {
-    // Send confirmation email immediately
-    await sendConfirmationEmail(email, { patientName, date, time, location });
+  
+  // Email function for sending confirmation and reminder emails
+  async sendAppointmentEmails(patientId, doctorId, clinicId, date, slotNumber) {
+    try {
+      // Fetch patient, doctor and hospital details
+      const [patient, doctor, hospital] = await Promise.all([
+        Patient.findById(patientId).select('name email'),
+        Doctor.findById(doctorId).select('name'),
+        Hospital.findById(clinicId).select('hospitalName')
+      ]);
 
-    // Calculate appointment datetime
-    const apptDate = new Date(date);
-    if (time) {
-      const [hr, min] = time.split(':').map(Number);
-      apptDate.setHours(hr, min);
-    }
+      if (!patient?.email) {
+        console.log('Patient email not found, skipping emails');
+        return;
+      }
 
-    // Schedule reminder 24h before appointment
-    const reminderDate = new Date(apptDate.getTime() - 24 * 60 * 60 * 1000);
-    if (reminderDate > new Date()) {
-      schedule.scheduleJob(reminderDate, () => {
-        sendReminderEmail(email, { patientName, date, time, location })
-          .catch(err => console.error('Reminder email failed:', err));
-      });
-      console.log(`Scheduled reminder for ${reminderDate}`);
-    } else {
-      console.log('Appointment is less than 24h away; skipping reminder.');
+      const emailData = {
+        patientName: patient.name,
+        date: new Date(date).toLocaleDateString(),
+        time: `Slot ${slotNumber}`,
+        location: hospital?.hospitalName || 'Clinic'
+      };
+
+      // Send confirmation email immediately
+      await sendConfirmationEmail(patient.email, emailData);
+      console.log(`Confirmation email sent to ${patient.email}`);
+
+      // Schedule reminder email 24 hours before appointment date
+      const apptDate = new Date(date);
+      const reminderTime = new Date(apptDate.getTime() - 24 * 60 * 60 * 1000);
+
+      if (reminderTime > new Date()) {
+        schedule.scheduleJob(reminderTime, async () => {
+          try {
+            await sendReminderEmail(patient.email, emailData);
+            console.log(`Reminder email sent to ${patient.email}`);
+          } catch (err) {
+            console.error('Reminder email failed:', err);
+          }
+        });
+        console.log(`Reminder scheduled for ${reminderTime}`);
+      }
+
+    } catch (error) {
+      console.error('Error sending appointment emails:', error);
     }
   }
 
@@ -62,7 +87,8 @@ class appointmentController {
         reason,
       });
 
-      await this.processAppointmentEmails({ email, patientName, date, time: req.body.time, location });
+      // Send appointment emails
+      this.sendAppointmentEmails(patientId, doctorId, clinicId, date, slotNumber);
 
       return res.status(201).json({
         message: "Appointment slot booked successfully",
@@ -221,11 +247,6 @@ class appointmentController {
       res.status(500).json({ message: "Error Cancelling Appointment", error: err.message });
     }
   }
-  
-  
-  
-  
 }
 
 export default new appointmentController();
-
