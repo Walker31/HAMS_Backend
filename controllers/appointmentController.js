@@ -1,10 +1,40 @@
 import Appointment from "../models/appointmentModel.js";
+import {
+  sendConfirmationEmail,
+  sendReminderEmail
+} from '../services/emailService.js';
+
 
 
 class appointmentController {
+    // Separate async helper within the class
+  async processAppointmentEmails({ email, patientName, date, time, location }) {
+    // Send confirmation email immediately
+    await sendConfirmationEmail(email, { patientName, date, time, location });
+
+    // Calculate appointment datetime
+    const apptDate = new Date(date);
+    if (time) {
+      const [hr, min] = time.split(':').map(Number);
+      apptDate.setHours(hr, min);
+    }
+
+    // Schedule reminder 24h before appointment
+    const reminderDate = new Date(apptDate.getTime() - 24 * 60 * 60 * 1000);
+    if (reminderDate > new Date()) {
+      schedule.scheduleJob(reminderDate, () => {
+        sendReminderEmail(email, { patientName, date, time, location })
+          .catch(err => console.error('Reminder email failed:', err));
+      });
+      console.log(`Scheduled reminder for ${reminderDate}`);
+    } else {
+      console.log('Appointment is less than 24h away; skipping reminder.');
+    }
+  }
+
   // EXISTING BOOK APPOINTMENT FUNCTION
   async bookAppointment(req, res) {
-    const { date, patientId, doctorId, payStatus, clinicId, slotNumber, reason } = req.body;
+    const { date, patientId, doctorId, payStatus, clinicId, slotNumber, reason ,consultStatus,MeetLink} = req.body;
 
     try {
       if (!reason || reason.trim() === "") {
@@ -26,11 +56,15 @@ class appointmentController {
         patientId,
         doctorId,
         payStatus,
+        consultStatus,
+        MeetLink,
         clinicId,
         slotNumber,
         appStatus: "Pending",
         reason,
       });
+
+      await this.processAppointmentEmails({ email, patientName, date, time: req.body.time, location });
 
       return res.status(201).json({
         message: "Appointment slot booked successfully",
@@ -189,6 +223,7 @@ class appointmentController {
       res.status(500).json({ message: "Error Cancelling Appointment", error: err.message });
     }
   }
+  
   
   
   
