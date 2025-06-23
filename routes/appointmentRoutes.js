@@ -1,5 +1,6 @@
 import express from "express";
 import AppointmentController from "../controllers/appointmentController.js";
+import { authenticateToken } from "../middlewares/JWTmiddleware.js";
 
 const router = express.Router();
 
@@ -11,7 +12,6 @@ router.put("/update-status/:appId", AppointmentController.updateAppStatus);
 router.get("/pending/:date", AppointmentController.showAppointments);
 router.get("/previous", AppointmentController.getPreviousAppointments);
 
-// 🔥 New route for patient dashboard:
-router.get("/patient/:patientId", AppointmentController.getAppointmentsByPatient);
+router.get("/patient", authenticateToken,AppointmentController.getAppointmentsByPatient);
 
 export default router;
