@@ -34,18 +34,7 @@ class appointmentController {
 
   // EXISTING BOOK APPOINTMENT FUNCTION
   async bookAppointment(req, res) {
-  const {
-    date,
-    patientId,
-    doctorId,
-    payStatus,
-    clinicId,
-    slotNumber,
-    reason,
-    time, // if needed for email
-  } = req.body;
-
-  console.log("📥 Incoming appointment request:", req.body);
+    const { date, patientId, doctorId, payStatus, clinicId, slotNumber, reason ,consultStatus,MeetLink} = req.body;
 
   try {
     if (!reason || reason.trim() === "") {
@@ -65,17 +54,18 @@ class appointmentController {
       return res.status(409).json({ message: "Slot Already Booked" });
     }
 
-    // Create new appointment
-    const newAppointment = await Appointment.create({
-      date: new Date(date),
-      patientId,
-      doctorId,
-      payStatus,
-      clinicId,
-      slotNumber,
-      appStatus: "Pending",
-      reason,
-    });
+      const data = await Appointment.create({
+        date: new Date(date),
+        patientId,
+        doctorId,
+        payStatus,
+        consultStatus,
+        MeetLink,
+        clinicId,
+        slotNumber,
+        appStatus: "Pending",
+        reason,
+      });
 
     console.log("✅ Appointment created:", newAppointment);
 
