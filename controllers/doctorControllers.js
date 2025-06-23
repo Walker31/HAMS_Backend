@@ -2,7 +2,7 @@ import Appointment from "../models/appointmentModel.js";
 import Doctor from "../models/doctorModel.js";
 
 class DoctorControllers {
-  // GET nearby doctors based on lat/lon
+  // GET nearby doctors based on latitude and longitude
   async getNearbyDoctors(req, res) {
     const { lat, lon } = req.params;
 
@@ -14,11 +14,8 @@ class DoctorControllers {
       const doctors = await Doctor.find({
         location: {
           $near: {
-            $geometry: {
-              type: "Point",
-              coordinates: [parseFloat(lon), parseFloat(lat)],
-            },
-            $maxDistance: 50000, // 50 km
+            $geometry: { type: "Point", coordinates: [parseFloat(lon), parseFloat(lat)] },
+            $maxDistance: 50000,
           },
         },
       });
@@ -36,8 +33,7 @@ class DoctorControllers {
 
     try {
       const doctorExists = await Doctor.findById(doctorId);
-      if (!doctorExists)
-        return res.status(404).json({ message: "Doctor not found" });
+      if (!doctorExists) return res.status(404).json({ message: "Doctor not found" });
 
       const appointments = await Appointment.find({ doctorId });
 
@@ -51,7 +47,7 @@ class DoctorControllers {
     }
   }
 
-  // GET top rated doctors by location
+  // GET top-rated doctors based on location
   async getTopDoctorsByLocation(req, res) {
     const { lat, lon } = req.params;
 
@@ -67,7 +63,7 @@ class DoctorControllers {
               type: "Point",
               coordinates: [parseFloat(lon), parseFloat(lat)],
             },
-            $maxDistance: 50000, // 50 km
+            $maxDistance: 50000,
           },
         },
       })
@@ -84,19 +80,19 @@ class DoctorControllers {
     }
   }
 
-    async profile(req,res){
-        const {doctorId} = req.params;
-        try {
-            const doctor = await Doctor.findOne({doctorId: doctorId});
-            if (!doctor)return res.status(404).json({ message: "Doctor not found" });
-            res.status(200).json({doctor});
-        } catch (error) {
-            res.status(500).json({ message: "Error fetching profile", error: error.message });
-        }
+  // GET a specific doctor's profile
+  async profile(req, res) {
+    const { doctorId } = req.params;
+    try {
+      const doctor = await Doctor.findOne({ doctorId });
+      if (!doctor) return res.status(404).json({ message: "Doctor not found" });
+      res.status(200).json({ doctor });
+    } catch (error) {
+      res.status(500).json({ message: "Error fetching profile", error: error.message });
     }
-  
+  }
 
-  // PUT: Update doctor overview
+  // PUT update doctor's overview
   async updateDoctorOverview(req, res) {
     const doctorId = req.params.id;
     const { overview } = req.body;
@@ -115,6 +111,63 @@ class DoctorControllers {
       res.status(200).json(updatedDoctor);
     } catch (error) {
       res.status(500).json({ message: "Error updating overview", error: error.message });
+    }
+  }
+
+  // POST update doctor available slots (doctor adds slots for each date)
+ async updateAvailableSlots(req, res) {
+  const { doctorId } = req.params;
+  const { date, slots } = req.body;
+
+  try {
+    if (!doctorId || !date || !slots) {
+      return res.status(400).json({ message: "Missing doctorId, date, or slots" });
+    }
+
+    const doctor = await Doctor.findOne({ doctorId });
+
+    if (!doctor) {
+      return res.status(404).json({ message: "Doctor not found" });
+    }
+
+    // Convert existing slots to a Map if needed
+    const updatedSlots = new Map(doctor.availableSlots || []);
+    updatedSlots.set(date, slots);
+
+    await Doctor.updateOne(
+      { doctorId },
+      { availableSlots: updatedSlots }
+    );
+
+    res.status(200).json({
+      message: "Slots updated successfully",
+      availableSlots: Object.fromEntries(updatedSlots),
+    });
+  } catch (error) {
+    console.error("Error updating slots:", error);
+    res.status(500).json({ message: "Error updating slots", error: error.message });
+  }
+}
+
+  // GET available slots for a doctor (patient fetches slots)
+  async getAvailableSlots(req, res) {
+    const { doctorId } = req.params;
+
+    try {
+      const doctor = await Doctor.findOne({ doctorId });
+
+      if (!doctor) {
+        return res.status(404).json({ message: "Doctor not found" });
+      }
+
+      const slotsObject = doctor.availableSlots instanceof Map
+        ? Object.fromEntries(doctor.availableSlots)
+        : doctor.availableSlots;
+
+      res.status(200).json({ availableSlots: slotsObject });
+    } catch (error) {
+      console.error("Error fetching slots:", error);
+      res.status(500).json({ message: "Error fetching slots", error: error.message });
     }
   }
 }

@@ -1,65 +1,10 @@
 import Appointment from "../models/appointmentModel.js";
-import Patient from "../models/patientModel.js";
-import Hospital from "../models/hospitalModel.js";
-import Doctor from "../models/doctorModel.js";
-import {
-  sendConfirmationEmail,
-  sendReminderEmail
-} from '../services/emailService.js';
-import schedule from 'node-schedule';
+
 
 class appointmentController {
-  
-  // Email function for sending confirmation and reminder emails
-  async sendAppointmentEmails(patientId, doctorId, clinicId, date, slotNumber) {
-    try {
-      // Fetch patient, doctor and hospital details
-      const [patient, doctor, hospital] = await Promise.all([
-        Patient.findById(patientId).select('name email'),
-        Doctor.findById(doctorId).select('name'),
-        Hospital.findById(clinicId).select('hospitalName')
-      ]);
-
-      if (!patient?.email) {
-        console.log('Patient email not found, skipping emails');
-        return;
-      }
-
-      const emailData = {
-        patientName: patient.name,
-        date: new Date(date).toLocaleDateString(),
-        time: `Slot ${slotNumber}`,
-        location: hospital?.hospitalName || 'Clinic'
-      };
-
-      // Send confirmation email immediately
-      await sendConfirmationEmail(patient.email, emailData);
-      console.log(`Confirmation email sent to ${patient.email}`);
-
-      // Schedule reminder email 24 hours before appointment date
-      const apptDate = new Date(date);
-      const reminderTime = new Date(apptDate.getTime() - 24 * 60 * 60 * 1000);
-
-      if (reminderTime > new Date()) {
-        schedule.scheduleJob(reminderTime, async () => {
-          try {
-            await sendReminderEmail(patient.email, emailData);
-            console.log(`Reminder email sent to ${patient.email}`);
-          } catch (err) {
-            console.error('Reminder email failed:', err);
-          }
-        });
-        console.log(`Reminder scheduled for ${reminderTime}`);
-      }
-
-    } catch (error) {
-      console.error('Error sending appointment emails:', error);
-    }
-  }
-
-  // EXISTING BOOK APPOINTMENT FUNCTION
+ 
   async bookAppointment(req, res) {
-    const { date, patientId, doctorId, payStatus, clinicId, slotNumber, reason ,consultStatus,MeetLink} = req.body;
+    const { date, patientId, doctorId, payStatus, clinicId, slotNumber, reason } = req.body;
 
     try {
       if (!reason || reason.trim() === "") {
@@ -81,16 +26,11 @@ class appointmentController {
         patientId,
         doctorId,
         payStatus,
-        consultStatus,
-        MeetLink,
         clinicId,
         slotNumber,
         appStatus: "Pending",
         reason,
       });
-
-      // Send appointment emails
-      this.sendAppointmentEmails(patientId, doctorId, clinicId, date, slotNumber);
 
       return res.status(201).json({
         message: "Appointment slot booked successfully",
@@ -104,7 +44,7 @@ class appointmentController {
     }
   }
 
-  // ADDITIONAL FUNCTION: Patient Dashboard API
+
   async getAppointmentsByPatient(req, res) {
     const { patientId } = req.params;
 
@@ -122,8 +62,6 @@ class appointmentController {
       res.status(500).json({ message: err.message });
     }
   }
-
-  // EXISTING Doctor dashboard methods
 
   async showAppointments(req, res) {
     const { date } = req.params;
@@ -249,6 +187,9 @@ class appointmentController {
       res.status(500).json({ message: "Error Cancelling Appointment", error: err.message });
     }
   }
+  
+  
+  
 }
 
 export default new appointmentController();

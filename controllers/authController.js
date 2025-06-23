@@ -31,11 +31,13 @@ class authController {
     try {
       const exists = await Doctor.findOne({ phone: req.body.phone });
       if (exists) {
+        console.log("Doctor Found")
         return res
           .status(400)
           .json({ message: "Doctor already exists with this phone number" });
       }
-
+      console.log("Doctor New")
+      console.log(req.body)
       const doctor = await Doctor.create(req.body);
       const token = generateToken(doctor);
 

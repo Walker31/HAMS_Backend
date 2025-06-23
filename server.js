@@ -2,7 +2,7 @@ import express from 'express';
 import patientRoutes from './routes/patientRoutes.js';
 import doctorRoutes from './routes/doctorRoutes.js';
 import appointmentRoutes from './routes/appointmentRoutes.js';  // CRUD operations for appointments
-import hospitalRoutes from './routes/hospitalRoutes.js'
+import hospitalRoutes from './routes/hospitalRoutes.js';
 import emailRoutes from './routes/appointments.js';            // Booking & email scheduling
 import reviewRoutes from './routes/reviewRoutes.js';
 import cors from 'cors';
