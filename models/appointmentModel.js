@@ -36,11 +36,20 @@ const AppointmentSchema = new mongoose.Schema({
     enum: ['Pending', 'Confirmed','Cancelled','Completed','Rescheduled','Incomplete'],
     default: 'Pending'
   },
-
+  consultStatus: {
+    type: String,
+    enum: ['Offline', 'Online'],
+    default: 'Offline'
+  },
   payStatus: {
     type: String,
     enum: ['Paid', 'Unpaid'],
     default: 'Unpaid'
+  },
+
+  MeetLink: {
+    type: String,
+    default:'Link'
   }
 }, { timestamps: true });
 

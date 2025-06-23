@@ -59,7 +59,7 @@ class appointmentController {
 
   // EXISTING BOOK APPOINTMENT FUNCTION
   async bookAppointment(req, res) {
-    const { date, patientId, doctorId, payStatus, clinicId, slotNumber, reason } = req.body;
+    const { date, patientId, doctorId, payStatus, clinicId, slotNumber, reason ,consultStatus,MeetLink} = req.body;
 
     try {
       if (!reason || reason.trim() === "") {
@@ -81,6 +81,8 @@ class appointmentController {
         patientId,
         doctorId,
         payStatus,
+        consultStatus,
+        MeetLink,
         clinicId,
         slotNumber,
         appStatus: "Pending",
