@@ -57,7 +57,6 @@ const DoctorSchema = new mongoose.Schema(
       required: false,
     },
 
-    // ✅ Added field
     overview: {
       type: String,
       default: "",
