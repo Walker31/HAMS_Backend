@@ -14,6 +14,5 @@ router.get('/top/:lat/:lon', doctorControllers.getTopDoctorsByLocation);
 router.get('/:doctorId/appointments', doctorControllers.getAppointments);
 router.get('/:doctorId/profile', doctorControllers.profile);
 router.put('/update/:id', doctorControllers.updateDoctorOverview);
-router.get('/:id', doctorControllers.getDoctorById);
 
 export default router;
