@@ -15,10 +15,15 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://main.d1pbi2gs86puna.amplifyapp.com'
+];
+
 
 app.use(cors({
-  origin: 'http://localhost:5173', 
-  credentials: true
+  origin: allowedOrigins,
+  credentials: true,
 }));
 app.use(express.json());
 

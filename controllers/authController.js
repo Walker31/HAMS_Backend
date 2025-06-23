@@ -7,6 +7,7 @@ import Hospital from "../models/hospitalModel.js";
 class authController {
   async doctorLogin(req, res) {
     try {
+      console.log("Doc Login")
       const doctor = await Doctor.findOne({ phone: req.body.phone }).select("+password");
 
       if (!doctor) {
