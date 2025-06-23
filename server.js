@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors({
   origin: 'http://localhost:5173', 
   credentials: true
-}));
+},{origin:'https://main.d1pbi2gs86puna.amplifyapp.com',credentials:true}));
 app.use(express.json());
 
 // Health-check route
