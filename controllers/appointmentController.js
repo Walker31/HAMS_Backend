@@ -1,7 +1,37 @@
 import Appointment from "../models/appointmentModel.js";
+import {
+  sendConfirmationEmail,
+  sendReminderEmail
+} from '../services/emailService.js';
+
 
 
 class appointmentController {
+    // Separate async helper within the class
+  async processAppointmentEmails({ email, patientName, date, time, location }) {
+    // Send confirmation email immediately
+    await sendConfirmationEmail(email, { patientName, date, time, location });
+
+    // Calculate appointment datetime
+    const apptDate = new Date(date);
+    if (time) {
+      const [hr, min] = time.split(':').map(Number);
+      apptDate.setHours(hr, min);
+    }
+
+    // Schedule reminder 24h before appointment
+    const reminderDate = new Date(apptDate.getTime() - 24 * 60 * 60 * 1000);
+    if (reminderDate > new Date()) {
+      schedule.scheduleJob(reminderDate, () => {
+        sendReminderEmail(email, { patientName, date, time, location })
+          .catch(err => console.error('Reminder email failed:', err));
+      });
+      console.log(`Scheduled reminder for ${reminderDate}`);
+    } else {
+      console.log('Appointment is less than 24h away; skipping reminder.');
+    }
+  }
+
   async bookAppointment(req, res) {
     const { date, patientId, doctorId, payStatus, clinicId, slotNumber } =
       req.body;
@@ -26,6 +56,8 @@ class appointmentController {
         slotNumber,
         appStatus: "Pending", // VERY IMPORTANT!
       });
+
+      await this.processAppointmentEmails({ email, patientName, date, time: req.body.time, location });
 
       return res.status(201).json({
         message: "Appointment slot booked successfully",
@@ -177,6 +209,7 @@ async getPreviousAppointments(req, res) {
         .json({ message: "Error Cancelling Appointment", error: err.message });
     }
   }
+  
   
   
   
