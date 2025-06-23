@@ -84,31 +84,17 @@ class DoctorControllers {
     }
   }
 
-  // GET doctor profile by ID
-  async profile(req, res) {
-    const { doctorId } = req.params;
-
-    try {
-      const doctor = await Doctor.findById(doctorId);
-      if (!doctor)
-        return res.status(404).json({ message: "Doctor not found" });
-
-      res.status(200).json({ doctor });
-    } catch (error) {
-      res.status(500).json({ message: "Error fetching profile", error: error.message });
+    async profile(req,res){
+        const {doctorId} = req.params;
+        try {
+            const doctor = await Doctor.findOne({doctorId: doctorId});
+            if (!doctor)return res.status(404).json({ message: "Doctor not found" });
+            res.status(200).json({doctor});
+        } catch (error) {
+            res.status(500).json({ message: "Error fetching profile", error: error.message });
+        }
     }
-  }
-
-  // GET doctor by ID - for route: /doctors/:id
-  async getDoctorById(req, res) {
-    try {
-      const doctor = await Doctor.findById(req.params.id);
-      if (!doctor) return res.status(404).json({ message: "Doctor not found" });
-      res.status(200).json(doctor);
-    } catch (error) {
-      res.status(500).json({ message: "Error fetching doctor", error: error.message });
-    }
-  }
+  
 
   // PUT: Update doctor overview
   async updateDoctorOverview(req, res) {
