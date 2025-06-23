@@ -15,12 +15,12 @@ const AppointmentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  clinicId: {
+  hospitalId: {
     type: String,
-    required: true
+    ref: 'Hospital'
   },
   date: {
-    type: String,
+    type: Date,
     required: true
   },
   slotNumber: {
