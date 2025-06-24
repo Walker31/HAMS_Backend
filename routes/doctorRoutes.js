@@ -1,6 +1,7 @@
 import express from 'express';
 import authController from '../controllers/authController.js';
 import doctorControllers from '../controllers/doctorControllers.js';
+import { authenticateToken } from '../middlewares/JWTmiddleware.js';
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ router.get('/top/:lat/:lon', doctorControllers.getTopDoctorsByLocation);
 
 // Doctor profile and appointments
 router.get('/:doctorId/appointments', doctorControllers.getAppointments);
-router.get('/:doctorId/profile', doctorControllers.profile);
+router.get('/profile',authenticateToken, doctorControllers.profile);
 router.put('/update/:id', doctorControllers.updateDoctorOverview);
 
 // Doctor slots management
