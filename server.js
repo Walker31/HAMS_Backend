@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 3000;
 
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://main.d1pbi2gs86puna.amplifyapp.com'
+  'https://main.d2sjy3evn9ox1m.amplifyapp.com'
 ];
 
 
