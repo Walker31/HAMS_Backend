@@ -1,195 +1,188 @@
 import Appointment from "../models/appointmentModel.js";
+import Doctor from "../models/doctorModel.js";
 
+// Book Appointment
+export const bookAppointment = async (req, res) => {
+  console.log("📥 Received book appointment request:", req.body);
+  const { date, patientId, doctorId, clinicId, slotNumber, reason, payStatus } = req.body;
 
-class appointmentController {
- 
-  async bookAppointment(req, res) {
-    const { date, patientId, doctorId, payStatus, clinicId, slotNumber, reason } = req.body;
+  try {
+    const appointment = new Appointment({
+      date,
+      patientId,
+      doctorId,
+      clinicId,
+      slotNumber,
+      reason,
+      payStatus,
+      appStatus: "Pending", // default status
+    });
 
-    try {
-      if (!reason || reason.trim() === "") {
-        return res.status(400).json({ message: "Reason is required" });
-      }
-
-      const existingAppointment = await Appointment.findOne({
-        doctorId,
-        date,
-        slotNumber,
-      });
-
-      if (existingAppointment) {
-        return res.status(409).json({ message: "Slot Already Booked" });
-      }
-
-      const data = await Appointment.create({
-        date: new Date(date),
-        patientId,
-        doctorId,
-        payStatus,
-        clinicId,
-        slotNumber,
-        appStatus: "Pending",
-        reason,
-      });
-
-      return res.status(201).json({
-        message: "Appointment slot booked successfully",
-        appId: data.appId,
-      });
-    } catch (err) {
-      return res.status(500).json({
-        message: "Error booking appointment",
-        error: err.message,
-      });
-    }
+    await appointment.save();
+    res.status(201).json({ message: "Appointment booked", appointment });
+  } catch (error) {
+    console.error("MongoDB Save Error:", error);
+    res.status(500).json({ message: "Failed to book appointment", error: error.message });
   }
+};
 
+// Get Booked Slots for a Doctor on a Given Date
+export const getBookedSlots = async (req, res) => {
+  try {
+    const { doctorId } = req.params;
+    const { date } = req.query;
 
-  async getAppointmentsByPatient(req, res) {
-    const patientId = req.user?.id;
-
-    if (!patientId) {
-      return res.status(400).json({ message: "Patient ID is required" });
+    if (!doctorId || !date) {
+      return res.status(400).json({ message: "Doctor ID and date are required" });
     }
 
-    try {
-      const appointments = await Appointment.find({ patientId })
-      .populate('doctorId', 'name')  // populate doctor name only
-      .sort({ createdAt: -1});  
-              // newest first
-      res.status(200).json(appointments);
-    } catch (err) {
-      res.status(500).json({ message: err.message });
-    }
+    const appointments = await Appointment.find({
+      doctorId,
+      date,
+      appStatus: { $ne: "Rejected" }, // Exclude rejected slots
+    });
+
+    const bookedSlots = appointments.map((appt) => appt.slotNumber);
+    res.status(200).json({ bookedSlots });
+  } catch (error) {
+    console.error("Error fetching booked slots:", error);
+    res.status(500).json({ message: "Failed to fetch booked slots" });
   }
+};
 
-  async showAppointments(req, res) {
-    const { date } = req.params;
-    const { doctorId } = req.query;
+// Show Today's Pending Appointments
+export const showAppointments = async (req, res) => {
+  const { date } = req.params;
+  const { doctorId } = req.query;
 
-    const startOfDay = new Date(`${date}T00:00:00.000Z`);
-    const endOfDay = new Date(`${date}T23:59:59.999Z`);
-
-    const query = {
+  try {
+    const appointments = await Appointment.find({
+      doctorId,
+      date,
       appStatus: "Pending",
-      date: { $gte: startOfDay, $lte: endOfDay }
-    };
+    });
+    res.json(appointments);
+  } catch (error) {
+    console.error("Error showing appointments:", error);
+    res.status(500).json({ message: "Failed to show appointments" });
+  }
+};
 
-    if (doctorId) {
-      query.doctorId = doctorId;
+// Get Previous Appointments
+export const getPreviousAppointments = async (req, res) => {
+  const { doctorId } = req.query;
+
+  try {
+    const appointments = await Appointment.find({
+      doctorId,
+      appStatus: { $in: ["Completed", "Rejected", "Rescheduled"] },
+    }).sort({ date: -1 }); // optional: sort by recent first
+
+    res.json(appointments);
+  } catch (error) {
+    console.error("Error fetching previous appointments:", error);
+    res.status(500).json({ message: "Failed to fetch previous appointments" });
+  }
+};
+
+// Update Appointment Status with Rejection Reason or Prescription
+export const updateAppStatus = async (req, res) => {
+  const { appId } = req.params;
+  const { appStatus, rejectionReason, prescription } = req.body;
+
+  try {
+    const appointment = await Appointment.findById(appId);
+    if (!appointment) {
+      return res.status(404).json({ message: "Appointment not found" });
     }
 
-    try {
-      const appointments = await Appointment.find(query);
-      res.json(appointments);
-    } catch (error) {
-      res.status(500).json({ error: "Internal Server Error", details: error.message });
+    appointment.appStatus = appStatus;
+
+    if (rejectionReason) appointment.rejectionReason = rejectionReason;
+    if (prescription) appointment.prescription = prescription;
+
+    await appointment.save();
+
+    res.status(200).json({ message: "Appointment updated successfully" });
+  } catch (error) {
+    console.error("Error updating appointment:", error);
+    res.status(500).json({ message: "Failed to update appointment" });
+  }
+};
+
+// Cancel Appointment
+export const cancelAppointment = async (req, res) => {
+  const { appointmentId } = req.body;
+
+  try {
+    await Appointment.findByIdAndDelete(appointmentId);
+    res.status(200).json({ message: "Appointment cancelled" });
+  } catch (error) {
+    console.error("Error cancelling appointment:", error);
+    res.status(500).json({ message: "Failed to cancel appointment" });
+  }
+};
+
+// Reschedule Appointment
+export const rescheduleAppointment = async (req, res) => {
+  const { appointmentId, newDate, newSlot } = req.body;
+
+  try {
+    const appointment = await Appointment.findById(appointmentId);
+    if (!appointment) {
+      return res.status(404).json({ message: "Appointment not found" });
     }
+
+    appointment.date = newDate;
+    appointment.slotNumber = newSlot;
+    appointment.appStatus = "Rescheduled";
+
+    await appointment.save();
+    res.status(200).json({ message: "Appointment rescheduled" });
+  } catch (error) {
+    console.error("Error rescheduling appointment:", error);
+    res.status(500).json({ message: "Failed to reschedule appointment" });
+  }
+};
+
+// Get Appointments by Patient (for patient dashboard)
+export const getAppointmentsByPatient = async (req, res) => {
+  const { patientId } = req.params;
+
+  try {
+    const appointments = await Appointment.find({ patientId });
+    res.status(200).json(appointments);
+  } catch (error) {
+    console.error("Error fetching patient appointments:", error);
+    res.status(500).json({ message: "Failed to fetch patient appointments" });
+  }
+};
+
+export const getAllAppointmentsByDoctor = async (req, res) => {
+  const { doctorId } = req.params;
+
+  if (!doctorId) {
+    return res.status(400).json({ message: "Doctor ID is required" });
   }
 
-  async getPreviousAppointments(req, res) {
-    const { doctorId } = req.query;
-
-    if (!doctorId) {
-      return res.status(400).json({ message: "Doctor ID is required" });
-    }
-
-    try {
-      const appointments = await Appointment.find({
-        doctorId,
-        appStatus: { $ne: "Pending" }
-      }).populate('patientId', 'name');
-
-      res.json(appointments);
-    } catch (error) {
-      res.status(500).json({ message: "Error fetching previous appointments", error: error.message });
-    }
+  try {
+    const appointments = await Appointment.find({ doctorId });
+    res.status(200).json(appointments);
+  } catch (error) {
+    console.error("Error fetching all appointments:", error);
+    res.status(500).json({ message: "Failed to fetch appointments" });
   }
+};
 
-  async updateAppStatus(req, res) {
-    const { appId } = req.params;
-    const { appStatus, rejectionReason } = req.body;
 
-    try {
-      const updateData = { appStatus };
-      if (appStatus === "Rejected" && rejectionReason) {
-        updateData.rejectionReason = rejectionReason;
-      }
-
-      const updatedAppointment = await Appointment.findOneAndUpdate(
-        { appId },
-        { $set: updateData },
-        { new: true }
-      );
-
-      if (!updatedAppointment) {
-        return res.status(404).json({ message: "Appointment not found" });
-      }
-
-      res.json({
-        message: "Appointment status updated successfully",
-        appointment: updatedAppointment,
-      });
-    } catch (error) {
-      res.status(500).json({ message: "Internal Server Error", error: error.message });
-    }
-  }
-
-  async deleteAppointment(req, res) {
-    const { appId } = req.body;
-    try {
-      const deleted = await Appointment.findOneAndDelete({ appId });
-      if (!deleted) {
-        return res.status(404).json({ message: "Appointment not found" });
-      }
-      return res.json({ message: "Appointment deleted successfully" });
-    } catch (err) {
-      res.status(500).json({ message: "Error Deleting the History", error: err });
-    }
-  }
-
-  async rescheduleAppointment(req, res) {
-    const { appId, newTime, newSlotNumber } = req.body;
-
-    try {
-      const update = await Appointment.findOneAndUpdate(
-        { appId },
-        {
-          ...(newTime && { time: newTime }),
-          ...(newSlotNumber && { slotNumber: newSlotNumber }),
-          appStatus: "Rescheduled",
-        },
-        { new: true }
-      );
-      if (!update) {
-        return res.status(404).json({ message: "Appointment not found" });
-      }
-      res.json(update);
-    } catch (err) {
-      res.status(500).json({ message: "Error updating Appointment", error: err.message });
-    }
-  }
-
-  async cancelAppointment(req, res) {
-    const { appId } = req.body;
-
-    try {
-      const update = await Appointment.findOneAndUpdate(
-        { appId },
-        { appStatus: "Cancelled" },
-        { new: true }
-      );
-      if (!update) {
-        return res.status(404).json({ message: "Appointment not found" });
-      }
-      res.json(update);
-    } catch (err) {
-      res.status(500).json({ message: "Error Cancelling Appointment", error: err.message });
-    }
-  }
-  
-  
-  
-}
-
-export default new appointmentController();
+export default {
+  bookAppointment,
+  showAppointments,
+  getPreviousAppointments,
+  updateAppStatus,
+  cancelAppointment,
+  rescheduleAppointment,
+  getAppointmentsByPatient,
+  getBookedSlots,
+  getAllAppointmentsByDoctor,
+};

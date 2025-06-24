@@ -5,12 +5,12 @@ import { authenticateToken } from "../middlewares/JWTmiddleware.js";
 const router = express.Router();
 
 router.post("/book", AppointmentController.bookAppointment);
-router.delete("/delete", AppointmentController.deleteAppointment);
 router.put("/reschedule", AppointmentController.rescheduleAppointment);
 router.put("/cancel", AppointmentController.cancelAppointment);
 router.put("/update-status/:appId", AppointmentController.updateAppStatus);
 router.get("/pending/:date", AppointmentController.showAppointments);
 router.get("/previous", AppointmentController.getPreviousAppointments);
+router.get("/all/:doctorId", AppointmentController.getAllAppointmentsByDoctor);
 
 router.get("/patient", authenticateToken,AppointmentController.getAppointmentsByPatient);
 
