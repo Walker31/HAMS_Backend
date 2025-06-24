@@ -112,7 +112,7 @@ class appointmentController {
   }
 
   async getAppointmentsByPatient(req, res) {
-    const { patientId } = req.params;
+    const patientId = req.user?.id;
 
     if (!patientId) {
       return res.status(400).json({ message: "Patient ID is required" });

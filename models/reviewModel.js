@@ -7,13 +7,15 @@ const ReviewSchema = new mongoose.Schema({
     index: true,
     default: () => nanoid(6),
   },
-  doctorId: {
-    type: String,
-    required: true,
+  doctorId: { 
+    type: String, 
+    ref: 'Doctor',
+    required: true 
   },
-  patientId: {
-    type: String,
-    required: true,
+  patientId: { 
+    type: String, 
+    ref: 'Patient',
+    required: true 
   },
   rating: {
     type: Number,

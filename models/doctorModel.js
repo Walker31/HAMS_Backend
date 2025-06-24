@@ -77,7 +77,7 @@ const DoctorSchema = new mongoose.Schema(
       minlength: 6,
       select: false,
     },
-    Organisation: {
+    Hospital: {
       type: String,
       required: true,
     },

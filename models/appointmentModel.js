@@ -5,7 +5,7 @@ const AppointmentSchema = new mongoose.Schema({
   appointmentId: {
     type: String,
     unique: true,
-    default: () => nanoid(8),
+    default: () => nanoid(6),
   },
   patientId: {
     type: String,
@@ -15,12 +15,12 @@ const AppointmentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  clinicId: {
+  hospitalId: {
     type: String,
-    required: true
+    ref: 'Hospital'
   },
   date: {
-    type: String,  // you can also use Date type, but since you're saving date string, I'm keeping it simple
+    type: Date,
     required: true
   },
   slotNumber: {
@@ -51,7 +51,7 @@ const AppointmentSchema = new mongoose.Schema({
     type: String,
     default:'Link'
   }
-}, { timestamps: true });
+}, { timestamps: true,collection: 'Appointments' });
 
-export default mongoose.model('Appointment', AppointmentSchema);
+export default mongoose.model('Appointments', AppointmentSchema);
 

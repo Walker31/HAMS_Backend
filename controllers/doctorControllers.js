@@ -15,7 +15,7 @@ class DoctorControllers {
         location: {
           $near: {
             $geometry: { type: "Point", coordinates: [parseFloat(lon), parseFloat(lat)] },
-            $maxDistance: 50000,
+            $maxDistance: 20000,
           },
         },
       });
