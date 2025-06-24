@@ -1,10 +1,77 @@
 import Appointment from "../models/appointmentModel.js";
-
+import Patient from "../models/patientModel.js";
+import Hospital from "../models/hospitalModel.js";
+import {
+  sendConfirmationEmail,
+  sendReminderEmail,
+} from "../services/emailService.js";
 
 class appointmentController {
- 
+  async sendEmail(req, res) {
+    const { date, patientId, doctorId, clinicId, slotNumber } = req.body;
+    try {
+      // Validate required fields
+      if (!patientId || !doctorId || !clinicId || !date || !slotNumber) {
+        return res.status(400).json({
+          message:
+            "All fields are required: patientId, doctorId, clinicId, date, slotNumber",
+        });
+      }
+
+      // Get patient details
+      const patient = await Patient.findOne({ patientId });
+      if (!patient) {
+        return res.status(404).json({ message: "Patient not found" });
+      }
+
+      // Get hospital/clinic details
+      const hospital = await Hospital.findOne({ hospitalId: clinicId });
+      if (!hospital) {
+        return res.status(404).json({ message: "Hospital/Clinic not found" });
+      }
+
+      // Get doctor details (optional, for additional info)
+      /*const doctor = await Doctor.findOne({ doctorId });
+      if (!doctor) {
+        return res.status(404).json({ message: "Doctor not found" });
+      }*/
+
+      // Prepare appointment data for email
+      const appointmentData = {
+        patientName: patient.name,
+        date: date,
+        time: `Slot ${slotNumber}`,
+        location: hospital.hospitalName,
+        
+      };
+
+      // Send confirmation email
+      await sendConfirmationEmail(patient.email, appointmentData);
+
+      return res.status(200).json({
+        message: "Email sent successfully",
+        sentTo: patient.email,
+        appointmentDetails: appointmentData,
+      });
+    } catch (error) {
+      console.error("Error sending email:", error);
+      return res.status(500).json({
+        message: "Error sending email",
+        error: error.message,
+      });
+    }
+  }
+
   async bookAppointment(req, res) {
-    const { date, patientId, doctorId, payStatus, clinicId, slotNumber, reason } = req.body;
+    const {
+      date,
+      patientId,
+      doctorId,
+      payStatus,
+      clinicId,
+      slotNumber,
+      reason,
+    } = req.body;
 
     try {
       if (!reason || reason.trim() === "") {
@@ -44,7 +111,6 @@ class appointmentController {
     }
   }
 
-
   async getAppointmentsByPatient(req, res) {
     const { patientId } = req.params;
 
@@ -54,9 +120,9 @@ class appointmentController {
 
     try {
       const appointments = await Appointment.find({ patientId })
-      .populate('doctorId', 'name')  // populate doctor name only
-      .sort({ createdAt: -1});  
-              // newest first
+        .populate("doctorId", "name") // populate doctor name only
+        .sort({ createdAt: -1 });
+      // newest first
       res.status(200).json(appointments);
     } catch (err) {
       res.status(500).json({ message: err.message });
@@ -72,7 +138,7 @@ class appointmentController {
 
     const query = {
       appStatus: "Pending",
-      date: { $gte: startOfDay, $lte: endOfDay }
+      date: { $gte: startOfDay, $lte: endOfDay },
     };
 
     if (doctorId) {
@@ -83,7 +149,9 @@ class appointmentController {
       const appointments = await Appointment.find(query);
       res.json(appointments);
     } catch (error) {
-      res.status(500).json({ error: "Internal Server Error", details: error.message });
+      res
+        .status(500)
+        .json({ error: "Internal Server Error", details: error.message });
     }
   }
 
@@ -97,12 +165,17 @@ class appointmentController {
     try {
       const appointments = await Appointment.find({
         doctorId,
-        appStatus: { $ne: "Pending" }
-      }).populate('patientId', 'name');
+        appStatus: { $ne: "Pending" },
+      }).populate("patientId", "name");
 
       res.json(appointments);
     } catch (error) {
-      res.status(500).json({ message: "Error fetching previous appointments", error: error.message });
+      res
+        .status(500)
+        .json({
+          message: "Error fetching previous appointments",
+          error: error.message,
+        });
     }
   }
 
@@ -131,7 +204,9 @@ class appointmentController {
         appointment: updatedAppointment,
       });
     } catch (error) {
-      res.status(500).json({ message: "Internal Server Error", error: error.message });
+      res
+        .status(500)
+        .json({ message: "Internal Server Error", error: error.message });
     }
   }
 
@@ -144,7 +219,9 @@ class appointmentController {
       }
       return res.json({ message: "Appointment deleted successfully" });
     } catch (err) {
-      res.status(500).json({ message: "Error Deleting the History", error: err });
+      res
+        .status(500)
+        .json({ message: "Error Deleting the History", error: err });
     }
   }
 
@@ -166,7 +243,9 @@ class appointmentController {
       }
       res.json(update);
     } catch (err) {
-      res.status(500).json({ message: "Error updating Appointment", error: err.message });
+      res
+        .status(500)
+        .json({ message: "Error updating Appointment", error: err.message });
     }
   }
 
@@ -184,12 +263,11 @@ class appointmentController {
       }
       res.json(update);
     } catch (err) {
-      res.status(500).json({ message: "Error Cancelling Appointment", error: err.message });
+      res
+        .status(500)
+        .json({ message: "Error Cancelling Appointment", error: err.message });
     }
   }
-  
-  
-  
 }
 
 export default new appointmentController();
