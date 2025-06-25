@@ -97,7 +97,7 @@ class DoctorControllers {
 
   try {
     const doctor = await Doctor.findOne({doctorId}).select(
-      "-password -availableSlots"
+      "-password"
     );
 
     if (!doctor) {
