@@ -18,6 +18,18 @@ export function generateToken(user) {
   const payload = {
     id: user.doctorId || user.patientId || user.hospitalId,
     phone: user.phone,
+    role: user.role || determineUserRole(user),  // NEW ✅
+    name: user.name,                             // optional
+    email: user.email,                           // optional
   };
+
   return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "7d" });
+}
+
+// Optional helper to infer role if not explicitly provided
+function determineUserRole(user) {
+  if (user.doctorId) return "doctor";
+  if (user.patientId) return "patient";
+  if (user.hospitalId) return "hospital";
+  return "unknown";
 }

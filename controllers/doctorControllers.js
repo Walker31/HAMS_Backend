@@ -32,7 +32,7 @@ class DoctorControllers {
     const { doctorId } = req.params;
 
     try {
-      const doctorExists = await Doctor.findById(doctorId);
+      const doctorExists = await Doctor.findOne({doctorId});
       if (!doctorExists) return res.status(404).json({ message: "Doctor not found" });
 
       const appointments = await Appointment.find({ doctorId });
@@ -97,7 +97,7 @@ class DoctorControllers {
 
   try {
     const doctor = await Doctor.findOne({doctorId}).select(
-      "-password -availableSlots"
+      "-password"
     );
 
     if (!doctor) {
