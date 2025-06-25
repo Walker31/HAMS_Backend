@@ -101,7 +101,7 @@ export const updateAppStatus = async (req, res) => {
   const { appStatus, rejectionReason, prescription } = req.body;
 
   try {
-    const appointment = await Appointment.findById(appId);
+    const appointment = await Appointment.findOne({appointmentId : appId});
     if (!appointment) {
       return res.status(404).json({ message: "Appointment not found" });
     }
