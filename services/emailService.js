@@ -18,16 +18,16 @@ async function _sendMail(mailOptions) {
 /**
  * Send immediate confirmation email
  * @param {string} to
- * @param {object} appt { patientName, date, time, location }
+ * @param {object} appt { patientName, date, time, location, doctorName }
  */
 export async function sendConfirmationEmail(to, appt) {
-  const { patientName, date, time, location } = appt;
+  const { patientName, date, time, location, doctorName } = appt;
   const mailOptions = {
     from: `"Your Clinic" <${transporter.options.auth.user}>`,
     to,
     subject: 'Appointment Booked ✔️',
-    text: `Hello ${patientName},\n\nYour appointment has been booked successfully.\n\n• Date: ${date}\n• Time: ${time}\n• Location: ${location}\n\nSee you then!`,
-    html: `<p>Hello <strong>${patientName}</strong>,</p><p>Your appointment has been <strong>booked successfully</strong>.</p><ul><li><strong>Date:</strong> ${date}</li><li><strong>Time:</strong> ${time}</li><li><strong>Location:</strong> ${location}</li></ul><p>See you then!</p>`
+    text: `Hello ${patientName},\n\nYour appointment has been booked successfully.\n\n• Date: ${date}\n• Time: ${time}\n• Doctor: ${doctorName || 'Doctor'}\n• Location: ${location}\n\nSee you then!`,
+    html: `<p>Hello <strong>${patientName}</strong>,</p><p>Your appointment has been <strong>booked successfully</strong>.</p><ul><li><strong>Date:</strong> ${date}</li><li><strong>Time:</strong> ${time}</li><li><strong>Doctor:</strong> ${doctorName || 'Doctor'}</li><li><strong>Location:</strong> ${location}</li></ul><p>See you then!</p>`
   };
   return _sendMail(mailOptions);
 }
@@ -35,16 +35,16 @@ export async function sendConfirmationEmail(to, appt) {
 /**
  * Send reminder email 24h before
  * @param {string} to
- * @param {object} appt
+ * @param {object} appt { patientName, date, time, location, doctorName }
  */
 export async function sendReminderEmail(to, appt) {
-  const { patientName, date, time, location } = appt;
+  const { patientName, date, time, location, doctorName } = appt;
   const mailOptions = {
     from: `"Your Clinic" <${transporter.options.auth.user}>`,
     to,
     subject: 'Reminder: Appointment Tomorrow ⏰',
-    text: `Hi ${patientName},\n\nThis is a friendly reminder that you have an appointment tomorrow.\n\n• Date: ${date}\n• Time: ${time}\n• Location: ${location}\n\nPlease let us know if you need to reschedule.`,
-    html: `<p>Hi <strong>${patientName}</strong>,</p><p>This is a reminder for your appointment <strong>tomorrow</strong>:</p><ul><li><strong>Date:</strong> ${date}</li><li><strong>Time:</strong> ${time}</li><li><strong>Location:</strong> ${location}</li></ul><p>If you need to reschedule, please get in touch.</p>`
+    text: `Hi ${patientName},\n\nThis is a friendly reminder that you have an appointment tomorrow.\n\n• Date: ${date}\n• Time: ${time}\n• Doctor: ${doctorName || 'Doctor'}\n• Location: ${location}\n\nPlease let us know if you need to reschedule.`,
+    html: `<p>Hi <strong>${patientName}</strong>,</p><p>This is a reminder for your appointment <strong>tomorrow</strong>:</p><ul><li><strong>Date:</strong> ${date}</li><li><strong>Time:</strong> ${time}</li><li><strong>Doctor:</strong> ${doctorName || 'Doctor'}</li><li><strong>Location:</strong> ${location}</li></ul><p>If you need to reschedule, please get in touch.</p>`
   };
   return _sendMail(mailOptions);
 }

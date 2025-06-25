@@ -1,74 +1,20 @@
 import Appointment from "../models/appointmentModel.js";
 import Patient from "../models/patientModel.js";
 import Hospital from "../models/hospitalModel.js";
+import Doctor from "../models/doctorModel.js";
 import {
   sendConfirmationEmail,
   sendReminderEmail,
 } from "../services/emailService.js";
 
 class appointmentController {
-  async sendEmail(req, res) {
-    const { date, patientId, doctorId, clinicId, slotNumber } = req.body;
-    try {
-      // Validate required fields
-      if (!patientId || !doctorId || !clinicId || !date || !slotNumber) {
-        return res.status(400).json({
-          message:
-            "All fields are required: patientId, doctorId, clinicId, date, slotNumber",
-        });
-      }
-
-      // Get patient details
-      const patient = await Patient.findOne({ patientId });
-      if (!patient) {
-        return res.status(404).json({ message: "Patient not found" });
-      }
-
-      // Get hospital/clinic details
-      const hospital = await Hospital.findOne({ hospitalId: clinicId });
-      if (!hospital) {
-        return res.status(404).json({ message: "Hospital/Clinic not found" });
-      }
-
-      // Get doctor details (optional, for additional info)
-      /*const doctor = await Doctor.findOne({ doctorId });
-      if (!doctor) {
-        return res.status(404).json({ message: "Doctor not found" });
-      }*/
-
-      // Prepare appointment data for email
-      const appointmentData = {
-        patientName: patient.name,
-        date: date,
-        time: `Slot ${slotNumber}`,
-        location: hospital.hospitalName,
-        
-      };
-
-      // Send confirmation email
-      await sendConfirmationEmail(patient.email, appointmentData);
-
-      return res.status(200).json({
-        message: "Email sent successfully",
-        sentTo: patient.email,
-        appointmentDetails: appointmentData,
-      });
-    } catch (error) {
-      console.error("Error sending email:", error);
-      return res.status(500).json({
-        message: "Error sending email",
-        error: error.message,
-      });
-    }
-  }
-
   async bookAppointment(req, res) {
     const {
       date,
       patientId,
       doctorId,
       payStatus,
-      clinicId,
+      hospitalId,
       slotNumber,
       reason,
     } = req.body;
@@ -93,17 +39,117 @@ class appointmentController {
         patientId,
         doctorId,
         payStatus,
-        clinicId,
+        hospitalId,
         slotNumber,
         appStatus: "Pending",
         reason,
       });
 
-      return res.status(201).json({
-        message: "Appointment slot booked successfully",
-        appId: data.appId,
-      });
+      console.log("📧 Appointment created, now sending email...");
+
+      // Send confirmation email automatically
+      try {
+        // Get patient details
+        const patient = await Patient.findOne({ patientId });
+        console.log("👤 Found patient:", patient ? patient.name : "Not found");
+
+        if (!patient) {
+          console.log("❌ Patient not found for email");
+          return res.status(201).json({
+            message:
+              "Appointment slot booked successfully, but patient not found for email",
+            appId: data.appId || data._id,
+            appointmentId: data.appointmentId,
+          });
+        }
+
+        const hospital = await Hospital.findOne({ hospitalId });
+        console.log(
+          "🏥 Found hospital:",
+          hospital ? hospital.hospitalName : "Not found"
+        );
+
+        if (!hospital) {
+          console.log("❌ Hospital not found for email");
+          return res.status(201).json({
+            message:
+              "Appointment slot booked successfully, but hospital not found for email",
+            appId: data.appId || data._id,
+            appointmentId: data.appointmentId,
+          });
+        }
+
+        
+        const doctor = await Doctor.findOne({ doctorId });
+        console.log("👨‍⚕️ Found doctor:", doctor ? doctor.name : "Not found");
+
+   
+        const appointmentData = {
+          patientName: patient.name,
+          date: date,
+          time: `Slot ${slotNumber}`,
+          location: hospital.hospitalName,
+          doctorName: doctor ? doctor.name : "Doctor",
+        };
+
+        console.log("📨 Sending confirmation email to:", patient.email);
+        console.log("📋 Email data:", appointmentData);
+
+     
+        const emailResult = await sendConfirmationEmail(
+          patient.email,
+          appointmentData
+        );
+        console.log(" Confirmation email sent successfully:", emailResult);
+
+       
+        const appointmentDate = new Date(date);
+        const reminderTime = new Date(appointmentDate.getTime() - 24 * 60 * 60 * 1000); // 24 hours before
+        const now = new Date();
+
+        if (reminderTime > now) {
+          const delayMs = reminderTime.getTime() - now.getTime();
+          console.log(` Scheduling reminder email for ${reminderTime.toLocaleString()}`);
+          
+          setTimeout(async () => {
+            try {
+              console.log(`Sending scheduled reminder email to ${patient.email}`);
+              await sendReminderEmail(patient.email, appointmentData);
+              console.log("✅ Reminder email sent successfully");
+            } catch (reminderError) {
+              console.error("❌ Failed to send scheduled reminder email:", reminderError);
+            }
+          }, delayMs);
+          
+          console.log("⏰ Reminder email scheduled successfully");
+        } else {
+          console.log("⚠️ Appointment is within 24 hours, reminder not scheduled");
+        }
+
+        return res.status(201).json({
+          message:
+            "Appointment slot booked successfully, confirmation email sent, and reminder scheduled",
+          appId: data.appId || data._id,
+          appointmentId: data.appointmentId,
+          emailSent: true,
+          emailSentTo: patient.email,
+          reminderScheduled: reminderTime > now,
+        });
+      } catch (emailError) {
+        console.error("❌ Failed to send confirmation email:", emailError);
+        console.error("❌ Email error stack:", emailError.stack);
+
+        
+        return res.status(201).json({
+          message:
+            "Appointment slot booked successfully, but failed to send email",
+          appId: data.appId || data._id,
+          appointmentId: data.appointmentId,
+          emailError: emailError.message,
+        });
+      }
     } catch (err) {
+      console.error("❌ Error booking appointment:", err);
       return res.status(500).json({
         message: "Error booking appointment",
         error: err.message,
@@ -120,9 +166,8 @@ class appointmentController {
 
     try {
       const appointments = await Appointment.find({ patientId })
-        .populate("doctorId", "name") // populate doctor name only
+        .populate("doctorId", "name")
         .sort({ createdAt: -1 });
-      // newest first
       res.status(200).json(appointments);
     } catch (err) {
       res.status(500).json({ message: err.message });
@@ -170,12 +215,10 @@ class appointmentController {
 
       res.json(appointments);
     } catch (error) {
-      res
-        .status(500)
-        .json({
-          message: "Error fetching previous appointments",
-          error: error.message,
-        });
+      res.status(500).json({
+        message: "Error fetching previous appointments",
+        error: error.message,
+      });
     }
   }
 
