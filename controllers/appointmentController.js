@@ -157,14 +157,28 @@ export const rescheduleAppointment = async (req, res) => {
 
 // Get Appointments by Patient (for patient dashboard)
 export const getAppointmentsByPatient = async (req, res) => {
-  const { patientId } = req.params;
+  const { date } = req.params;
+  const { patientId } = req.query;
+
+  console.log("Incoming request => patientId:", patientId, "date:", date);
+
+  if (!patientId || !date) {
+    return res.status(400).json({ message: "Patient ID and date required" });
+  }
 
   try {
-    const appointments = await Appointment.find({ patientId });
-    res.status(200).json(appointments);
+    const appointments = await Appointment.find({
+      patientId,
+      date,
+      appStatus: "Pending",
+    });
+
+    console.log("Appointments fetched:", appointments.length);
+    console.log(appointments);
+    res.json(appointments);
   } catch (error) {
-    console.error("Error fetching patient appointments:", error);
-    res.status(500).json({ message: "Failed to fetch patient appointments" });
+    console.error("Error showing appointments:", error);
+    res.status(500).json({ message: "Failed to show appointments" });
   }
 };
 
