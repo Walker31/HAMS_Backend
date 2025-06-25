@@ -15,7 +15,7 @@ export const bookAppointment = async (req, res) => {
       slotNumber,
       reason,
       payStatus,
-      appStatus: "Pending", // default status
+      appStatus: "Pending",
     });
 
     await appointment.save();
@@ -123,6 +123,18 @@ export const cancelAppointment = async (req, res) => {
   }
 };
 
+export const history = async(req,res) =>{
+  const patientId = req.user?.id;
+
+  try {
+    const appointments = await Appointment.find({patientId});
+    res.status(200).json(appointments);
+  } catch (error) {
+    console.error("Error retrieving history");
+    res.status(500).json({message: "Failed to retrieve history"});
+  }
+}
+
 // Reschedule Appointment
 export const rescheduleAppointment = async (req, res) => {
   const { appointmentId, newDate, newSlot } = req.body;
@@ -176,6 +188,7 @@ export const getAllAppointmentsByDoctor = async (req, res) => {
 
 
 export default {
+  history,
   bookAppointment,
   showAppointments,
   getPreviousAppointments,
