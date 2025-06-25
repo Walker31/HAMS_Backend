@@ -15,7 +15,7 @@ class DoctorControllers {
         location: {
           $near: {
             $geometry: { type: "Point", coordinates: [parseFloat(lon), parseFloat(lat)] },
-            $maxDistance: 20000,
+            $maxDistance: 200000,
           },
         },
       });
@@ -32,7 +32,7 @@ class DoctorControllers {
     const { doctorId } = req.params;
 
     try {
-      const doctorExists = await Doctor.findById(doctorId);
+      const doctorExists = await Doctor.findOne({doctorId});
       if (!doctorExists) return res.status(404).json({ message: "Doctor not found" });
 
       const appointments = await Appointment.find({ doctorId });

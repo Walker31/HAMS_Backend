@@ -50,10 +50,16 @@ export const getBookedSlots = async (req, res) => {
   }
 };
 
-// Show Today's Pending Appointments
+
 export const showAppointments = async (req, res) => {
   const { date } = req.params;
   const { doctorId } = req.query;
+
+  console.log("Incoming request => doctorId:", doctorId, "date:", date);
+
+  if (!doctorId || !date) {
+    return res.status(400).json({ message: "Doctor ID and date required" });
+  }
 
   try {
     const appointments = await Appointment.find({
@@ -61,12 +67,16 @@ export const showAppointments = async (req, res) => {
       date,
       appStatus: "Pending",
     });
+
+    console.log("Appointments fetched:", appointments.length);
+    console.log(appointments);
     res.json(appointments);
   } catch (error) {
     console.error("Error showing appointments:", error);
     res.status(500).json({ message: "Failed to show appointments" });
   }
 };
+
 
 // Get Previous Appointments
 export const getPreviousAppointments = async (req, res) => {
