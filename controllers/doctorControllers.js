@@ -92,6 +92,27 @@ class DoctorControllers {
     }
   }
 
+  async publicDoctorProfile(req, res) {
+  const { doctorId } = req.params;
+
+  try {
+    const doctor = await Doctor.findById(doctorId).select(
+      "-password -availableSlots"
+    );
+
+    if (!doctor) {
+      return res.status(404).json({ message: "Doctor not found" });
+    }
+    res.status(200).json({ doctor });
+  } catch (error) {
+    console.error("Error fetching public doctor profile:", error);
+    res.status(500).json({
+      message: "Error fetching public doctor profile",
+      error: error.message,
+    });
+  }
+}
+
   // PUT update doctor's overview
   async updateDoctorOverview(req, res) {
     const doctorId = req.params.id;
