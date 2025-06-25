@@ -24,4 +24,5 @@ router.get('/:doctorId/profile', doctorControllers.publicDoctorProfile);
 router.post('/:doctorId/slots', doctorControllers.updateAvailableSlots);
 router.get('/:doctorId/slots', doctorControllers.getAvailableSlots);
 
+
 export default router;
