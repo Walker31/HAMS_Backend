@@ -96,8 +96,8 @@ class DoctorControllers {
   const { doctorId } = req.params;
 
   try {
-    const doctor = await Doctor.findById(doctorId).select(
-      "-password -availableSlots"
+    const doctor = await Doctor.findOne({doctorId}).select(
+      "-password"
     );
 
     if (!doctor) {
