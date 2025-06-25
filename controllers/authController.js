@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import Patient from "../models/patientModel.js";
 import { generateToken } from "../middlewares/JWTmiddleware.js";
 import Hospital from "../models/hospitalModel.js";
+import { uploadToCloudinaryFromBuffer } from "../services/cloudinary.js";
 
 class authController {
   async doctorLogin(req, res) {
@@ -26,8 +27,10 @@ class authController {
   }
 
   async doctorSignup(req, res) {
+    const {name, phone, email, gender, location,specialization, medicalReg, password, Hospital} = req.body;
+    const parsedLocation = JSON.parse(location);
     try {
-      const exists = await Doctor.findOne({ phone: req.body.phone });
+      const exists = await Doctor.findOne({ phone });
       if (exists) {
         console.log("Doctor Found")
         return res
@@ -36,7 +39,18 @@ class authController {
       }
       console.log("Doctor New")
       console.log(req.body)
-      const doctor = await Doctor.create(req.body);
+      
+      //image for profileeeee by incorporating cloudinary
+      let photoData = {}
+      if(req.file){
+        photoData = await uploadToCloudinaryFromBuffer(req.file.buffer, "my-profile")
+        console.log("photo uploaded")
+      }
+      else{console.log("No photo my nigga")}
+      
+      const doctor = await Doctor.create({
+        name, phone, email, gender, location:parsedLocation, medicalReg, specialization , photo: photoData, password, Hospital
+      });
       const token = generateToken(doctor);
 
       console.log("Doctor account created:", doctor);
