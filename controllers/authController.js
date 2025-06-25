@@ -18,7 +18,7 @@ class authController {
       if (!isMatch) {
         return res.status(401).json({ message: "Invalid credentials" });
       }
-
+      
       const token = generateToken(doctor);
       return res.status(200).json({ message: "Login successful", token });
     } catch (error) {
