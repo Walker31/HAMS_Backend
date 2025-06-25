@@ -69,6 +69,7 @@ export const showAppointments = async (req, res) => {
     });
 
     console.log("Appointments fetched:", appointments.length);
+    console.log(appointments);
     res.json(appointments);
   } catch (error) {
     console.error("Error showing appointments:", error);
