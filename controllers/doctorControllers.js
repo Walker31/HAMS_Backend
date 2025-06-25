@@ -32,7 +32,7 @@ class DoctorControllers {
     const { doctorId } = req.params;
 
     try {
-      const doctorExists = await Doctor.findById(doctorId);
+      const doctorExists = await Doctor.findOne({doctorId});
       if (!doctorExists) return res.status(404).json({ message: "Doctor not found" });
 
       const appointments = await Appointment.find({ doctorId });
@@ -91,6 +91,27 @@ class DoctorControllers {
       res.status(500).json({ message: "Error fetching profile", error: error.message });
     }
   }
+
+  async publicDoctorProfile(req, res) {
+  const { doctorId } = req.params;
+
+  try {
+    const doctor = await Doctor.findOne({doctorId}).select(
+      "-password"
+    );
+
+    if (!doctor) {
+      return res.status(404).json({ message: "Doctor not found" });
+    }
+    res.status(200).json({ doctor });
+  } catch (error) {
+    console.error("Error fetching public doctor profile:", error);
+    res.status(500).json({
+      message: "Error fetching public doctor profile",
+      error: error.message,
+    });
+  }
+}
 
   // PUT update doctor's overview
   async updateDoctorOverview(req, res) {

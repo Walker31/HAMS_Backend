@@ -18,6 +18,8 @@ router.get('/:doctorId/appointments', doctorControllers.getAppointments);
 router.get('/profile',authenticateToken, doctorControllers.profile);
 router.put('/update/:id', doctorControllers.updateDoctorOverview);
 
+router.get('/:doctorId/profile', doctorControllers.publicDoctorProfile);
+
 // Doctor slots management
 router.post('/:doctorId/slots', doctorControllers.updateAvailableSlots);
 router.get('/:doctorId/slots', doctorControllers.getAvailableSlots);
