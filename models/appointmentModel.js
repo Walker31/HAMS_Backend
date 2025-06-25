@@ -5,53 +5,65 @@ const AppointmentSchema = new mongoose.Schema({
   appointmentId: {
     type: String,
     unique: true,
-    default: () => nanoid(6),
+    default: () => nanoid(8),
   },
   patientId: {
     type: String,
-    required: true
+    required: true,
+    trim: true,
   },
   doctorId: {
     type: String,
-    required: true
+    required: true,
+    trim: true,
   },
-  hospitalId: {
+  clinicId: {
     type: String,
-    ref: 'Hospital'
+    required: true,
+    trim: true,
   },
   date: {
-    type: Date,
-    required: true
+    type: String, // If you plan to use Date operations (like filtering or sorting), use `Date` type instead
+    required: true,
   },
   slotNumber: {
     type: String,
-    required: true
+    required: true,
   },
   reason: {
     type: String,
-    required: true
+    required: true,
   },
   appStatus: {
     type: String,
-    enum: ['Pending', 'Confirmed','Cancelled','Completed','Rescheduled','Incomplete'],
-    default: 'Pending'
+    enum: ['Pending', 'Confirmed', 'Cancelled', 'Completed', 'Rescheduled', 'Incomplete','Rejected'],
+    default: 'Pending',
   },
   consultStatus: {
     type: String,
     enum: ['Offline', 'Online'],
-    default: 'Offline'
+    default: 'Offline',
   },
   payStatus: {
     type: String,
     enum: ['Paid', 'Unpaid'],
-    default: 'Unpaid'
+    default: 'Unpaid',
   },
-
+  prescription: {
+    type: String,
+    default: '',
+  },
+  reasonForReject: {
+    type: String,
+    default: '',
+  },
   MeetLink: {
     type: String,
-    default:'Link'
-  }
-}, { timestamps: true,collection: 'Appointments' });
+    default: 'Link',
+  },
+}, {
+  timestamps: true,
+  collection: 'Appointments',
+});
 
-export default mongoose.model('Appointments', AppointmentSchema);
-
+export default mongoose.model('Appointment', AppointmentSchema);

@@ -7,7 +7,6 @@ import Hospital from "../models/hospitalModel.js";
 class authController {
   async doctorLogin(req, res) {
     try {
-      console.log("Doc Login")
       const doctor = await Doctor.findOne({ phone: req.body.phone }).select("+password");
 
       if (!doctor) {
@@ -27,7 +26,6 @@ class authController {
   }
 
   async doctorSignup(req, res) {
-    console.log("Entered func")
     try {
       const exists = await Doctor.findOne({ phone: req.body.phone });
       if (exists) {
@@ -51,7 +49,6 @@ class authController {
 
   async patientLogin(req, res) {
     try {
-      console.log("enterrrrrr")
       const patient = await Patient.findOne({ phone: req.body.phone }).select("+password");
 
       if (!patient) {
