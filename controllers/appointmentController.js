@@ -15,7 +15,7 @@ export const bookAppointment = async (req, res) => {
       slotNumber,
       reason,
       payStatus,
-      appStatus: "Pending", // default status
+      appStatus: "Pending",
     });
 
     await appointment.save();
@@ -101,7 +101,7 @@ export const updateAppStatus = async (req, res) => {
   const { appStatus, rejectionReason, prescription } = req.body;
 
   try {
-    const appointment = await Appointment.findById(appId);
+    const appointment = await Appointment.findOne({appointmentId : appId});
     if (!appointment) {
       return res.status(404).json({ message: "Appointment not found" });
     }
@@ -133,6 +133,18 @@ export const cancelAppointment = async (req, res) => {
   }
 };
 
+export const history = async(req,res) =>{
+  const patientId = req.user?.id;
+
+  try {
+    const appointments = await Appointment.find({patientId});
+    res.status(200).json(appointments);
+  } catch (error) {
+    console.error("Error retrieving history");
+    res.status(500).json({message: "Failed to retrieve history"});
+  }
+}
+
 // Reschedule Appointment
 export const rescheduleAppointment = async (req, res) => {
   const { appointmentId, newDate, newSlot } = req.body;
@@ -157,14 +169,28 @@ export const rescheduleAppointment = async (req, res) => {
 
 // Get Appointments by Patient (for patient dashboard)
 export const getAppointmentsByPatient = async (req, res) => {
-  const { patientId } = req.params;
+  const { date } = req.params;
+  const { patientId } = req.query;
+
+  console.log("Incoming request => patientId:", patientId, "date:", date);
+
+  if (!patientId || !date) {
+    return res.status(400).json({ message: "Patient ID and date required" });
+  }
 
   try {
-    const appointments = await Appointment.find({ patientId });
-    res.status(200).json(appointments);
+    const appointments = await Appointment.find({
+      patientId,
+      date,
+      appStatus: "Pending",
+    });
+
+    console.log("Appointments fetched:", appointments.length);
+    console.log(appointments);
+    res.json(appointments);
   } catch (error) {
-    console.error("Error fetching patient appointments:", error);
-    res.status(500).json({ message: "Failed to fetch patient appointments" });
+    console.error("Error showing appointments:", error);
+    res.status(500).json({ message: "Failed to show appointments" });
   }
 };
 
@@ -186,6 +212,7 @@ export const getAllAppointmentsByDoctor = async (req, res) => {
 
 
 export default {
+  history,
   bookAppointment,
   showAppointments,
   getPreviousAppointments,
