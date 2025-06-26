@@ -3,13 +3,12 @@ import patientRoutes from './routes/patientRoutes.js';
 import doctorRoutes from './routes/doctorRoutes.js';
 import appointmentRoutes from './routes/appointmentRoutes.js';
 import hospitalRoutes from './routes/hospitalRoutes.js';
-import emailRoutes from './routes/appointments.js';
 import reviewRoutes from './routes/reviewRoutes.js';
+import { startReminderCronJob } from './services/reminderService.js';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
-// Load environment variables
 dotenv.config();
 
 const app = express();
@@ -32,11 +31,11 @@ app.get('/', (req, res) => {
   res.send({ message: 'Route working perfectly' });
 });
 
+startReminderCronJob();
 // Mount domain routes
 app.use('/doctors', doctorRoutes);
 app.use('/patients', patientRoutes);
 app.use('/appointments', appointmentRoutes);
-app.use('/appointmentsEmail', emailRoutes);
 app.use('/reviews',reviewRoutes);
 app.use('/hospitals', hospitalRoutes);
 
