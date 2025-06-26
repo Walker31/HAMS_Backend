@@ -3,7 +3,6 @@ import Doctor from "../models/doctorModel.js";
 
 // Book Appointment
 export const bookAppointment = async (req, res) => {
-  console.log("📥 Received book appointment request:", req.body);
   const { date, patientId, doctorId, hospitalId, slotNumber, reason, payStatus } = req.body;
 
   try {
