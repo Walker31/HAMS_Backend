@@ -13,7 +13,6 @@ router.get("/previous", authenticateToken,AppointmentController.getPreviousAppoi
 router.get('/history',AppointmentController.history);
 router.get("/all/:doctorId", AppointmentController.getAllAppointmentsByDoctor);
 
-router.get("/pending/:date/patient", AppointmentController.getAppointmentsByPatient);
-//router.get("/patient", authenticateToken,AppointmentController.getAppointmentsByPatient);
+router.get("/patient", authenticateToken,AppointmentController.getAppointmentsByPatient);
 
 export default router;

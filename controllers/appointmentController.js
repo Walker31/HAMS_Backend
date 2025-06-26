@@ -1,9 +1,6 @@
 import Appointment from "../models/appointmentModel.js";
-import Doctor from "../models/doctorModel.js";
 
-// Book Appointment
 export const bookAppointment = async (req, res) => {
-  console.log("📥 Received book appointment request:", req.body);
   const { date, patientId, doctorId, clinicId, slotNumber, reason, payStatus } = req.body;
 
   try {
@@ -55,8 +52,6 @@ export const showAppointments = async (req, res) => {
   const { date } = req.params;
   const { doctorId } = req.query;
 
-  console.log("Incoming request => doctorId:", doctorId, "date:", date);
-
   if (!doctorId || !date) {
     return res.status(400).json({ message: "Doctor ID and date required" });
   }
@@ -67,9 +62,6 @@ export const showAppointments = async (req, res) => {
       date,
       appStatus: "Pending",
     });
-
-    console.log("Appointments fetched:", appointments.length);
-    console.log(appointments);
     res.json(appointments);
   } catch (error) {
     console.error("Error showing appointments:", error);
@@ -167,12 +159,9 @@ export const rescheduleAppointment = async (req, res) => {
   }
 };
 
-// Get Appointments by Patient (for patient dashboard)
 export const getAppointmentsByPatient = async (req, res) => {
   const { date } = req.params;
   const { patientId } = req.query;
-
-  console.log("Incoming request => patientId:", patientId, "date:", date);
 
   if (!patientId || !date) {
     return res.status(400).json({ message: "Patient ID and date required" });
