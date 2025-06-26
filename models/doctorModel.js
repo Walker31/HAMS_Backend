@@ -31,17 +31,17 @@ const DoctorSchema = new mongoose.Schema(
       required: true,
       enum: ["Male", "Female", "Other"],
     },
-    location: {
-      type: {
-        type: String,
+    location:{
+      type:{
+        type:String,
         enum: ["Point"],
         required: true,
         default: "Point",
       },
-      coordinates: {
-        type: [Number], // [longitude, latitude]
-        required: true,
-      },
+      coordinates:{
+        type:[Number],
+        required:true,
+      }
     },
     medicalReg: {
       type: String,
@@ -53,9 +53,15 @@ const DoctorSchema = new mongoose.Schema(
       required: true,
     },
     photo: {
-      type: String,
-      required: false,
-    },
+            publicId:{
+                type: String,
+                required: true,
+            },
+            url: {
+                type: String,
+                required: true,
+            }
+        },
     overview: {
       type: String,
       default: "",

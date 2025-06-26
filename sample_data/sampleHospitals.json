@@ -1,112 +1,272 @@
 [
   {
-    "hospitalName": "City General Hospital",
-    "phone": "91444001001",
-    "email": "citygeneral@example.com",
-    "location": {
-      "type": "Point",
-      "coordinates": [80.2091, 13.0852]
-    },
-    "RegId": 100011,
-    "password": "123456"
+    "hospitalName": "Apollo Hospitals Ahmedabad",
+    "phone": "9876501000",
+    "email": "apollo.ahmedabad@example.com",
+    "location": { "type": "Point", "coordinates": [72.5214, 22.9725] },
+    "RegId": 1000,
+    "password": "123456",
+    "city": "Ahmedabad"
   },
   {
-    "hospitalName": "Metro Multi-Speciality",
-    "phone": "91444001002",
-    "email": "metromulti@example.com",
-    "location": {
-      "type": "Point",
-      "coordinates": [80.2173, 13.0925]
-    },
-    "RegId": 100012,
-    "password": "123456"
+    "hospitalName": "Shalby Multispeciality Hospital",
+    "phone": "9876501001",
+    "email": "shalby.ahmedabad@example.com",
+    "location": { "type": "Point", "coordinates": [72.5314, 22.9825] },
+    "RegId": 1001,
+    "password": "123456",
+    "city": "Ahmedabad"
   },
   {
-    "hospitalName": "Unity Care Hospital",
-    "phone": "91444001003",
-    "email": "unitycare@example.com",
-    "location": {
-      "type": "Point",
-      "coordinates": [80.2254, 13.0768]
-    },
-    "RegId": 100013,
-    "password": "123456"
+    "hospitalName": "Manipal Hospitals Bangalore",
+    "phone": "9876501010",
+    "email": "manipal.bangalore@example.com",
+    "location": { "type": "Point", "coordinates": [77.5446, 12.9216] },
+    "RegId": 1010,
+    "password": "123456",
+    "city": "Bangalore"
   },
   {
-    "hospitalName": "Sunrise Medical Center",
-    "phone": "91444001004",
-    "email": "sunrisemed@example.com",
-    "location": {
-      "type": "Point",
-      "coordinates": [80.2387, 13.0813]
-    },
-    "RegId": 100014,
-    "password": "123456"
+    "hospitalName": "Fortis Hospital Cunningham Road",
+    "phone": "9876501011",
+    "email": "fortis.cunningham.bangalore@example.com",
+    "location": { "type": "Point", "coordinates": [77.5546, 12.9316] },
+    "RegId": 1011,
+    "password": "123456",
+    "city": "Bangalore"
   },
   {
-    "hospitalName": "Prime Critical Care",
-    "phone": "91444001005",
-    "email": "primecritical@example.com",
-    "location": {
-      "type": "Point",
-      "coordinates": [80.2519, 13.0672]
-    },
-    "RegId": 100015,
-    "password": "123456"
+    "hospitalName": "Apollo Hospitals Greams Road",
+    "phone": "9876501020",
+    "email": "apollo.chennai@example.com",
+    "location": { "type": "Point", "coordinates": [80.2207, 13.0327] },
+    "RegId": 1020,
+    "password": "123456",
+    "city": "Chennai"
   },
   {
-    "hospitalName": "LifeLine Hospital",
-    "phone": "91444001006",
-    "email": "lifelineh@example.com",
-    "location": {
-      "type": "Point",
-      "coordinates": [80.2638, 13.0991]
-    },
-    "RegId": 100016,
-    "password": "123456"
+    "hospitalName": "MIOT International",
+    "phone": "9876501021",
+    "email": "miot.chennai@example.com",
+    "location": { "type": "Point", "coordinates": [80.2307, 13.0427] },
+    "RegId": 1021,
+    "password": "123456",
+    "city": "Chennai"
   },
   {
-    "hospitalName": "FirstMed Emergency Care",
-    "phone": "91444001007",
-    "email": "firstmed@example.com",
-    "location": {
-      "type": "Point",
-      "coordinates": [80.2724, 13.0887]
-    },
-    "RegId": 100017,
-    "password": "123456"
+    "hospitalName": "Aster Medcity",
+    "phone": "9876501030",
+    "email": "aster.cochin@example.com",
+    "location": { "type": "Point", "coordinates": [76.2173, 9.8812] },
+    "RegId": 1030,
+    "password": "123456",
+    "city": "Cochin"
   },
   {
-    "hospitalName": "CarePlus Institute",
-    "phone": "91444001008",
-    "email": "careplus@example.com",
-    "location": {
-      "type": "Point",
-      "coordinates": [80.2851, 13.0714]
-    },
-    "RegId": 100018,
-    "password": "123456"
+    "hospitalName": "Amrita Institute of Medical Sciences",
+    "phone": "9876501031",
+    "email": "amrita.cochin@example.com",
+    "location": { "type": "Point", "coordinates": [76.2273, 9.8912] },
+    "RegId": 1031,
+    "password": "123456",
+    "city": "Cochin"
   },
   {
-    "hospitalName": "MediCure Hospital",
-    "phone": "91444001009",
-    "email": "medicure@example.com",
-    "location": {
-      "type": "Point",
-      "coordinates": [80.2947, 13.0836]
-    },
-    "RegId": 100019,
-    "password": "123456"
+    "hospitalName": "AIIMS Delhi",
+    "phone": "9876501040",
+    "email": "aiims.delhi@example.com",
+    "location": { "type": "Point", "coordinates": [77.159, 28.5639] },
+    "RegId": 1040,
+    "password": "123456",
+    "city": "Delhi"
   },
   {
-    "hospitalName": "HealthFirst Center",
-    "phone": "91444001010",
-    "email": "healthfirst@example.com",
-    "location": {
-      "type": "Point",
-      "coordinates": [80.2033, 13.0789]
-    },
-    "RegId": 100020,
-    "password": "123456"
+    "hospitalName": "Fortis Escorts Heart Institute",
+    "phone": "9876501041",
+    "email": "fortis.escorts.delhi@example.com",
+    "location": { "type": "Point", "coordinates": [77.169, 28.5739] },
+    "RegId": 1041,
+    "password": "123456",
+    "city": "Delhi"
+  },
+  {
+    "hospitalName": "Yashoda Hospitals Secunderabad",
+    "phone": "9876501050",
+    "email": "yashoda.secunderabad@example.com",
+    "location": { "type": "Point", "coordinates": [78.4367, 17.335] },
+    "RegId": 1050,
+    "password": "123456",
+    "city": "Hyderabad"
+  },
+  {
+    "hospitalName": "Care Hospitals Banjara Hills",
+    "phone": "9876501051",
+    "email": "care.banjara.hyderabad@example.com",
+    "location": { "type": "Point", "coordinates": [78.4467, 17.345] },
+    "RegId": 1051,
+    "password": "123456",
+    "city": "Hyderabad"
+  },
+  {
+    "hospitalName": "Fortis Hospital Anandapur",
+    "phone": "9876501060",
+    "email": "fortis.anandapur.kolkata@example.com",
+    "location": { "type": "Point", "coordinates": [88.3139, 22.5226] },
+    "RegId": 1060,
+    "password": "123456",
+    "city": "Kolkata"
+  },
+  {
+    "hospitalName": "AMRI Hospitals Dhakuria",
+    "phone": "9876501061",
+    "email": "amri.dhakuria.kolkata@example.com",
+    "location": { "type": "Point", "coordinates": [88.3239, 22.5326] },
+    "RegId": 1061,
+    "password": "123456",
+    "city": "Kolkata"
+  },
+  {
+    "hospitalName": "Sahara Hospital",
+    "phone": "9876501070",
+    "email": "sahara.lucknow@example.com",
+    "location": { "type": "Point", "coordinates": [80.8962, 26.7967] },
+    "RegId": 1070,
+    "password": "123456",
+    "city": "Lucknow"
+  },
+  {
+    "hospitalName": "King George's Medical University",
+    "phone": "9876501071",
+    "email": "kgmu.lucknow@example.com",
+    "location": { "type": "Point", "coordinates": [80.9062, 26.8067] },
+    "RegId": 1071,
+    "password": "123456",
+    "city": "Lucknow"
+  },
+  {
+    "hospitalName": "Lilavati Hospital and Research Centre",
+    "phone": "9876501080",
+    "email": "lilavati.mumbai@example.com",
+    "location": { "type": "Point", "coordinates": [72.8277, 19.026] },
+    "RegId": 1080,
+    "password": "123456",
+    "city": "Mumbai"
+  },
+  {
+    "hospitalName": "Kokilaben Dhirubhai Ambani Hospital",
+    "phone": "9876501081",
+    "email": "kokilaben.mumbai@example.com",
+    "location": { "type": "Point", "coordinates": [72.8377, 19.036] },
+    "RegId": 1081,
+    "password": "123456",
+    "city": "Mumbai"
+  },
+  {
+    "hospitalName": "MGM Hospital Warangal",
+    "phone": "9876501090",
+    "email": "mgm.warangal@example.com",
+    "location": { "type": "Point", "coordinates": [79.5441, 17.9284] },
+    "RegId": 1090,
+    "password": "123456",
+    "city": "Warangal"
+  },
+  {
+    "hospitalName": "Kakatiya Medical College Hospital",
+    "phone": "9876501091",
+    "email": "kakatiya.warangal@example.com",
+    "location": { "type": "Point", "coordinates": [79.5541, 17.9384] },
+    "RegId": 1091,
+    "password": "123456",
+    "city": "Warangal"
+  },
+  {
+    "hospitalName": "Prashanth Super Speciality Hospital",
+    "phone": "9876501100",
+    "email": "info@prashanthhospitals.com",
+    "location": { "type": "Point", "coordinates": [80.2732, 13.0821] },
+    "RegId": 1100,
+    "password": "123456",
+    "city": "Chennai"
+  },
+  {
+    "hospitalName": "SIMS Hospital Vadapalani",
+    "phone": "9876501101",
+    "email": "contact@simshospitals.com",
+    "location": { "type": "Point", "coordinates": [80.2658, 13.0708] },
+    "RegId": 1101,
+    "password": "123456",
+    "city": "Chennai"
+  },
+  {
+    "hospitalName": "Madras Medical Mission Hospital",
+    "phone": "9876501102",
+    "email": "hello@mmmhospital.com",
+    "location": { "type": "Point", "coordinates": [80.2791, 13.0895] },
+    "RegId": 1102,
+    "password": "123456",
+    "city": "Chennai"
+  },
+  {
+    "hospitalName": "Dr. Mehta’s Hospitals",
+    "phone": "9876501103",
+    "email": "enquiry@mehtahospital.com",
+    "location": { "type": "Point", "coordinates": [80.2603, 13.0805] },
+    "RegId": 1103,
+    "password": "123456",
+    "city": "Chennai"
+  },
+  {
+    "hospitalName": "Hindu Mission Hospital",
+    "phone": "9876501104",
+    "email": "support@hindumissionhospital.com",
+    "location": { "type": "Point", "coordinates": [80.2756, 13.0872] },
+    "RegId": 1104,
+    "password": "123456",
+    "city": "Chennai"
+  },
+  {
+    "hospitalName": "Frontier Lifeline Hospital",
+    "phone": "9876501105",
+    "email": "info@frontierlifeline.com",
+    "location": { "type": "Point", "coordinates": [80.2839, 13.0854] },
+    "RegId": 1105,
+    "password": "123456",
+    "city": "Chennai"
+  },
+  {
+    "hospitalName": "Government Royapettah Hospital",
+    "phone": "9876501106",
+    "email": "info@royapettahhospital.tn.gov.in",
+    "location": { "type": "Point", "coordinates": [80.2787, 13.0759] },
+    "RegId": 1106,
+    "password": "123456",
+    "city": "Chennai"
+  },
+  {
+    "hospitalName": "St. Isabel’s Hospital",
+    "phone": "9876501107",
+    "email": "contact@stisabelshospital.com",
+    "location": { "type": "Point", "coordinates": [80.2695, 13.0932] },
+    "RegId": 1107,
+    "password": "123456",
+    "city": "Chennai"
+  },
+  {
+    "hospitalName": "Sankara Nethralaya",
+    "phone": "9876501108",
+    "email": "info@sankaranethralaya.org",
+    "location": { "type": "Point", "coordinates": [80.2711, 13.0798] },
+    "RegId": 1108,
+    "password": "123456",
+    "city": "Chennai"
+  },
+  {
+    "hospitalName": "Institute of Child Health and Hospital for Children",
+    "phone": "9876501109",
+    "email": "contact@ichchennai.org",
+    "location": { "type": "Point", "coordinates": [80.2683, 13.0881] },
+    "RegId": 1109,
+    "password": "123456",
+    "city": "Chennai"
   }
 ]

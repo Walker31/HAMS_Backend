@@ -20,7 +20,7 @@ const HospitalSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
-      required: true, // fixed typo here
+      required: true, 
 
     },
     email: {
@@ -28,6 +28,9 @@ const HospitalSchema = new mongoose.Schema(
       required: true,
       match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
 
+    },
+    city:{
+      type:String
     },
     location: {
       type: {

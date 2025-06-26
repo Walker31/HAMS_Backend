@@ -4,313 +4,516 @@ import Hospital from "../models/hospitalModel.js";
 import Doctor from "../models/doctorModel.js";
 import {
   sendConfirmationEmail,
-  sendReminderEmail,
+  sendCancellationEmail,
+  sendRescheduleEmail,
 } from "../services/emailService.js";
+import { scheduleReminderInDB, cancelReminder } from "../services/reminderService.js";
 
-class appointmentController {
-  async bookAppointment(req, res) {
-    const {
+export const bookAppointment = async (req, res) => {
+  const {
+    date,
+    patientId,
+    doctorId,
+    payStatus,
+    hospitalId,
+    slotNumber,
+    reason,
+  } = req.body;
+
+  try {
+    if (!reason || reason.trim() === "") {
+      return res.status(400).json({ message: "Reason is required" });
+    }
+
+    const existingAppointment = await Appointment.findOne({
+      doctorId,
       date,
+      slotNumber,
+    });
+
+    if (existingAppointment) {
+      return res.status(409).json({ message: "Slot Already Booked" });
+    }
+
+    const data = await Appointment.create({
+      date: new Date(date),
       patientId,
       doctorId,
       payStatus,
       hospitalId,
       slotNumber,
+      appStatus: "Pending",
       reason,
-    } = req.body;
+    });
 
     try {
-      if (!reason || reason.trim() === "") {
-        return res.status(400).json({ message: "Reason is required" });
+      const patient = await Patient.findOne({ patientId });
+
+      if (!patient) {
+        return res.status(201).json({
+          message: "Appointment slot booked successfully, but patient not found for email",
+          appId: data.appId || data._id,
+          appointmentId: data.appointmentId,
+        });
       }
 
-      const existingAppointment = await Appointment.findOne({
-        doctorId,
-        date,
-        slotNumber,
+      const hospital = await Hospital.findOne({ hospitalId });
+      const doctor = await Doctor.findOne({ doctorId });
+
+      const appointmentData = {
+        patientName: patient.name,
+        date: date,
+        time: `Slot ${slotNumber}`,
+        location: hospital ? hospital.hospitalName : "Hospital",
+        doctorName: doctor ? doctor.name : "Doctor",
+      };
+
+      await sendConfirmationEmail(patient.email, appointmentData);
+
+      await scheduleReminderInDB(
+        data.appointmentId || data._id.toString(),
+        appointmentData, 
+        patient.email, 
+        new Date(date)
+      );
+
+      return res.status(201).json({
+        message: "Appointment slot booked successfully and confirmation email sent",
+        appId: data.appId || data._id,
+        appointmentId: data.appointmentId,
+        emailSent: true,
+        emailSentTo: patient.email
       });
 
-      if (existingAppointment) {
-        return res.status(409).json({ message: "Slot Already Booked" });
-      }
+    } catch (emailError) {
+      console.error("Failed to send confirmation email:", emailError.message);
 
-      const data = await Appointment.create({
-        date: new Date(date),
-        patientId,
-        doctorId,
-        payStatus,
-        hospitalId,
-        slotNumber,
-        appStatus: "Pending",
-        reason,
+      return res.status(201).json({
+        message: "Appointment slot booked successfully, but failed to send email",
+        appId: data.appId || data._id,
+        appointmentId: data.appointmentId,
+        emailError: emailError.message,
       });
+    }
+  } catch (err) {
+    return res.status(500).json({
+      message: "Error booking appointment",
+      error: err.message,
+    });
+  }
+};
 
-      console.log("📧 Appointment created, now sending email...");
+export const cancelAppointment = async (req, res) => {
+  const { appointmentId, reason } = req.body;
 
-      // Send confirmation email automatically
+  if (!appointmentId) {
+    return res.status(400).json({ 
+      message: "Appointment ID is required",
+      received: { appointmentId, reason }
+    });
+  }
+
+  try {
+    let appointment = null;
+    
+    if (appointmentId.match(/^[0-9a-fA-F]{24}$/)) {
       try {
-        // Get patient details
-        const patient = await Patient.findOne({ patientId });
-        console.log("👤 Found patient:", patient ? patient.name : "Not found");
+        appointment = await Appointment.findById(appointmentId);
+      } catch (idError) {
+        console.log("Error searching by _id:", idError.message);
+      }
+    }
+    
+    if (!appointment) {
+      try {
+        appointment = await Appointment.findOne({ appointmentId: appointmentId });
+      } catch (fieldError) {
+        console.log("Error searching by appointmentId field:", fieldError.message);
+      }
+    }
+    
+    if (!appointment) {
+      try {
+        appointment = await Appointment.findOne({ appId: appointmentId });
+      } catch (appIdError) {
+        console.log("Error searching by appId field:", appIdError.message);
+      }
+    }
 
-        if (!patient) {
-          console.log("❌ Patient not found for email");
-          return res.status(201).json({
-            message:
-              "Appointment slot booked successfully, but patient not found for email",
-            appId: data.appId || data._id,
-            appointmentId: data.appointmentId,
-          });
-        }
+    if (!appointment) {
+      return res.status(404).json({ 
+        message: "Appointment not found",
+        searchedId: appointmentId
+      });
+    }
 
-        const hospital = await Hospital.findOne({ hospitalId });
-        console.log(
-          "🏥 Found hospital:",
-          hospital ? hospital.hospitalName : "Not found"
-        );
+    const [patient, doctor, hospital] = await Promise.all([
+      Patient.findOne({ patientId: appointment.patientId }),
+      Doctor.findOne({ doctorId: appointment.doctorId }),
+      Hospital.findOne({ hospitalId: appointment.hospitalId })
+    ]);
 
-        if (!hospital) {
-          console.log("❌ Hospital not found for email");
-          return res.status(201).json({
-            message:
-              "Appointment slot booked successfully, but hospital not found for email",
-            appId: data.appId || data._id,
-            appointmentId: data.appointmentId,
-          });
-        }
+    const deleteResult = await Appointment.findByIdAndDelete(appointment._id);
 
-        
-        const doctor = await Doctor.findOne({ doctorId });
-        console.log("👨‍⚕️ Found doctor:", doctor ? doctor.name : "Not found");
+    await cancelReminder(appointment.appointmentId || appointment._id.toString());
 
-   
-        const appointmentData = {
-          patientName: patient.name,
-          date: date,
-          time: `Slot ${slotNumber}`,
-          location: hospital.hospitalName,
-          doctorName: doctor ? doctor.name : "Doctor",
+    let emailSent = false;
+    let emailError = null;
+
+    if (patient && patient.email) {
+      try {
+        const formatDate = (dateValue) => {
+          if (!dateValue) return "Unknown Date";
+          
+          if (dateValue instanceof Date) {
+            return dateValue.toLocaleDateString();
+          }
+          
+          if (typeof dateValue === 'string') {
+            const parsedDate = new Date(dateValue);
+            if (!isNaN(parsedDate.getTime())) {
+              return parsedDate.toLocaleDateString();
+            }
+            return dateValue;
+          }
+          
+          if (typeof dateValue === 'number') {
+            return new Date(dateValue).toLocaleDateString();
+          }
+          
+          return "Unknown Date";
         };
 
-        console.log("📨 Sending confirmation email to:", patient.email);
-        console.log("📋 Email data:", appointmentData);
+        const appointmentData = {
+          patientName: patient.name,
+          date: formatDate(appointment.date),
+          time: `Slot ${appointment.slotNumber}`,
+          location: hospital ? hospital.hospitalName : "Hospital",
+          doctorName: doctor ? doctor.name : "Doctor",
+          reason: reason || "No reason provided"
+        };
 
-     
-        const emailResult = await sendConfirmationEmail(
-          patient.email,
-          appointmentData
-        );
-        console.log(" Confirmation email sent successfully:", emailResult);
+        await sendCancellationEmail(patient.email, appointmentData);
+        emailSent = true;
 
-       
-        const appointmentDate = new Date(date);
-        const reminderTime = new Date(appointmentDate.getTime() - 24 * 60 * 60 * 1000); // 24 hours before
-        const now = new Date();
-
-        if (reminderTime > now) {
-          const delayMs = reminderTime.getTime() - now.getTime();
-          console.log(` Scheduling reminder email for ${reminderTime.toLocaleString()}`);
-          
-          setTimeout(async () => {
-            try {
-              console.log(`Sending scheduled reminder email to ${patient.email}`);
-              await sendReminderEmail(patient.email, appointmentData);
-              console.log("✅ Reminder email sent successfully");
-            } catch (reminderError) {
-              console.error("❌ Failed to send scheduled reminder email:", reminderError);
-            }
-          }, delayMs);
-          
-          console.log("⏰ Reminder email scheduled successfully");
-        } else {
-          console.log("⚠️ Appointment is within 24 hours, reminder not scheduled");
-        }
-
-        return res.status(201).json({
-          message:
-            "Appointment slot booked successfully, confirmation email sent, and reminder scheduled",
-          appId: data.appId || data._id,
-          appointmentId: data.appointmentId,
-          emailSent: true,
-          emailSentTo: patient.email,
-          reminderScheduled: reminderTime > now,
-        });
-      } catch (emailError) {
-        console.error("❌ Failed to send confirmation email:", emailError);
-        console.error("❌ Email error stack:", emailError.stack);
-
-        
-        return res.status(201).json({
-          message:
-            "Appointment slot booked successfully, but failed to send email",
-          appId: data.appId || data._id,
-          appointmentId: data.appointmentId,
-          emailError: emailError.message,
-        });
+      } catch (error) {
+        console.log("Email sending failed:", error.message);
+        emailError = error.message;
       }
-    } catch (err) {
-      console.error("❌ Error booking appointment:", err);
-      return res.status(500).json({
-        message: "Error booking appointment",
-        error: err.message,
+    }
+
+    return res.status(200).json({ 
+      message: emailSent 
+        ? "Appointment cancelled successfully and email sent" 
+        : "Appointment cancelled successfully (no email sent)",
+      appointmentId: appointmentId,
+      emailSent: emailSent,
+      emailSentTo: patient?.email || null,
+      emailError: emailError
+    });
+
+  } catch (error) {
+    return res.status(500).json({ 
+      message: "Failed to cancel appointment",
+      error: error.message,
+      appointmentId: appointmentId
+    });
+  }
+};
+
+export const getBookedSlots = async (req, res) => {
+  const { doctorId, date } = req.query;
+
+  try {
+    if (!doctorId || !date) {
+      return res.status(400).json({ message: "Doctor ID and date are required" });
+    }
+
+    const appointments = await Appointment.find({
+      doctorId,
+      date,
+      appStatus: { $ne: "Rejected" }, 
+    });
+
+    const bookedSlots = appointments.map((appt) => appt.slotNumber);
+    res.status(200).json({ bookedSlots });
+  } catch (error) {
+    console.error("Error fetching booked slots:", error);
+    res.status(500).json({ message: "Failed to fetch booked slots" });
+  }
+};
+
+export const showAppointments = async (req, res) => {
+  const { date } = req.params;
+  const { doctorId } = req.query;
+
+  if (!doctorId || !date) {
+    return res.status(400).json({ message: "Doctor ID and date required" });
+  }
+
+  try {
+    const appointments = await Appointment.find({
+      doctorId,
+      date,
+      appStatus: "Pending",
+    });
+
+    res.json(appointments);
+  } catch (error) {
+    console.error("Error showing appointments:", error);
+    res.status(500).json({ message: "Failed to show appointments" });
+  }
+};
+
+export const getPreviousAppointments = async (req, res) => {
+  const { doctorId } = req.query;
+
+  try {
+    const appointments = await Appointment.find({
+      doctorId,
+      appStatus: { $in: ["Completed", "Rejected", "Rescheduled"] },
+    }).sort({ date: -1 }); 
+
+    res.json(appointments);
+  } catch (error) {
+    console.error("Error fetching previous appointments:", error);
+    res.status(500).json({ message: "Failed to fetch previous appointments" });
+  }
+};
+
+export const updateAppStatus = async (req, res) => {
+  const { appId } = req.params;
+  const { appStatus, rejectionReason, prescription } = req.body;
+
+  try {
+    const appointment = await Appointment.findOne({ appointmentId: appId });
+    if (!appointment) {
+      return res.status(404).json({ message: "Appointment not found" });
+    }
+
+    appointment.appStatus = appStatus;
+
+    if (rejectionReason) appointment.rejectionReason = rejectionReason;
+    if (prescription) appointment.prescription = prescription;
+
+    await appointment.save();
+
+    res.status(200).json({ message: "Appointment updated successfully" });
+  } catch (error) {
+    console.error("Error updating appointment:", error);
+    res.status(500).json({ message: "Failed to update appointment" });
+  }
+};
+
+export const history = async (req, res) => {
+  const patientId = req.user?.id;
+
+  try {
+    const appointments = await Appointment.find({ patientId });
+    res.status(200).json(appointments);
+  } catch (error) {
+    console.error("Error retrieving history:", error);
+    res.status(500).json({ message: "Failed to retrieve history" });
+  }
+};
+
+export const rescheduleAppointment = async (req, res) => {
+  const { appointmentId, newDate, newSlotNumber, reason } = req.body;
+
+  if (!appointmentId || !newDate || !newSlotNumber) {
+    return res.status(400).json({ 
+      message: "appointmentId, newDate, and newSlotNumber are required",
+      received: { appointmentId, newDate, newSlotNumber, reason }
+    });
+  }
+
+  try {
+    let appointment = null;
+    
+    if (appointmentId.match(/^[0-9a-fA-F]{24}$/)) {
+      try {
+        appointment = await Appointment.findById(appointmentId);
+      } catch (idError) {
+        console.log("Error searching by _id:", idError.message);
+      }
+    }
+    
+    if (!appointment) {
+      try {
+        appointment = await Appointment.findOne({ appointmentId: appointmentId });
+      } catch (fieldError) {
+        console.log("Error searching by appointmentId field:", fieldError.message);
+      }
+    }
+    
+    if (!appointment) {
+      try {
+        appointment = await Appointment.findOne({ appId: appointmentId });
+      } catch (appIdError) {
+        console.log("Error searching by appId field:", appIdError.message);
+      }
+    }
+
+    if (!appointment) {
+      return res.status(404).json({ 
+        message: "Appointment not found",
+        searchedId: appointmentId
       });
     }
-  }
 
-  async getAppointmentsByPatient(req, res) {
-    const patientId = req.user?.id;
-
-    if (!patientId) {
-      return res.status(400).json({ message: "Patient ID is required" });
-    }
-
-    try {
-      const appointments = await Appointment.find({ patientId })
-        .populate("doctorId", "name")
-        .sort({ createdAt: -1 });
-      res.status(200).json(appointments);
-    } catch (err) {
-      res.status(500).json({ message: err.message });
-    }
-  }
-
-  async showAppointments(req, res) {
-    const { date } = req.params;
-    const { doctorId } = req.query;
-
-    const startOfDay = new Date(`${date}T00:00:00.000Z`);
-    const endOfDay = new Date(`${date}T23:59:59.999Z`);
-
-    const query = {
-      appStatus: "Pending",
-      date: { $gte: startOfDay, $lte: endOfDay },
+    const formatDate = (dateValue) => {
+      if (!dateValue) return "Unknown Date";
+      
+      if (dateValue instanceof Date) {
+        return dateValue.toLocaleDateString();
+      }
+      
+      if (typeof dateValue === 'string') {
+        const parsedDate = new Date(dateValue);
+        if (!isNaN(parsedDate.getTime())) {
+          return parsedDate.toLocaleDateString();
+        }
+        return dateValue;
+      }
+      
+      if (typeof dateValue === 'number') {
+        return new Date(dateValue).toLocaleDateString();
+      }
+      
+      return "Unknown Date";
     };
 
-    if (doctorId) {
-      query.doctorId = doctorId;
-    }
+    const oldDate = formatDate(appointment.date);
+    const oldSlotNumber = appointment.slotNumber;
 
-    try {
-      const appointments = await Appointment.find(query);
-      res.json(appointments);
-    } catch (error) {
-      res
-        .status(500)
-        .json({ error: "Internal Server Error", details: error.message });
-    }
-  }
+    const existingAppointment = await Appointment.findOne({
+      doctorId: appointment.doctorId,
+      date: new Date(newDate),
+      slotNumber: newSlotNumber,
+      _id: { $ne: appointment._id }
+    });
 
-  async getPreviousAppointments(req, res) {
-    const { doctorId } = req.query;
-
-    if (!doctorId) {
-      return res.status(400).json({ message: "Doctor ID is required" });
-    }
-
-    try {
-      const appointments = await Appointment.find({
-        doctorId,
-        appStatus: { $ne: "Pending" },
-      }).populate("patientId", "name");
-
-      res.json(appointments);
-    } catch (error) {
-      res.status(500).json({
-        message: "Error fetching previous appointments",
-        error: error.message,
+    if (existingAppointment) {
+      return res.status(409).json({ 
+        message: "New slot is already booked",
+        conflictingAppointment: existingAppointment._id
       });
     }
-  }
 
-  async updateAppStatus(req, res) {
-    const { appId } = req.params;
-    const { appStatus, rejectionReason } = req.body;
+    appointment.date = new Date(newDate);
+    appointment.slotNumber = newSlotNumber;
+    appointment.appStatus = "Rescheduled";
+    await appointment.save();
 
-    try {
-      const updateData = { appStatus };
-      if (appStatus === "Rejected" && rejectionReason) {
-        updateData.rejectionReason = rejectionReason;
-      }
-
-      const updatedAppointment = await Appointment.findOneAndUpdate(
-        { appId },
-        { $set: updateData },
-        { new: true }
-      );
-
-      if (!updatedAppointment) {
-        return res.status(404).json({ message: "Appointment not found" });
-      }
-
-      res.json({
-        message: "Appointment status updated successfully",
-        appointment: updatedAppointment,
-      });
-    } catch (error) {
-      res
-        .status(500)
-        .json({ message: "Internal Server Error", error: error.message });
-    }
-  }
-
-  async deleteAppointment(req, res) {
-    const { appId } = req.body;
-    try {
-      const deleted = await Appointment.findOneAndDelete({ appId });
-      if (!deleted) {
-        return res.status(404).json({ message: "Appointment not found" });
-      }
-      return res.json({ message: "Appointment deleted successfully" });
-    } catch (err) {
-      res
-        .status(500)
-        .json({ message: "Error Deleting the History", error: err });
-    }
-  }
-
-  async rescheduleAppointment(req, res) {
-    const { appId, newTime, newSlotNumber } = req.body;
+    let emailSent = false;
+    let emailError = null;
+    let patient = null;
+    let doctor = null;
+    let hospital = null;
 
     try {
-      const update = await Appointment.findOneAndUpdate(
-        { appId },
-        {
-          ...(newTime && { time: newTime }),
-          ...(newSlotNumber && { slotNumber: newSlotNumber }),
-          appStatus: "Rescheduled",
-        },
-        { new: true }
-      );
-      if (!update) {
-        return res.status(404).json({ message: "Appointment not found" });
+      [patient, doctor, hospital] = await Promise.all([
+        Patient.findOne({ patientId: appointment.patientId }),
+        Doctor.findOne({ doctorId: appointment.doctorId }),
+        Hospital.findOne({ hospitalId: appointment.hospitalId })
+      ]);
+
+      if (patient && patient.email) {
+        const appointmentData = {
+          patientName: patient.name,
+          oldDate: oldDate,
+          oldTime: `Slot ${oldSlotNumber}`,
+          newDate: formatDate(newDate),
+          newTime: `Slot ${newSlotNumber}`,
+          location: hospital ? hospital.hospitalName : "Hospital",
+          doctorName: doctor ? doctor.name : "Doctor",
+          reason: reason || "Schedule change requested"
+        };
+
+        await sendRescheduleEmail(patient.email, appointmentData);
+        emailSent = true;
       }
-      res.json(update);
-    } catch (err) {
-      res
-        .status(500)
-        .json({ message: "Error updating Appointment", error: err.message });
+    } catch (emailSendError) {
+      console.error("Failed to send reschedule email:", emailSendError.message);
+      emailError = emailSendError.message;
     }
+
+    return res.status(200).json({ 
+      message: emailSent 
+        ? "Appointment rescheduled successfully and email sent" 
+        : "Appointment rescheduled successfully (no email sent)",
+      appointmentId: appointmentId,
+      oldDetails: {
+        date: oldDate,
+        slot: oldSlotNumber
+      },
+      newDetails: {
+        date: formatDate(newDate),
+        slot: newSlotNumber
+      },
+      emailSent: emailSent,
+      emailSentTo: patient?.email || null,
+      emailError: emailError
+    });
+
+  } catch (error) {
+    return res.status(500).json({ 
+      message: "Failed to reschedule appointment",
+      error: error.message,
+      appointmentId: appointmentId
+    });
+  }
+};
+
+export const getAppointmentsByPatient = async (req, res) => {
+  const { date } = req.params;
+  const { patientId } = req.query;
+
+  if (!patientId || !date) {
+    return res.status(400).json({ message: "Patient ID and date required" });
   }
 
-  async cancelAppointment(req, res) {
-    const { appId } = req.body;
+  try {
+    const appointments = await Appointment.find({
+      patientId,
+      date,
+      appStatus: "Pending",
+    });
 
-    try {
-      const update = await Appointment.findOneAndUpdate(
-        { appId },
-        { appStatus: "Cancelled" },
-        { new: true }
-      );
-      if (!update) {
-        return res.status(404).json({ message: "Appointment not found" });
-      }
-      res.json(update);
-    } catch (err) {
-      res
-        .status(500)
-        .json({ message: "Error Cancelling Appointment", error: err.message });
-    }
+    res.json(appointments);
+  } catch (error) {
+    console.error("Error showing appointments:", error);
+    res.status(500).json({ message: "Failed to show appointments" });
   }
-}
+};
 
-export default new appointmentController();
+export const getAllAppointmentsByDoctor = async (req, res) => {
+  const { doctorId } = req.params;
+
+  if (!doctorId) {
+    return res.status(400).json({ message: "Doctor ID is required" });
+  }
+
+  try {
+    const appointments = await Appointment.find({ doctorId });
+    res.status(200).json(appointments);
+  } catch (error) {
+    console.error("Error fetching all appointments:", error);
+    res.status(500).json({ message: "Failed to fetch appointments" });
+  }
+};
+
+const appointmentController = {
+  bookAppointment,
+  getBookedSlots,
+  showAppointments,
+  getPreviousAppointments,
+  updateAppStatus,
+  cancelAppointment,
+  history,
+  rescheduleAppointment,
+  getAppointmentsByPatient,
+  getAllAppointmentsByDoctor,
+};
+
+export default appointmentController;
