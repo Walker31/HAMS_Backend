@@ -86,6 +86,8 @@ class DoctorControllers {
     try {
       const doctor = await Doctor.findOne({ doctorId });
       if (!doctor) return res.status(404).json({ message: "Doctor not found" });
+      console.log("Doc fetched")
+      console.log(doctor)
       res.status(200).json({ doctor });
     } catch (error) {
       res.status(500).json({ message: "Error fetching profile", error: error.message });

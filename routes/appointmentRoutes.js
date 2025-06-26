@@ -22,4 +22,6 @@ router.get("/pending/:date", AppointmentController.showAppointments);
 router.get("/pending/:date/patient", AppointmentController.getAppointmentsByPatient);
 router.get("/all/:doctorId", AppointmentController.getAllAppointmentsByDoctor);
 
+router.get("/patient", authenticateToken,AppointmentController.getAppointmentsByPatient);
+
 export default router;

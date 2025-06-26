@@ -1,24 +1,10 @@
 import Appointment from "../models/appointmentModel.js";
-import Patient from "../models/patientModel.js";
-import Hospital from "../models/hospitalModel.js";
 import Doctor from "../models/doctorModel.js";
-import {
-  sendConfirmationEmail,
-  sendCancellationEmail,
-  sendRescheduleEmail,
-} from "../services/emailService.js";
-import { scheduleReminderInDB, cancelReminder } from "../services/reminderService.js";
 
+// Book Appointment
 export const bookAppointment = async (req, res) => {
-  const {
-    date,
-    patientId,
-    doctorId,
-    payStatus,
-    hospitalId,
-    slotNumber,
-    reason,
-  } = req.body;
+  console.log("📥 Received book appointment request:", req.body);
+  const { date, patientId, doctorId, hospitalId, slotNumber, reason, payStatus } = req.body;
 
   try {
     if (!reason || reason.trim() === "") {
@@ -257,7 +243,6 @@ export const showAppointments = async (req, res) => {
       date,
       appStatus: "Pending",
     });
-
     res.json(appointments);
   } catch (error) {
     console.error("Error showing appointments:", error);
