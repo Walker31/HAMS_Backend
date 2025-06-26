@@ -37,8 +37,6 @@ export const processPendingReminders = async () => {
       reminderTime: { $lte: now }
     });
 
-    console.log(`Processing ${pendingReminders.length} pending reminders`);
-
     for (const reminder of pendingReminders) {
       try {
         await sendReminderEmail(reminder.patientEmail, reminder.appointmentData);

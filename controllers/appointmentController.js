@@ -4,7 +4,7 @@ import Doctor from "../models/doctorModel.js";
 // Book Appointment
 export const bookAppointment = async (req, res) => {
   console.log("📥 Received book appointment request:", req.body);
-  const { date, patientId, doctorId, clinicId, slotNumber, reason, payStatus } = req.body;
+  const { date, patientId, doctorId, hospitalId, slotNumber, reason, payStatus } = req.body;
 
   try {
     if (!reason || reason.trim() === "") {
@@ -243,9 +243,6 @@ export const showAppointments = async (req, res) => {
       date,
       appStatus: "Pending",
     });
-
-    console.log("Appointments fetched:", appointments.length);
-    console.log(appointments);
     res.json(appointments);
   } catch (error) {
     console.error("Error showing appointments:", error);
