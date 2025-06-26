@@ -2,12 +2,13 @@ import express from 'express';
 import authController from '../controllers/authController.js';
 import doctorControllers from '../controllers/doctorControllers.js';
 import { authenticateToken } from '../middlewares/JWTmiddleware.js';
+import upload from '../middlewares/multer.js';
 
 const router = express.Router();
 
 // AUTH routes
 router.post("/login", authController.doctorLogin);
-router.post("/signup", authController.doctorSignup);
+router.post("/signup", upload.single("photo"),authController.doctorSignup);
 
 // Doctor location-based queries
 router.get('/nearby/:lat/:lon', doctorControllers.getNearbyDoctors);

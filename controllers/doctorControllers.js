@@ -2,7 +2,7 @@ import Appointment from "../models/appointmentModel.js";
 import Doctor from "../models/doctorModel.js";
 
 class DoctorControllers {
-  // GET nearby doctors based on latitude and longitude
+  
   async getNearbyDoctors(req, res) {
     const { lat, lon } = req.params;
 

@@ -20,7 +20,7 @@ const HospitalSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
-      required: true, // fixed typo here
+      required: true, 
 
     },
     email: {
