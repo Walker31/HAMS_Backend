@@ -1,8 +1,15 @@
 import Appointment from "../models/appointmentModel.js";
 import Doctor from "../models/doctorModel.js";
 import Patient from "../models/patientModel.js";
+import Hospital  from "../models/hospitalModel.js";
+import {
+  sendConfirmationEmail,
+  sendReminderEmail,
+  sendCancellationEmail,
+  sendRescheduleEmail,
+} from "../services/emailService.js";
+import { scheduleReminderInDB, cancelReminder } from "../services/reminderService.js";
 
-// Book Appointment
 export const bookAppointment = async (req, res) => {
   const { date, patientId, doctorId, hospitalId, slotNumber, reason, payStatus } = req.body;
 
