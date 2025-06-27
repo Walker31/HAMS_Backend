@@ -8,6 +8,7 @@ import { startReminderCronJob } from './services/reminderService.js';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+// Load environment variables
 
 dotenv.config();
 
