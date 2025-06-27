@@ -8,7 +8,7 @@ import { uploadToCloudinaryFromBuffer } from "../services/cloudinary.js";
 class authController {
   async doctorLogin(req, res) {
     try {
-      const doctor = await Doctor.findOne({ phone: req.body.phone }).select("+password");
+      const doctor = await Doctor.findOne({ phone: req.body.phone}).select("+password");
 
       if (!doctor) {
         return res.status(404).json({ message: "Doctor not found" });
@@ -32,13 +32,10 @@ class authController {
     try {
       const exists = await Doctor.findOne({ phone });
       if (exists) {
-        console.log("Doctor Found")
         return res
           .status(400)
           .json({ message: "Doctor already exists with this phone number" });
       }
-      console.log("Doctor New")
-      console.log(req.body)
       
       //image for profileeeee by incorporating cloudinary
       let photoData = {}

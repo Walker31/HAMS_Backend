@@ -1,8 +1,8 @@
 import Appointment from "../models/appointmentModel.js";
 import Doctor from "../models/doctorModel.js";
+import mongoose from "mongoose";
 
 class DoctorControllers {
-
   async getNearbyDoctors(req, res) {
     const { lat, lon } = req.params;
     if (!lat || !lon) {
@@ -83,9 +83,20 @@ class DoctorControllers {
 
   async publicDoctorProfile(req, res) {
     const { doctorId } = req.params;
+
     try {
-      const doctor = await Doctor.findById(doctorId).select("-password");
-      if (!doctor) return res.status(404).json({ message: "Doctor not found" });
+      let doctor;
+
+      if (mongoose.Types.ObjectId.isValid(doctorId)) {
+        doctor = await Doctor.findById(doctorId).select("-password");
+      } else {
+        doctor = await Doctor.findOne({ doctorId }).select("-password");
+      }
+
+      if (!doctor) {
+        return res.status(404).json({ message: "Doctor not found" });
+      }
+
       res.status(200).json({ doctor });
     } catch (error) {
       console.error("Error fetching public doctor profile:", error);
@@ -116,18 +127,21 @@ class DoctorControllers {
         return res.status(400).json({ message: "Missing doctorId, date, or slots" });
       }
 
-      const doctor = await Doctor.findById(doctorId);
+      let doctor;
+      if (mongoose.Types.ObjectId.isValid(doctorId)) {
+        doctor = await Doctor.findById(doctorId);
+      } else {
+        doctor = await Doctor.findOne({ doctorId });
+      }
+
       if (!doctor) return res.status(404).json({ message: "Doctor not found" });
 
-      const updatedSlots = new Map(doctor.availableSlots || []);
-      updatedSlots.set(date, slots);
-
-      doctor.availableSlots = updatedSlots;
+      doctor.availableSlots.set(date, slots);
       await doctor.save();
 
       res.status(200).json({
         message: "Slots updated successfully",
-        availableSlots: Object.fromEntries(updatedSlots),
+        availableSlots: Object.fromEntries(doctor.availableSlots),
       });
     } catch (error) {
       console.error("Error updating slots:", error);
@@ -139,7 +153,14 @@ class DoctorControllers {
     const { doctorId } = req.params;
 
     try {
-      const doctor = await Doctor.findById(doctorId);
+      let doctor;
+
+      if (mongoose.Types.ObjectId.isValid(doctorId)) {
+        doctor = await Doctor.findById(doctorId);
+      } else {
+        doctor = await Doctor.findOne({ doctorId });
+      }
+
       if (!doctor) return res.status(404).json({ message: "Doctor not found" });
 
       const slotsObject = doctor.availableSlots instanceof Map
@@ -164,7 +185,7 @@ class DoctorControllers {
     try {
       const appointments = await Appointment.find({ doctorId, date }).select("slotNumber");
       const bookedSlots = appointments.map(appt => appt.slotNumber);
-      res.status(200).json(bookedSlots);
+      res.status(200).json({ bookedSlots });
     } catch (error) {
       console.error("Error fetching booked slots:", error);
       res.status(500).json({ message: "Error fetching booked slots", error: error.message });

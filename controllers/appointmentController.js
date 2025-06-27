@@ -1,10 +1,17 @@
 import Appointment from "../models/appointmentModel.js";
 import Doctor from "../models/doctorModel.js";
+import Patient from "../models/patientModel.js";
+import Hospital  from "../models/hospitalModel.js";
+import {
+  sendConfirmationEmail,
+  sendReminderEmail,
+  sendCancellationEmail,
+  sendRescheduleEmail,
+} from "../services/emailService.js";
+import { scheduleReminderInDB, cancelReminder } from "../services/reminderService.js";
 
-// Book Appointment
 export const bookAppointment = async (req, res) => {
-  console.log("📥 Received book appointment request:", req.body);
-  const { date, patientId, doctorId, clinicId, slotNumber, reason, payStatus } = req.body;
+  const { date, patientId, doctorId, hospitalId, slotNumber, reason, payStatus } = req.body;
 
   try {
     if (!reason || reason.trim() === "") {
@@ -243,9 +250,6 @@ export const showAppointments = async (req, res) => {
       date,
       appStatus: "Pending",
     });
-
-    console.log("Appointments fetched:", appointments.length);
-    console.log(appointments);
     res.json(appointments);
   } catch (error) {
     console.error("Error showing appointments:", error);
@@ -454,8 +458,8 @@ export const rescheduleAppointment = async (req, res) => {
 };
 
 export const getAppointmentsByPatient = async (req, res) => {
-  const { date } = req.params;
-  const { patientId } = req.query;
+  const date = new Date();
+  const patientId = req.user?.id;
 
   if (!patientId || !date) {
     return res.status(400).json({ message: "Patient ID and date required" });

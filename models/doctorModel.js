@@ -7,7 +7,7 @@ const nanoidNumeric = customAlphabet("1234567890", 6);
 const DoctorSchema = new mongoose.Schema(
   {
     doctorId: {
-      type: String,
+      type: Number,
       unique: true,
       index: true,
       default: () => nanoidNumeric(6),
@@ -18,7 +18,7 @@ const DoctorSchema = new mongoose.Schema(
       trim: true,
     },
     phone: {
-      type: String,
+      type: Number,
       required: true,
     },
     email: {
@@ -55,11 +55,11 @@ const DoctorSchema = new mongoose.Schema(
     photo: {
             publicId:{
                 type: String,
-                required: true,
+                required: false,
             },
             url: {
                 type: String,
-                required: true,
+                required: false,
             }
         },
     overview: {
