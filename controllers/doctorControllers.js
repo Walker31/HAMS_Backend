@@ -30,7 +30,7 @@ class DoctorControllers {
     const { doctorId } = req.params;
 
     try {
-      const doctorExists = await Doctor.findOne({ doctorId });
+      const doctorExists = await Doctor.findById(doctorId);
       if (!doctorExists) return res.status(404).json({ message: "Doctor not found" });
 
       const appointments = await Appointment.find({ doctorId });
@@ -73,7 +73,7 @@ class DoctorControllers {
   async profile(req, res) {
     const doctorId = req.user?.id;
     try {
-      const doctor = await Doctor.findOne({ doctorId });
+      const doctor = await Doctor.findById(doctorId);
       if (!doctor) return res.status(404).json({ message: "Doctor not found" });
       res.status(200).json({ doctor });
     } catch (error) {
@@ -84,7 +84,7 @@ class DoctorControllers {
   async publicDoctorProfile(req, res) {
     const { doctorId } = req.params;
     try {
-      const doctor = await Doctor.findOne({ doctorId }).select("-password");
+      const doctor = await Doctor.findById(doctorId).select("-password");
       if (!doctor) return res.status(404).json({ message: "Doctor not found" });
       res.status(200).json({ doctor });
     } catch (error) {
@@ -98,7 +98,7 @@ class DoctorControllers {
     const { overview } = req.body;
 
     try {
-      const updatedDoctor = await Doctor.findOneAndUpdate({doctorId}, { overview }, { new: true });
+      const updatedDoctor = await Doctor.findByIdAndUpdate(doctorId, { overview }, { new: true });
       if (!updatedDoctor) return res.status(404).json({ message: "Doctor not found" });
 
       res.status(200).json(updatedDoctor);
@@ -116,13 +116,14 @@ class DoctorControllers {
         return res.status(400).json({ message: "Missing doctorId, date, or slots" });
       }
 
-      const doctor = await Doctor.findOne({ doctorId });
+      const doctor = await Doctor.findById(doctorId);
       if (!doctor) return res.status(404).json({ message: "Doctor not found" });
 
       const updatedSlots = new Map(doctor.availableSlots || []);
       updatedSlots.set(date, slots);
 
-      await Doctor.updateOne({ doctorId }, { availableSlots: updatedSlots });
+      doctor.availableSlots = updatedSlots;
+      await doctor.save();
 
       res.status(200).json({
         message: "Slots updated successfully",
@@ -138,7 +139,7 @@ class DoctorControllers {
     const { doctorId } = req.params;
 
     try {
-      const doctor = await Doctor.findOne({ doctorId });
+      const doctor = await Doctor.findById(doctorId);
       if (!doctor) return res.status(404).json({ message: "Doctor not found" });
 
       const slotsObject = doctor.availableSlots instanceof Map
@@ -152,7 +153,6 @@ class DoctorControllers {
     }
   }
 
-  
   async getBookedSlots(req, res) {
     const { doctorId } = req.params;
     const { date } = req.query;
