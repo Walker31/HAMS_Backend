@@ -1,5 +1,6 @@
 import Appointment from "../models/appointmentModel.js";
 import Doctor from "../models/doctorModel.js";
+import Patient from "../models/patientModel.js";
 
 // Book Appointment
 export const bookAppointment = async (req, res) => {
@@ -450,8 +451,8 @@ export const rescheduleAppointment = async (req, res) => {
 };
 
 export const getAppointmentsByPatient = async (req, res) => {
-  const { date } = req.params;
-  const { patientId } = req.query;
+  const date = new Date();
+  const patientId = req.user?.id;
 
   if (!patientId || !date) {
     return res.status(400).json({ message: "Patient ID and date required" });
