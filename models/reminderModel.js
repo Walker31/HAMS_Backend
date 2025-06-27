@@ -6,6 +6,6 @@ const reminderSchema = new mongoose.Schema({
   reminderTime: { type: Date, required: true },
   appointmentData: { type: Object, required: true },
   status: { type: String, default: 'pending' }
-}, { timestamps: true });
+}, { timestamps: true,collection: 'Reminders' });
 
-export default mongoose.model('Reminder', reminderSchema);
+export default mongoose.model('Reminders', reminderSchema);

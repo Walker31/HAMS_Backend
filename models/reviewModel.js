@@ -8,7 +8,7 @@ const ReviewSchema = new mongoose.Schema({
     default: () => nanoid(6),
   },
   doctorId: { 
-    type: String, 
+    type: Number, 
     ref: 'Doctor',
     required: true 
   },
