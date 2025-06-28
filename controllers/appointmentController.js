@@ -1,10 +1,18 @@
 import Appointment from "../models/appointmentModel.js";
 import Doctor from "../models/doctorModel.js";
+import Patient from "../models/patientModel.js";
+import Hospital  from "../models/hospitalModel.js";
+import {
+  sendConfirmationEmail,
+  sendReminderEmail,
+  sendCancellationEmail,
+  sendRescheduleEmail,
+} from "../services/emailService.js";
+import { scheduleReminderInDB, cancelReminder } from "../services/reminderService.js";
 
-// Book Appointment
 export const bookAppointment = async (req, res) => {
-  const { date, patientId, doctorId, hospitalId, slotNumber, reason, payStatus } = req.body;
-
+  const { date, doctorId, hospitalId, slotNumber, reason, payStatus } = req.body;
+  const patientId = req.user?.id;
   try {
     if (!reason || reason.trim() === "") {
       return res.status(400).json({ message: "Reason is required" });
@@ -241,13 +249,26 @@ export const showAppointments = async (req, res) => {
       doctorId,
       date,
       appStatus: "Pending",
-    });
+    }).lean();
+
+    for (let i = 0; i < appointments.length; i++) {
+      const patientId = appointments[i].patientId;
+
+      if (patientId) {
+        const patient = await Patient.findOne({patientId }).lean();
+        appointments[i].patientName = patient?.name || "Unknown";
+      } else {
+        appointments[i].patientName = "Unknown";
+      }
+    }
+
     res.json(appointments);
   } catch (error) {
     console.error("Error showing appointments:", error);
     res.status(500).json({ message: "Failed to show appointments" });
   }
 };
+
 
 export const getPreviousAppointments = async (req, res) => {
   const { doctorId } = req.query;
@@ -450,8 +471,8 @@ export const rescheduleAppointment = async (req, res) => {
 };
 
 export const getAppointmentsByPatient = async (req, res) => {
-  const { date } = req.params;
-  const { patientId } = req.query;
+  const date = new Date();
+  const patientId = req.user?.id;
 
   if (!patientId || !date) {
     return res.status(400).json({ message: "Patient ID and date required" });

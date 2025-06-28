@@ -5,7 +5,7 @@ import { authenticateToken } from "../middlewares/JWTmiddleware.js";
 const router = express.Router();
 
 
-router.post("/book", AppointmentController.bookAppointment);
+router.post("/book",authenticateToken, AppointmentController.bookAppointment);
 
 
 router.put("/reschedule", AppointmentController.rescheduleAppointment);

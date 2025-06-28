@@ -9,7 +9,7 @@ class authController {
   async doctorLogin(req, res) {
     
     try {
-      const doctor = await Doctor.findOne({ phone: req.body.phone }).select("+password");
+      const doctor = await Doctor.findOne({ phone: req.body.phone}).select("+password");
 
       if (!doctor) {
         return res.status(404).json({ message: "Doctor not found" });

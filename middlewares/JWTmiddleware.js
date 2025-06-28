@@ -16,7 +16,7 @@ export function authenticateToken(req, res, next) {
 
 export function generateToken(user) {
   const payload = {
-    id: user.doctorId || user.patientId || user.hospitalId,
+    id: user._id || user.doctorId || user.patientId || user.hospitalId,
     phone: user.phone,
     role: user.role || determineUserRole(user),  // NEW ✅
     name: user.name,                             // optional

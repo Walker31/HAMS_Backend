@@ -55,11 +55,11 @@ const DoctorSchema = new mongoose.Schema(
     photo: {
             publicId:{
                 type: String,
-                required: true,
+                required: false,
             },
             url: {
                 type: String,
-                required: true,
+                required: false,
             }
         },
     overview: {
