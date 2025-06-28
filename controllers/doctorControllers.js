@@ -60,7 +60,7 @@ class DoctorControllers {
           },
         },
       })
-        .sort({ avgRating: -1 })
+        .sort({ averageRating: -1 })
         .limit(10);
 
       res.status(200).json({ doctors });

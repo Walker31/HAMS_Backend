@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import { customAlphabet,nanoid } from "nanoid";
-
-const nanoidNumeric = customAlphabet("1234567890", 6);
+import { nanoid } from "nanoid";
 
 const HospitalSchema = new mongoose.Schema(
   {
@@ -46,7 +44,9 @@ const HospitalSchema = new mongoose.Schema(
     },
 
     RegId:{
-        type : Number,
+        type : String,
+        unique: true,
+        required:true
     },
     
     password: {
