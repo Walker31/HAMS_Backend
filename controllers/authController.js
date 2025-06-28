@@ -7,6 +7,7 @@ import { uploadToCloudinaryFromBuffer } from "../services/cloudinary.js";
 
 class authController {
   async doctorLogin(req, res) {
+    
     try {
       const doctor = await Doctor.findOne({ phone: req.body.phone }).select("+password");
 
@@ -59,7 +60,9 @@ class authController {
   }
 
   async patientLogin(req, res) {
+    
     try {
+      
       const patient = await Patient.findOne({ phone: req.body.phone }).select("+password");
 
       if (!patient) {
