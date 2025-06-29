@@ -30,7 +30,7 @@ class DoctorControllers {
     const { doctorId } = req.params;
 
     try {
-      const doctorExists = await Doctor.findById(doctorId);
+      const doctorExists = await Doctor.findOne({doctorId});
       if (!doctorExists) return res.status(404).json({ message: "Doctor not found" });
 
       const appointments = await Appointment.find({ doctorId });
@@ -73,7 +73,7 @@ class DoctorControllers {
   async profile(req, res) {
     const doctorId = req.user?.id;
     try {
-      const doctor = await Doctor.findById(doctorId);
+      const doctor = await Doctor.findOne({doctorId});
       if (!doctor) return res.status(404).json({ message: "Doctor not found" });
       res.status(200).json({ doctor });
     } catch (error) {
@@ -85,13 +85,7 @@ class DoctorControllers {
     const { doctorId } = req.params;
 
     try {
-      let doctor;
-
-      if (mongoose.Types.ObjectId.isValid(doctorId)) {
-        doctor = await Doctor.findById(doctorId).select("-password");
-      } else {
-        doctor = await Doctor.findOne({ doctorId }).select("-password");
-      }
+      const doctor = await Doctor.findOne({ doctorId }).select("-password");
 
       if (!doctor) {
         return res.status(404).json({ message: "Doctor not found" });
@@ -105,11 +99,11 @@ class DoctorControllers {
   }
 
   async updateDoctorOverview(req, res) {
-    const doctorId = req.params.id;
+    const doctorId = req.user?.id;
     const { overview } = req.body;
 
     try {
-      const updatedDoctor = await Doctor.findByIdAndUpdate(doctorId, { overview }, { new: true });
+      const updatedDoctor = await Doctor.findOneAndUpdate({ doctorId: doctorId }, { overview }, { new: true });
       if (!updatedDoctor) return res.status(404).json({ message: "Doctor not found" });
 
       res.status(200).json(updatedDoctor);
@@ -127,12 +121,8 @@ class DoctorControllers {
         return res.status(400).json({ message: "Missing doctorId, date, or slots" });
       }
 
-      let doctor;
-      if (mongoose.Types.ObjectId.isValid(doctorId)) {
-        doctor = await Doctor.findById(doctorId);
-      } else {
-        doctor = await Doctor.findOne({ doctorId });
-      }
+      const doctor = await Doctor.findOne({ doctorId });
+      
 
       if (!doctor) return res.status(404).json({ message: "Doctor not found" });
 
@@ -153,13 +143,7 @@ class DoctorControllers {
     const { doctorId } = req.params;
 
     try {
-      let doctor;
-
-      if (mongoose.Types.ObjectId.isValid(doctorId)) {
-        doctor = await Doctor.findById(doctorId);
-      } else {
-        doctor = await Doctor.findOne({ doctorId });
-      }
+      const doctor = await Doctor.findOne({ doctorId });
 
       if (!doctor) return res.status(404).json({ message: "Doctor not found" });
 
