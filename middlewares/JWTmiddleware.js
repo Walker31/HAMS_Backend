@@ -10,6 +10,7 @@ export function authenticateToken(req, res, next) {
     if (err) return res.status(403).json({ message: "Invalid Token" });
 
     req.user = user;
+    console.log(user);
     next();
   });
 }
@@ -18,8 +19,8 @@ export function generateToken(user) {
   const payload = {
     id: user.doctorId || user.patientId || user.hospitalId,
     phone: user.phone,
-    role: user.role || determineUserRole(user),  // NEW ✅
-    name: user.name,                             // optional
+    role: user.role || determineUserRole(user),
+    name: user.name,    
     email: user.email,                           // optional
   };
 
