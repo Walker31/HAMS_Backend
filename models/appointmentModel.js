@@ -19,7 +19,7 @@ const AppointmentSchema = new mongoose.Schema({
   },
   hospitalId: {
     type: String,
-    required: true,
+    required: false,
     trim: true,
   },
   date: {
