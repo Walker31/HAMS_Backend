@@ -92,8 +92,10 @@ class DoctorControllers {
 
   async profile(req, res) {
     const doctorId = req.user?.id;
+    console.log(doctorId)
     try {
       const doctor = await Doctor.findOne({doctorId});
+      console.log(doctor)
       if (!doctor) return res.status(404).json({ message: "Doctor not found" });
       console.log(doctor);
       res.status(200).json({ doctor });
@@ -217,7 +219,7 @@ class DoctorControllers {
     }
   }
   async editProfile(req, res) {
-    
+    console.log("input data:", req.body)
     if (req.body.location && typeof req.body.location === "string") {
         try {
           req.body.location = JSON.parse(req.body.location);
@@ -236,8 +238,14 @@ class DoctorControllers {
       }catch(error){
         console.error("Error in parsing the available slots")
       }
+    if(req.body.doctorId && typeof req.body.doctorId === "string")
+      try{
+        req.body.doctorId = parseInt(req.body.doctorId)
+      }catch (error){
+        console.error("error changing doctorId to integer")
+      }
     try {
-      const doctorId = req.body._id;
+      
 
       const updatedData = { ...req.body };
       
@@ -249,8 +257,9 @@ class DoctorControllers {
         updatedData.photo = photoData;
       }
       console.log(updatedData)
-      const updatedDoctor = await Doctor.findByIdAndUpdate(
-        doctorId,
+      const doctorId = updatedData.doctorId;
+      const updatedDoctor = await Doctor.findOneAndUpdate(
+        {doctorId},
         { $set: updatedData },
         { new: true }
       );
