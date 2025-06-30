@@ -12,7 +12,7 @@ router.put("/reschedule", AppointmentController.rescheduleAppointment);
 router.put("/cancel", AppointmentController.cancelAppointment);
 router.put("/update-status/:appointmentId", AppointmentController.updateAppStatus);
 router.get("/pending/:date", AppointmentController.showAppointments);
-router.get("/previous", AppointmentController.getPreviousAppointments);
+router.get("/previous", authenticateToken,AppointmentController.getPreviousAppointments);
 router.get("/all/:doctorId", AppointmentController.getAllAppointmentsByDoctor);
 router.get('/detail',AppointmentController.appointmentDetail);
 router.get("/patient", authenticateToken,AppointmentController.getAppointmentsByPatient);

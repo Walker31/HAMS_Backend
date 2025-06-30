@@ -123,15 +123,28 @@ export const showAppointments = async (req, res) => {
 
 // Get Previous Appointments
 export const getPreviousAppointments = async (req, res) => {
-  const { doctorId } = req.query;
+  const doctorId = req.user.id;
 
   try {
     const appointments = await Appointment.find({
       doctorId,
-      appStatus: { $in: ["Completed", "Rejected", "Rescheduled"] },
-    }).sort({ date: -1 }); // optional: sort by recent first
+    }).sort({ date: -1 }).lean();
+    
+    const updatedAppointments = await Promise.all(
+        appointments.map(async (appt) => {
+          if (appt.patientId) {
+            const patient = await Patient.findOne({ patientId: appt.patientId }).lean();
+            return {
+              ...appt,
+              patientName: patient?.name || "Unknown",
+            };
+          } else {
+            return { ...appt, patientName: "Unknown" };
+          }
+        })
+      );
 
-    res.json(appointments);
+    res.json(updatedAppointments);
   } catch (error) {
     console.error("Error fetching previous appointments:", error);
     res.status(500).json({ message: "Failed to fetch previous appointments" });
