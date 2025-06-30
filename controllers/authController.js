@@ -7,8 +7,11 @@ import { uploadToCloudinaryFromBuffer } from "../services/cloudinary.js";
 
 class authController {
   async doctorLogin(req, res) {
+    
     try {
-      const doctor = await Doctor.findOne({ phone: req.body.phone }).select("+password");
+      const doctor = await Doctor.findOne({ phone: req.body.phone }).select(
+        "+password"
+      );
 
       if (!doctor) {
         return res.status(404).json({ message: "Doctor not found" });
@@ -18,7 +21,7 @@ class authController {
       if (!isMatch) {
         return res.status(401).json({ message: "Invalid credentials" });
       }
-      
+
       const token = generateToken(doctor);
       return res.status(200).json({ message: "Login successful", token });
     } catch (error) {
@@ -27,7 +30,21 @@ class authController {
   }
 
   async doctorSignup(req, res) {
-    const {name, phone, email, gender, location,specialization, medicalReg, password, Hospital} = req.body;
+    const {
+      name,
+      phone,
+      email,
+      gender,
+      location,
+      specialization,
+      medicalReg,
+      password,
+      Hospital,
+      basicFee,
+      experience,
+      workingHoursFrom,
+      workingHoursTo,
+    } = req.body;
     const parsedLocation = JSON.parse(location);
     try {
       const exists = await Doctor.findOne({ phone });
@@ -37,23 +54,36 @@ class authController {
           .status(400)
           .json({ message: "Doctor already exists with this phone number" });
       }
-      console.log("Doctor New")
-      console.log(req.body)
-      
       //image for profileeeee by incorporating cloudinary
-      let photoData = {}
-      if(req.file){
-        photoData = await uploadToCloudinaryFromBuffer(req.file.buffer, "my-profile")
-        console.log("photo uploaded")
+      let photoData = {};
+      if (req.file) {
+        photoData = await uploadToCloudinaryFromBuffer(
+          req.file.buffer,
+          "my-profile"
+        );
+        console.log("photo uploaded");
+      } else {
+        if (!req.file) {
+          console.log("No photo uploaded");
+        }
       }
-      else{console.log("No photo my nigga")}
-      
+
       const doctor = await Doctor.create({
-        name, phone, email, gender, location:parsedLocation, medicalReg, specialization , photo: photoData, password, Hospital
+        name,
+        phone,
+        email,
+        gender,
+        location: parsedLocation,
+        medicalReg,
+        specialization,
+        photo: photoData,
+        password,
+        Hospital,
+        basicFee,
+        experience,
+        workingHours: { from: workingHoursFrom, to: workingHoursTo },
       });
       const token = generateToken(doctor);
-
-      console.log("Doctor account created:", doctor);
       return res.status(201).json({ doctor, token });
     } catch (error) {
       console.error("Doctor signup error:", error);
@@ -62,8 +92,11 @@ class authController {
   }
 
   async patientLogin(req, res) {
+    
     try {
-      const patient = await Patient.findOne({ phone: req.body.phone }).select("+password");
+      const patient = await Patient.findOne({ phone: req.body.phone }).select(
+        "+password"
+      );
 
       if (!patient) {
         return res.status(404).json({ message: "Patient not found" });
@@ -75,78 +108,79 @@ class authController {
       }
 
       const token = generateToken(patient);
-      return res.status(200).json({ message: "Login successful",patientId: patient.patientId, token });
+      return res
+        .status(200)
+        .json({
+          message: "Login successful",
+          patientId: patient.patientId,
+          token,
+        });
     } catch (error) {
       return res.status(500).json({ message: error.message });
     }
   }
 
-  // ✅ Updated only this method to structure nested fields
   async patientSignup(req, res) {
-  console.log("Incoming patient data:", req.body);
-  try {
-    const exists = await Patient.findOne({ phone: req.body.phone });
-    if (exists) {
-      return res
-        .status(400)
-        .json({ message: "Patient already exists with this phone number" });
-    }
+    console.log("Incoming patient data:", req.body);
+    try {
+      const exists = await Patient.findOne({ phone: req.body.phone });
+      if (exists) {
+        return res
+          .status(400)
+          .json({ message: "Patient already exists with this phone number" });
+      }
 
-    // Pull out only what needs transformation
-    const {
-      fullName,
-      street,
-      city,
-      state,
-      postalCode,
-      emergencyName,
-      emergencyPhone,
-      emergencyRelation,
-      phone,
-      email,
-      gender,
-      dateOfBirth,
-      password,
-    } = req.body;
-
-    const patientData = {
-      name: fullName,
-      phone,
-      email,
-      gender,
-      dateOfBirth,
-      password,
-      address: {
+      const {
+        fullName,
         street,
         city,
         state,
         postalCode,
-      },
-      emergencyContact: {
-        name: emergencyName,
-        phone: emergencyPhone,
-        relation: emergencyRelation,
-      },
-    };
+        emergencyName,
+        emergencyPhone,
+        emergencyRelation,
+        phone,
+        email,
+        gender,
+        dateOfBirth,
+        password,
+      } = req.body;
 
-    const patient = await Patient.create(patientData);
-    const token = generateToken(patient);
+      const patientData = {
+        name: fullName,
+        phone,
+        email,
+        gender,
+        dateOfBirth,
+        password,
+        address: {
+          street,
+          city,
+          state,
+          postalCode,
+        },
+        emergencyContact: {
+          name: emergencyName,
+          phone: emergencyPhone,
+          relation: emergencyRelation,
+        },
+      };
 
-    console.log("Patient account created");
-    return res.status(201).json({ patient, token });
-  } catch (error) {
-    console.error("Patient signup error:", error);
-    return res.status(500).json({ message: error.message });
+      const patient = await Patient.create(patientData);
+      const token = generateToken(patient);
+
+      console.log("Patient account created");
+      return res.status(201).json({ patient, token });
+    } catch (error) {
+      console.error("Patient signup error:", error);
+      return res.status(500).json({ message: error.message });
+    }
   }
-}
-     
 
   async hospitalSignup(req, res) {
     try {
-      console.log(req.body);
-      console.log(new Date());
-
       const exists = await Hospital.findOne({ RegId: req.body.RegId });
+      
       if (exists) {
         return res.status(400).json({
           message: "Hospital already exists with this Registration number",
@@ -154,18 +188,32 @@ class authController {
       }
 
       if (req.body.location && Array.isArray(req.body.location.coordinates)) {
-        const coords = req.body.location.coordinates.map((coord) => Number(coord));
+        const coords = req.body.location.coordinates.map((coord) =>
+          Number(coord)
+        );
 
         if (coords.length !== 2 || coords.some((coord) => isNaN(coord))) {
           return res.status(400).json({
-            message: "Invalid location coordinates. Must be an array of two numbers [longitude, latitude].",
+            message:
+              "Invalid location coordinates. Must be an array of two numbers [longitude, latitude].",
           });
         }
 
         req.body.location.coordinates = coords;
       } else {
-        return res.status(400).json({ message: "Location coordinates are required." });
+        return res
+          .status(400)
+          .json({ message: "Location coordinates are required." });
       }
+
+      req.body.address = {
+        addressLine: req.body.addressLine,
+        city: req.body.city,
+        state: req.body.state,
+        pincode: parseInt(req.body.pincode),
+      };
+
+      
 
       const hospital = await Hospital.create(req.body);
       const token = generateToken(hospital);

@@ -1,21 +1,18 @@
 import Appointment from "../models/appointmentModel.js";
 import Doctor from "../models/doctorModel.js";
+import Patient from "../models/patientModel.js";
+import Hospital  from "../models/hospitalModel.js";
+import {
+  sendConfirmationEmail,
+  sendReminderEmail,
+  sendCancellationEmail,
+  sendRescheduleEmail,
+} from "../services/emailService.js";
+import { scheduleReminderInDB, cancelReminder } from "../services/reminderService.js";
 
-// Book Appointment
 export const bookAppointment = async (req, res) => {
-  console.log("📥 Received book appointment request:", req.body);
-
-  const {
-    date,
-    patientId,
-    doctorId,
-    clinicId,
-    slotNumber,
-    reason,
-    payStatus,
-    consultStatus, // ✅ make sure this is destructured
-  } = req.body;
-
+  const { date, doctorId, hospitalId, slotNumber, reason, payStatus } = req.body;
+  const patientId = req.user?.id;
   try {
     let generatedLink = "Link";
     if (consultStatus === "Online") {
@@ -89,13 +86,26 @@ export const showAppointments = async (req, res) => {
       doctorId,
       date,
       appStatus: "Pending",
-    });
+    }).lean();
+
+    for (let i = 0; i < appointments.length; i++) {
+      const patientId = appointments[i].patientId;
+
+      if (patientId) {
+        const patient = await Patient.findOne({patientId }).lean();
+        appointments[i].patientName = patient?.name || "Unknown";
+      } else {
+        appointments[i].patientName = "Unknown";
+      }
+    }
+
     res.json(appointments);
   } catch (error) {
     console.error("Error showing appointments:", error);
     res.status(500).json({ message: "Failed to show appointments" });
   }
 };
+
 
 
 // Get Previous Appointments
@@ -177,7 +187,12 @@ export const rescheduleAppointment = async (req, res) => {
 
 // Get Appointments by Patient (for patient dashboard)
 export const getAppointmentsByPatient = async (req, res) => {
-  const  patientId  = req.user?.id;
+  const { date } = req.params;
+  const { patientId } = req.query;
+
+  if (!patientId || !date) {
+    return res.status(400).json({ message: "Patient ID and date required" });
+  }
 
   try {
     const appointments = await Appointment.find({ patientId });

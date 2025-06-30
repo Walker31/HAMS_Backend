@@ -18,7 +18,7 @@ const DoctorSchema = new mongoose.Schema(
       trim: true,
     },
     phone: {
-      type: String,
+      type: Number,
       required: true,
     },
     email: {
@@ -31,17 +31,17 @@ const DoctorSchema = new mongoose.Schema(
       required: true,
       enum: ["Male", "Female", "Other"],
     },
-    location:{
-      type:{
-        type:String,
+    location: {
+      type: {
+        type: String,
         enum: ["Point"],
         required: true,
         default: "Point",
       },
-      coordinates:{
-        type:[Number],
-        required:true,
-      }
+      coordinates: {
+        type: [Number],
+        required: true,
+      },
     },
     medicalReg: {
       type: String,
@@ -53,15 +53,15 @@ const DoctorSchema = new mongoose.Schema(
       required: true,
     },
     photo: {
-            publicId:{
-                type: String,
-                required: true,
-            },
-            url: {
-                type: String,
-                required: true,
-            }
-        },
+      publicId: {
+        type: String,
+        required: false,
+      },
+      url: {
+        type: String,
+        required: false,
+      },
+    },
     overview: {
       type: String,
       default: "",
@@ -73,15 +73,35 @@ const DoctorSchema = new mongoose.Schema(
     },
     averageRating: {
       type: Number,
-      default: 0,
+      default: 3,
       min: 0,
       max: 5,
+    },
+    basicFee: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
+    experience: {
+      type: Number,
+      default: 0,
+      min: 0,
     },
     password: {
       type: String,
       required: true,
       minlength: 6,
       select: false,
+    },
+    workingHours: {
+      from: {
+        type: String,
+        match: /^([0-1]\d|2[0-3]):([0-5]\d)$/, // HH:MM 24-hour format
+      },
+      to: {
+        type: String,
+        match: /^([0-1]\d|2[0-3]):([0-5]\d)$/,
+      },
     },
     Hospital: {
       type: String,
