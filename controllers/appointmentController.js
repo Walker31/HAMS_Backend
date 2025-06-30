@@ -11,7 +11,7 @@ import {
 import { scheduleReminderInDB, cancelReminder } from "../services/reminderService.js";
 
 export const bookAppointment = async (req, res) => {
-  const { date, doctorId, hospitalId, slotNumber, reason, payStatus } = req.body;
+  const { date, doctorId, Hospital, slotNumber, reason, payStatus,consultStatus } = req.body;
   const patientId = req.user?.id;
   try {
     let generatedLink = "Link";
@@ -24,13 +24,13 @@ export const bookAppointment = async (req, res) => {
       date,
       patientId,
       doctorId,
-      clinicId,
+      Hospital,
       slotNumber,
       reason,
       payStatus,
-      consultStatus, // ✅ include this in DB
+      consultStatus,
       appStatus: "Pending",
-      MeetLink: generatedLink, // ✅ fixed casing
+      MeetLink: generatedLink,
     });
 
     await appointment.save();
@@ -187,10 +187,9 @@ export const rescheduleAppointment = async (req, res) => {
 
 // Get Appointments by Patient (for patient dashboard)
 export const getAppointmentsByPatient = async (req, res) => {
-  const { date } = req.params;
-  const { patientId } = req.query;
+  const patientId = req.user?.id;
 
-  if (!patientId || !date) {
+  if (!patientId) {
     return res.status(400).json({ message: "Patient ID and date required" });
   }
 
