@@ -49,11 +49,11 @@ class authController {
     try {
       const exists = await Doctor.findOne({ phone });
       if (exists) {
+        console.log("Doctor Found")
         return res
           .status(400)
           .json({ message: "Doctor already exists with this phone number" });
       }
-
       //image for profileeeee by incorporating cloudinary
       let photoData = {};
       if (req.file) {
