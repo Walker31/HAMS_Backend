@@ -13,7 +13,7 @@ const AppointmentSchema = new mongoose.Schema({
     trim: true,
   },
   doctorId: {
-    type: String,
+    type: Number,
     required: true,
     trim: true,
   },
@@ -23,7 +23,7 @@ const AppointmentSchema = new mongoose.Schema({
     trim: true,
   },
   date: {
-    type: String, 
+    type: Date, 
     required: true,
   },
   slotNumber: {

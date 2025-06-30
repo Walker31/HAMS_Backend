@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { nanoid } from "nanoid";
 
 const ReviewSchema = new mongoose.Schema({
   reviewId: {
@@ -8,7 +9,7 @@ const ReviewSchema = new mongoose.Schema({
     default: () => nanoid(6),
   },
   doctorId: { 
-    type: String, 
+    type: Number, 
     ref: 'Doctor',
     required: true 
   },

@@ -1,12 +1,10 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import { customAlphabet,nanoid } from "nanoid";
-
-const nanoidNumeric = customAlphabet("1234567890", 6);
+import { nanoid } from "nanoid";
 
 const HospitalSchema = new mongoose.Schema(
   {
-     hospitalId: {
+    hospitalId: {
       type: String,
       unique: true,
       index: true,
@@ -20,41 +18,55 @@ const HospitalSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
-      required: true, 
-
+      required: true,
     },
     email: {
       type: String,
       required: true,
       match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-
     },
-    city:{
-      type:String
+    city: {
+      type: String,
+    },
+    address: {
+      addressLine: {
+        type: String,
+      },
+      city: {
+        type: String,
+      },
+      state: {
+        type: String,
+      },
+      pincode: {
+        type: Number,
+      },
     },
     location: {
       type: {
         type: String,
-        enum: ['Point'],
+        enum: ["Point"],
         required: true,
-        default: 'Point',
+        default: "Point",
       },
       coordinates: {
         type: [Number], // [longitude, latitude]
         required: true,
-      }
+      },
     },
 
-    RegId:{
-        type : Number,
+    RegId: {
+      type: String,
+      unique: true,
+      required: true,
     },
-    
+
     password: {
       type: String,
       required: true,
       minlength: 6,
       select: false,
-    }
+    },
   },
   { timestamps: true, collection: "Hospitals" }
 );

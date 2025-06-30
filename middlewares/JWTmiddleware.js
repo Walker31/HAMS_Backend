@@ -10,23 +10,23 @@ export function authenticateToken(req, res, next) {
     if (err) return res.status(403).json({ message: "Invalid Token" });
 
     req.user = user;
+    console.log(user);
     next();
   });
 }
 
 export function generateToken(user) {
   const payload = {
-    id: user._id || user.doctorId || user.patientId || user.hospitalId,
+    id: user.doctorId || user.patientId || user.hospitalId,
     phone: user.phone,
-    role: user.role || determineUserRole(user),  // NEW ✅
-    name: user.name,                             // optional
+    role: user.role || determineUserRole(user),
+    name: user.name,    
     email: user.email,                           // optional
   };
 
   return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "7d" });
 }
 
-// Optional helper to infer role if not explicitly provided
 function determineUserRole(user) {
   if (user.doctorId) return "doctor";
   if (user.patientId) return "patient";

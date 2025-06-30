@@ -25,5 +25,6 @@ router.post('/:doctorId/slots', doctorControllers.updateAvailableSlots);
 router.get('/:doctorId/slots', doctorControllers.getAvailableSlots);
 router.get('/:doctorId/booked-slots', doctorControllers.getBookedSlots);
 
+router.put("/editProfile", upload.single("photo"),doctorControllers.editProfile);
 
 export default router;
