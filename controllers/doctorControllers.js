@@ -36,14 +36,8 @@ class DoctorControllers {
     const { doctorId } = req.params;
 
     try {
-<<<<<<< HEAD
-      const doctorExists = await Doctor.findById(doctorId);
-      if (!doctorExists)
-        return res.status(404).json({ message: "Doctor not found" });
-=======
       const doctorExists = await Doctor.findOne({doctorId});
       if (!doctorExists) return res.status(404).json({ message: "Doctor not found" });
->>>>>>> ded4b5a7f653f51ee5a15b10aa10520a3008ac9d
 
       const appointments = await Appointment.find({ doctorId });
       if (!appointments || appointments.length === 0) {
@@ -137,18 +131,8 @@ class DoctorControllers {
     const { overview } = req.body;
 
     try {
-<<<<<<< HEAD
-      const updatedDoctor = await Doctor.findByIdAndUpdate(
-        doctorId,
-        { overview },
-        { new: true }
-      );
-      if (!updatedDoctor)
-        return res.status(404).json({ message: "Doctor not found" });
-=======
       const updatedDoctor = await Doctor.findOneAndUpdate({ doctorId: doctorId }, { overview }, { new: true });
       if (!updatedDoctor) return res.status(404).json({ message: "Doctor not found" });
->>>>>>> ded4b5a7f653f51ee5a15b10aa10520a3008ac9d
 
       res.status(200).json(updatedDoctor);
     } catch (error) {
