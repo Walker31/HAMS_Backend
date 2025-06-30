@@ -44,7 +44,7 @@ class authController {
         photoData = await uploadToCloudinaryFromBuffer(req.file.buffer, "my-profile")
         console.log("photo uploaded")
       }
-      else{console.log("No photo my nigga")}
+      else{console.log("No photo")}
       
       const doctor = await Doctor.create({
         name, phone, email, gender, location:parsedLocation, medicalReg, specialization , photo: photoData, password, Hospital
