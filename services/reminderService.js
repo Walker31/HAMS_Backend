@@ -64,7 +64,7 @@ export const processPendingReminders = async () => {
 };
 
 export const startReminderCronJob = () => {
-  cron.schedule('* * * * *', processPendingReminders);
+  cron.schedule('*/5 * * * *', processPendingReminders);
   console.log("Reminder cron job started");
 };
 

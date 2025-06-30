@@ -18,7 +18,7 @@ class reviewController {
       await Doctor.findOneAndUpdate(
         { doctorId }, 
         { 
-          avgRating: avgRating,
+          averageRating: avgRating,
           reviewsCount: reviews.length 
         }
       );
