@@ -96,7 +96,6 @@ class DoctorControllers {
       console.log(doctorId);
       const doctor = await Doctor.findOne({doctorId});
       if (!doctor) return res.status(404).json({ message: "Doctor not found" });
-      console.log(doctor);
       res.status(200).json({ doctor });
     } catch (error) {
       res

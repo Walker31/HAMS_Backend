@@ -20,8 +20,6 @@ export const scheduleReminderInDB = async (appointmentId, appointmentData, patie
       console.log("Reminder scheduled for:", patientEmail, "at", reminderTime.toLocaleString());
       return saved;
     }
-    
-    console.log("Appointment too soon - no reminder scheduled");
     return null;
   } catch (error) {
     console.error("Error scheduling reminder:", error.message);
