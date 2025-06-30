@@ -7,11 +7,7 @@ import nodemailer from 'nodemailer';
  */
 async function _sendMail(mailOptions) {
   const info = await transporter.sendMail(mailOptions);
-  if (process.env.ETHEREAL_USER) {
-    console.log('Preview URL:', nodemailer.getTestMessageUrl(info));
-  } else {
-    console.log('Email sent:', info.messageId);
-  }
+  console.log('Email sent:', info.messageId);
   return info;
 }
 

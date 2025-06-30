@@ -90,9 +90,6 @@ export const showAppointments = async (req, res) => {
       date,
       appStatus: "Pending",
     });
-
-    console.log("Appointments fetched:", appointments.length);
-    console.log(appointments);
     res.json(appointments);
   } catch (error) {
     console.error("Error showing appointments:", error);
