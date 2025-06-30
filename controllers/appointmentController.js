@@ -87,7 +87,6 @@ export const showAppointments = async (req, res) => {
   const { date } = req.params;
   const { doctorId } = req.query;
 
-  console.log("Incoming request => doctorId:", doctorId, "date:", date);
 
   if (!doctorId || !date) {
     return res.status(400).json({ message: "Doctor ID and date required" });
@@ -110,7 +109,6 @@ export const showAppointments = async (req, res) => {
         appointments[i].patientName = "Unknown";
       }
     }
-
     res.json(appointments);
   } catch (error) {
     console.error("Error showing appointments:", error);
@@ -137,11 +135,11 @@ export const getPreviousAppointments = async (req, res) => {
 
 // Update Appointment Status with Rejection Reason or Prescription
 export const updateAppStatus = async (req, res) => {
-  const { appId } = req.params;
+  const {appointmentId}  = req.params;
   const { appStatus, rejectionReason, prescription } = req.body;
 
   try {
-    const appointment = await Appointment.findById(appId);
+    const appointment = await Appointment.findOne({appointmentId});
     if (!appointment) {
       return res.status(404).json({ message: "Appointment not found" });
     }
