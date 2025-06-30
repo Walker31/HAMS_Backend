@@ -1,17 +1,29 @@
 import Appointment from "../models/appointmentModel.js";
 import Doctor from "../models/doctorModel.js";
 import Patient from "../models/patientModel.js";
-import Hospital  from "../models/hospitalModel.js";
+import { format } from 'date-fns';
+import Hospital from "../models/hospitalModel.js";
 import {
   sendConfirmationEmail,
   sendReminderEmail,
   sendCancellationEmail,
   sendRescheduleEmail,
 } from "../services/emailService.js";
-import { scheduleReminderInDB, cancelReminder } from "../services/reminderService.js";
+import {
+  scheduleReminderInDB,
+  cancelReminder,
+} from "../services/reminderService.js";
 
 export const bookAppointment = async (req, res) => {
-  const { date, doctorId, Hospital, slotNumber, reason, payStatus,consultStatus } = req.body;
+  const {
+    date,
+    doctorId,
+    Hospital,
+    slotNumber,
+    reason,
+    payStatus,
+    consultStatus,
+  } = req.body;
   const patientId = req.user?.id;
   try {
     let generatedLink = "Link";
@@ -45,7 +57,6 @@ export const bookAppointment = async (req, res) => {
   }
 };
 
-
 // Get Booked Slots for a Doctor on a Given Date
 export const getBookedSlots = async (req, res) => {
   try {
@@ -53,7 +64,9 @@ export const getBookedSlots = async (req, res) => {
     const { date } = req.query;
 
     if (!doctorId || !date) {
-      return res.status(400).json({ message: "Doctor ID and date are required" });
+      return res
+        .status(400)
+        .json({ message: "Doctor ID and date are required" });
     }
 
     const appointments = await Appointment.find({
@@ -69,7 +82,6 @@ export const getBookedSlots = async (req, res) => {
     res.status(500).json({ message: "Failed to fetch booked slots" });
   }
 };
-
 
 export const showAppointments = async (req, res) => {
   const { date } = req.params;
@@ -92,7 +104,7 @@ export const showAppointments = async (req, res) => {
       const patientId = appointments[i].patientId;
 
       if (patientId) {
-        const patient = await Patient.findOne({patientId }).lean();
+        const patient = await Patient.findOne({ patientId }).lean();
         appointments[i].patientName = patient?.name || "Unknown";
       } else {
         appointments[i].patientName = "Unknown";
@@ -105,8 +117,6 @@ export const showAppointments = async (req, res) => {
     res.status(500).json({ message: "Failed to show appointments" });
   }
 };
-
-
 
 // Get Previous Appointments
 export const getPreviousAppointments = async (req, res) => {
@@ -218,6 +228,67 @@ export const getAllAppointmentsByDoctor = async (req, res) => {
   }
 };
 
+export const appointmentDetail = async (req, res) => {
+  const { appointmentId } = req.query;
+  if (!appointmentId)
+    return res.status(400).json({ message: "Appointment ID is missing." });
+
+  try {
+    const appointment = await Appointment.findOne({ appointmentId });
+    const patientId = appointment["patientId"];
+    const doctorId = appointment["doctorId"];
+    const patient = await Patient.findOne({ patientId });
+    const doctor = await Doctor.findOne({doctorId});
+    const dob = new Date(patient.dateOfBirth);
+    const age =
+      new Date().getUTCFullYear() -
+      dob.getUTCFullYear() -
+      (new Date() < new Date(dob.setFullYear(new Date().getFullYear()))
+        ? 1
+        : 0);
+    const previousAppointments = await Appointment.find({
+      patientId: patientId,
+      doctorId: doctorId,
+      appointmentId: { $ne: appointmentId },
+    }).sort({date: -1}).lean();
+    const formattedDate = format(new Date(appointment.date), "dd/MM/yyyy");
+    const formattedTime = format(new Date(appointment.date), "hh:mm a");
+    const bookedOn = format(new Date(appointment.createdAt), "dd/MM/yyyy");
+
+    const addressObj = patient.address || {};
+    const formattedAddress = `${addressObj.street || ""}, ${addressObj.city || ""}, ${addressObj.state || ""} - ${addressObj.postalCode || ""}`.trim();
+
+    const responseData = {
+      appointmentDetails: {
+        appointmentId: appointment.appointmentId,
+        date: formattedDate,
+        time: appointment.slotNumber,
+        bookedOn,
+        reason: appointment.reason,
+        type: appointment.consultStatus,
+        status: appointment.appStatus,
+        department: doctor.specialization,
+        doctor: doctor.name,
+        meetLink: appointment.MeetLink,
+      },
+      patientDetails: {
+        name: patient.name,
+        email: patient.email,
+        contact: patient.phone,
+        gender: patient.gender,
+        address: formattedAddress,
+        age: age,
+      },
+      previousAppointments,
+    };
+    res.status(200).json(responseData);
+  } catch (error) {
+    console.error("Error fetching details : ", error);
+    res
+      .status(500)
+      .json({ message: "Failed to fetch Appointment Details ", error: error });
+  }
+};
 
 export default {
   bookAppointment,
@@ -229,4 +300,5 @@ export default {
   getAppointmentsByPatient,
   getBookedSlots,
   getAllAppointmentsByDoctor,
+  appointmentDetail,
 };
