@@ -5,7 +5,7 @@ const AppointmentSchema = new mongoose.Schema({
   appointmentId: {
     type: String,
     unique: true,
-    default: () => nanoid(8),
+    default: () => nanoid(6),
   },
   patientId: {
     type: String,
