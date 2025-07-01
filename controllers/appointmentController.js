@@ -11,8 +11,21 @@ import {
 import { scheduleReminderInDB, cancelReminder } from "../services/reminderService.js";
 
 export const bookAppointment = async (req, res) => {
-  const { date, doctorId, hospitalId, slotNumber, reason, payStatus } = req.body;
+  const {
+    date,
+    doctorId,
+    hospital,
+    slotNumber,
+    reason,
+    payStatus,
+    consultStatus,
+  } = req.body;
   const patientId = req.user?.id;
+
+  /* if (!doctorId || !date || !slotNumber || !reason || !consultStatus) {
+    return res.status(400).json({ message: "Missing required appointment details" });
+  } */
+
   try {
     if (!reason || reason.trim() === "") {
       return res.status(400).json({ message: "Reason is required" });
@@ -20,7 +33,7 @@ export const bookAppointment = async (req, res) => {
 
     const existingAppointment = await Appointment.findOne({
       doctorId,
-      date,
+      hospital,
       slotNumber,
     });
 
@@ -28,17 +41,7 @@ export const bookAppointment = async (req, res) => {
       return res.status(409).json({ message: "Slot Already Booked" });
     }
 
-    const data = await Appointment.create({
-      date: new Date(date),
-      patientId,
-      doctorId,
-      payStatus,
-      hospitalId,
-      slotNumber,
-      appStatus: "Pending",
-      reason,
-    });
-
+    // Email and reminder logic
     try {
       const patient = await Patient.findOne({ patientId });
 
@@ -52,21 +55,23 @@ export const bookAppointment = async (req, res) => {
 
       const hospital = await Hospital.findOne({ hospitalId });
       const doctor = await Doctor.findOne({ doctorId });
-
+      // Format date and time
+      const formattedDate = format(new Date(date), "dd/MM/yyyy");
+      const formattedTime = `Slot ${slotNumber}`;
       const appointmentData = {
         patientName: patient.name,
-        date: date,
-        time: `Slot ${slotNumber}`,
-        location: hospital ? hospital.hospitalName : "Hospital",
-        doctorName: doctor ? doctor.name : "Doctor",
+        date: formattedDate,
+        time: formattedTime,
+        location: hospital,
+        doctorName: doctor.name,
       };
 
       await sendConfirmationEmail(patient.email, appointmentData);
 
       await scheduleReminderInDB(
-        data.appointmentId || data._id.toString(),
-        appointmentData, 
-        patient.email, 
+        appointment.appointmentId || appointment._id.toString(),
+        appointmentData,
+        patient.email,
         new Date(date)
       );
 
@@ -75,12 +80,11 @@ export const bookAppointment = async (req, res) => {
         appId: data.appId || data._id,
         appointmentId: data.appointmentId,
         emailSent: true,
-        emailSentTo: patient.email
+        emailSentTo: patient.email,
       });
 
     } catch (emailError) {
       console.error("Failed to send confirmation email:", emailError.message);
-
       return res.status(201).json({
         message: "Appointment slot booked successfully, but failed to send email",
         appId: data.appId || data._id,
@@ -96,16 +100,8 @@ export const bookAppointment = async (req, res) => {
   }
 };
 
-export const cancelAppointment = async (req, res) => {
-  const { appointmentId, reason } = req.body;
-
-  if (!appointmentId) {
-    return res.status(400).json({ 
-      message: "Appointment ID is required",
-      received: { appointmentId, reason }
-    });
-  }
-
+// Get Booked Slots for a Doctor on a Given Date
+export const getBookedSlots = async (req, res) => {
   try {
     let appointment = null;
     
@@ -219,7 +215,9 @@ export const getBookedSlots = async (req, res) => {
 
   try {
     if (!doctorId || !date) {
-      return res.status(400).json({ message: "Doctor ID and date are required" });
+      return res
+        .status(400)
+        .json({ message: "Doctor ID and date are required" });
     }
 
     const appointments = await Appointment.find({
@@ -255,13 +253,12 @@ export const showAppointments = async (req, res) => {
       const patientId = appointments[i].patientId;
 
       if (patientId) {
-        const patient = await Patient.findOne({patientId }).lean();
+        const patient = await Patient.findOne({ patientId }).lean();
         appointments[i].patientName = patient?.name || "Unknown";
       } else {
         appointments[i].patientName = "Unknown";
       }
     }
-
     res.json(appointments);
   } catch (error) {
     console.error("Error showing appointments:", error);
@@ -269,17 +266,30 @@ export const showAppointments = async (req, res) => {
   }
 };
 
-
+// Get Previous Appointments
 export const getPreviousAppointments = async (req, res) => {
-  const { doctorId } = req.query;
+  const doctorId = req.user.id;
 
   try {
     const appointments = await Appointment.find({
       doctorId,
-      appStatus: { $in: ["Completed", "Rejected", "Rescheduled"] },
-    }).sort({ date: -1 }); 
+    }).sort({ date: -1 }).lean();
+    
+    const updatedAppointments = await Promise.all(
+        appointments.map(async (appt) => {
+          if (appt.patientId) {
+            const patient = await Patient.findOne({ patientId: appt.patientId }).lean();
+            return {
+              ...appt,
+              patientName: patient?.name || "Unknown",
+            };
+          } else {
+            return { ...appt, patientName: "Unknown" };
+          }
+        })
+      );
 
-    res.json(appointments);
+    res.json(updatedAppointments);
   } catch (error) {
     console.error("Error fetching previous appointments:", error);
     res.status(500).json({ message: "Failed to fetch previous appointments" });
@@ -287,11 +297,11 @@ export const getPreviousAppointments = async (req, res) => {
 };
 
 export const updateAppStatus = async (req, res) => {
-  const { appId } = req.params;
+  const {appointmentId}  = req.params;
   const { appStatus, rejectionReason, prescription } = req.body;
 
   try {
-    const appointment = await Appointment.findOne({ appointmentId: appId });
+    const appointment = await Appointment.findOne({appointmentId});
     if (!appointment) {
       return res.status(404).json({ message: "Appointment not found" });
     }
@@ -310,7 +320,156 @@ export const updateAppStatus = async (req, res) => {
   }
 };
 
-export const history = async (req, res) => {
+// Cancel Appointment
+export const cancelAppointment = async (req, res) => {
+  const { appointmentId } = req.body;
+  try {
+    let appointment = null;
+    if (appointmentId.match(/^[0-9a-fA-F]{24}$/)) {
+      appointment = await Appointment.findById(appointmentId);
+    }
+    if (!appointment) {
+      appointment = await Appointment.findOne({ appointmentId: appointmentId });
+    }
+    if (!appointment) {
+      return res.status(404).json({ message: "Appointment not found" });
+    }
+    const [patient, doctor, hospital] = await Promise.all([
+      Patient.findOne({ patientId: appointment.patientId }),
+      Doctor.findOne({ doctorId: appointment.doctorId }),
+      Hospital.findOne({ hospital: appointment.hospital })
+    ]);
+    await Appointment.findByIdAndDelete(appointment._id);
+    await cancelReminder(appointment.appointmentId || appointment._id.toString());
+    let emailSent = false;
+    let emailError = null;
+    if (patient && patient.email) {
+      try {
+        // Format date and time
+        const formattedDate = format(new Date(appointment.date), "dd/MM/yyyy");
+        const formattedTime = `Slot ${appointment.slotNumber}`;
+        const appointmentData = {
+          patientName: patient.name,
+          date: formattedDate,
+          time: formattedTime,
+          location: hospital,
+          doctorName: doctor ? doctor.name : "Doctor",
+          reason: appointment.reason || "No reason provided"
+        };
+        await sendCancellationEmail(patient.email, appointmentData);
+        emailSent = true;
+      } catch (error) {
+        console.log("Email sending failed:", error.message);
+        emailError = error.message;
+      }
+    }
+    return res.status(200).json({
+      message: emailSent
+        ? "Appointment cancelled and email sent"
+        : "Appointment cancelled (no email sent)",
+      appointmentId: appointmentId,
+      emailSent: emailSent,
+      emailSentTo: patient?.email || null,
+      emailError: emailError
+    });
+  } catch (error) {
+    console.error("Error cancelling appointment:", error);
+    res.status(500).json({ message: "Failed to cancel appointment", error: error.message });
+  }
+};
+
+// Reschedule Appointment
+export const rescheduleAppointment = async (req, res) => {
+  const { appointmentId, newDate, newSlot, reason } = req.body;
+  try {
+    let appointment = null;
+    if (appointmentId.match(/^[0-9a-fA-F]{24}$/)) {
+      appointment = await Appointment.findById(appointmentId);
+    }
+    if (!appointment) {
+      appointment = await Appointment.findOne({ appointmentId: appointmentId });
+    }
+    if (!appointment) {
+      return res.status(404).json({ message: "Appointment not found" });
+    }
+    const oldDate = appointment.date;
+    const oldSlotNumber = appointment.slotNumber;
+    // Check for slot conflict
+    const existingAppointment = await Appointment.findOne({
+      doctorId: appointment.doctorId,
+      date: new Date(newDate),
+      slotNumber: newSlot,
+      _id: { $ne: appointment._id }
+    });
+    if (existingAppointment) {
+      return res.status(409).json({
+        message: "New slot is already booked",
+        conflictingAppointment: existingAppointment._id
+      });
+    }
+    appointment.date = newDate;
+    appointment.slotNumber = newSlot;
+    appointment.appStatus = "Rescheduled";
+    await appointment.save();
+    let emailSent = false;
+    let emailError = null;
+    let patient = null;
+    let doctor = null;
+    let hospital = null;
+    try {
+      [patient, doctor, hospital] = await Promise.all([
+        Patient.findOne({ patientId: appointment.patientId }),
+        Doctor.findOne({ doctorId: appointment.doctorId }),
+        Hospital.findOne({ hospitalId: appointment.hospitalId })
+      ]);
+      if (patient && patient.email) {
+        // Format dates and times
+        const formattedOldDate = format(new Date(oldDate), "dd/MM/yyyy");
+        const formattedOldTime = `Slot ${oldSlotNumber}`;
+        const formattedNewDate = format(new Date(newDate), "dd/MM/yyyy");
+        const formattedNewTime = `Slot ${newSlot}`;
+        const appointmentData = {
+          patientName: patient.name,
+          oldDate: formattedOldDate,
+          oldTime: formattedOldTime,
+          newDate: formattedNewDate,
+          newTime: formattedNewTime,
+          location: hospital ? hospital.hospitalName : "Hospital",
+          doctorName: doctor ? doctor.name : "Doctor",
+          reason: reason || "Schedule change requested"
+        };
+        await sendRescheduleEmail(patient.email, appointmentData);
+        emailSent = true;
+      }
+    } catch (emailSendError) {
+      console.error("Failed to send reschedule email:", emailSendError.message);
+      emailError = emailSendError.message;
+    }
+    return res.status(200).json({
+      message: emailSent
+        ? "Appointment rescheduled and email sent"
+        : "Appointment rescheduled (no email sent)",
+      appointmentId: appointmentId,
+      oldDetails: {
+        date: oldDate,
+        slot: oldSlotNumber
+      },
+      newDetails: {
+        date: newDate,
+        slot: newSlot
+      },
+      emailSent: emailSent,
+      emailSentTo: patient?.email || null,
+      emailError: emailError
+    });
+  } catch (error) {
+    console.error("Error rescheduling appointment:", error);
+    res.status(500).json({ message: "Failed to reschedule appointment", error: error.message });
+  }
+};
+
+// Get Appointments by Patient (for patient dashboard)
+export const getAppointmentsByPatient = async (req, res) => {
   const patientId = req.user?.id;
 
   try {
@@ -508,7 +667,69 @@ export const getAllAppointmentsByDoctor = async (req, res) => {
   }
 };
 
-const appointmentController = {
+export const appointmentDetail = async (req, res) => {
+  const { appointmentId } = req.query;
+  if (!appointmentId)
+    return res.status(400).json({ message: "Appointment ID is missing." });
+
+  try {
+    const appointment = await Appointment.findOne({ appointmentId });
+    const patientId = appointment["patientId"];
+    const doctorId = appointment["doctorId"];
+    const patient = await Patient.findOne({ patientId });
+    const doctor = await Doctor.findOne({doctorId});
+    const dob = new Date(patient.dateOfBirth);
+    const age =
+      new Date().getUTCFullYear() -
+      dob.getUTCFullYear() -
+      (new Date() < new Date(dob.setFullYear(new Date().getFullYear()))
+        ? 1
+        : 0);
+    const previousAppointments = await Appointment.find({
+      patientId: patientId,
+      doctorId: doctorId,
+      appointmentId: { $ne: appointmentId },
+    }).sort({date: -1}).lean();
+    const formattedDate = format(new Date(appointment.date), "dd/MM/yyyy");
+    const formattedTime = format(new Date(appointment.date), "hh:mm a");
+    const bookedOn = format(new Date(appointment.createdAt), "dd/MM/yyyy");
+
+    const addressObj = patient.address || {};
+    const formattedAddress = `${addressObj.street || ""}, ${addressObj.city || ""}, ${addressObj.state || ""} - ${addressObj.postalCode || ""}`.trim();
+
+    const responseData = {
+      appointmentDetails: {
+        appointmentId: appointment.appointmentId,
+        date: formattedDate,
+        time: appointment.slotNumber,
+        bookedOn,
+        reason: appointment.reason,
+        type: appointment.consultStatus,
+        status: appointment.appStatus,
+        department: doctor.specialization,
+        doctor: doctor.name,
+        meetLink: appointment.MeetLink,
+      },
+      patientDetails: {
+        name: patient.name,
+        email: patient.email,
+        contact: patient.phone,
+        gender: patient.gender,
+        address: formattedAddress,
+        age: age,
+      },
+      previousAppointments,
+    };
+    res.status(200).json(responseData);
+  } catch (error) {
+    console.error("Error fetching details : ", error);
+    res
+      .status(500)
+      .json({ message: "Failed to fetch Appointment Details ", error: error });
+  }
+};
+
+export default {
   bookAppointment,
   getBookedSlots,
   showAppointments,
@@ -519,6 +740,7 @@ const appointmentController = {
   rescheduleAppointment,
   getAppointmentsByPatient,
   getAllAppointmentsByDoctor,
+  appointmentDetail,
 };
 
 export default appointmentController;

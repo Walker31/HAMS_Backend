@@ -92,12 +92,9 @@ class DoctorControllers {
 
   async profile(req, res) {
     const doctorId = req.user?.id;
-    console.log(doctorId);
     try {
       const doctor = await Doctor.findOne({doctorId});
-      console.log(doctor);
       if (!doctor) return res.status(404).json({ message: "Doctor not found" });
-      console.log(doctor);
       res.status(200).json({ doctor });
     } catch (error) {
       res
