@@ -25,6 +25,11 @@ export const bookAppointment = async (req, res) => {
     consultStatus,
   } = req.body;
   const patientId = req.user?.id;
+
+  /* if (!doctorId || !date || !slotNumber || !reason || !consultStatus) {
+    return res.status(400).json({ message: "Missing required appointment details" });
+  } */
+
   try {
     if (!reason || reason.trim() === "") {
       return res.status(400).json({ message: "Reason is required" });
@@ -125,7 +130,6 @@ export const showAppointments = async (req, res) => {
   const { date } = req.params;
   const { doctorId } = req.query;
 
-  console.log("Incoming request => doctorId:", doctorId, "date:", date);
 
   if (!doctorId || !date) {
     return res.status(400).json({ message: "Doctor ID and date required" });
@@ -148,7 +152,6 @@ export const showAppointments = async (req, res) => {
         appointments[i].patientName = "Unknown";
       }
     }
-
     res.json(appointments);
   } catch (error) {
     console.error("Error showing appointments:", error);
@@ -158,15 +161,28 @@ export const showAppointments = async (req, res) => {
 
 // Get Previous Appointments
 export const getPreviousAppointments = async (req, res) => {
-  const { doctorId } = req.query;
+  const doctorId = req.user.id;
 
   try {
     const appointments = await Appointment.find({
       doctorId,
-      appStatus: { $in: ["Completed", "Rejected", "Rescheduled"] },
-    }).sort({ date: -1 }); // optional: sort by recent first
+    }).sort({ date: -1 }).lean();
+    
+    const updatedAppointments = await Promise.all(
+        appointments.map(async (appt) => {
+          if (appt.patientId) {
+            const patient = await Patient.findOne({ patientId: appt.patientId }).lean();
+            return {
+              ...appt,
+              patientName: patient?.name || "Unknown",
+            };
+          } else {
+            return { ...appt, patientName: "Unknown" };
+          }
+        })
+      );
 
-    res.json(appointments);
+    res.json(updatedAppointments);
   } catch (error) {
     console.error("Error fetching previous appointments:", error);
     res.status(500).json({ message: "Failed to fetch previous appointments" });
@@ -175,11 +191,11 @@ export const getPreviousAppointments = async (req, res) => {
 
 // Update Appointment Status with Rejection Reason or Prescription
 export const updateAppStatus = async (req, res) => {
-  const { appId } = req.params;
+  const {appointmentId}  = req.params;
   const { appStatus, rejectionReason, prescription } = req.body;
 
   try {
-    const appointment = await Appointment.findById(appId);
+    const appointment = await Appointment.findOne({appointmentId});
     if (!appointment) {
       return res.status(404).json({ message: "Appointment not found" });
     }

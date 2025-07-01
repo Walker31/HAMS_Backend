@@ -19,7 +19,6 @@ const AppointmentSchema = new mongoose.Schema({
   },
   hospital: {
     type: String,
-    required: true,
     trim: true,
   },
   date: {
