@@ -7,7 +7,6 @@ import { uploadToCloudinaryFromBuffer } from "../services/cloudinary.js";
 
 class authController {
   async doctorLogin(req, res) {
-    
     try {
       const doctor = await Doctor.findOne({ phone: req.body.phone }).select(
         "+password"
@@ -49,7 +48,7 @@ class authController {
     try {
       const exists = await Doctor.findOne({ phone });
       if (exists) {
-        console.log("Doctor Found")
+        console.log("Doctor Found");
         return res
           .status(400)
           .json({ message: "Doctor already exists with this phone number" });
@@ -92,7 +91,6 @@ class authController {
   }
 
   async patientLogin(req, res) {
-    
     try {
       const patient = await Patient.findOne({ phone: req.body.phone }).select(
         "+password"
@@ -108,13 +106,11 @@ class authController {
       }
 
       const token = generateToken(patient);
-      return res
-        .status(200)
-        .json({
-          message: "Login successful",
-          patientId: patient.patientId,
-          token,
-        });
+      return res.status(200).json({
+        message: "Login successful",
+        patientId: patient.patientId,
+        token,
+      });
     } catch (error) {
       return res.status(500).json({ message: error.message });
     }
@@ -122,16 +118,10 @@ class authController {
 
   async patientSignup(req, res) {
     console.log("Incoming patient data:", req.body);
-    try {
-      const exists = await Patient.findOne({ phone: req.body.phone });
-      if (exists) {
-        return res
-          .status(400)
-          .json({ message: "Patient already exists with this phone number" });
-      }
 
+    try {
       const {
-        fullName,
+        name,
         street,
         city,
         state,
@@ -146,8 +136,28 @@ class authController {
         password,
       } = req.body;
 
+      const exists = await Patient.findOne({ phone });
+      if (exists) {
+        return res
+          .status(400)
+          .json({ message: "Patient already exists with this phone number" });
+      }
+
+      let photoData = {};
+      if (req.file) {
+        photoData = await uploadToCloudinaryFromBuffer(
+          req.file.buffer,
+          "my-profile"
+        );
+        console.log("photo uploaded");
+      } else {
+        if (!req.file) {
+          console.log("No photo uploaded");
+        }
+      }
+
       const patientData = {
-        name: fullName,
+        name,
         phone,
         email,
         gender,
@@ -159,6 +169,7 @@ class authController {
           state,
           postalCode,
         },
+        photo: photoData,
         emergencyContact: {
           name: emergencyName,
           phone: emergencyPhone,
@@ -180,7 +191,7 @@ class authController {
   async hospitalSignup(req, res) {
     try {
       const exists = await Hospital.findOne({ RegId: req.body.RegId });
-      
+
       if (exists) {
         return res.status(400).json({
           message: "Hospital already exists with this Registration number",
@@ -212,8 +223,6 @@ class authController {
         state: req.body.state,
         pincode: parseInt(req.body.pincode),
       };
-
-      
 
       const hospital = await Hospital.create(req.body);
       const token = generateToken(hospital);
