@@ -5,7 +5,7 @@ const AppointmentSchema = new mongoose.Schema({
   appointmentId: {
     type: String,
     unique: true,
-    default: () => nanoid(8),
+    default: () => nanoid(6),
   },
   patientId: {
     type: String,
@@ -17,9 +17,8 @@ const AppointmentSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  hospitalId: {
+  hospital: {
     type: String,
-    required: true,
     trim: true,
   },
   date: {
@@ -57,9 +56,9 @@ const AppointmentSchema = new mongoose.Schema({
     type: String,
     default: '',
   },
-  MeetLink: {
+  meetLink: {
     type: String,
-    default: 'Link',
+    
   },
 }, {
   timestamps: true,
