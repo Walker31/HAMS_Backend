@@ -18,7 +18,7 @@ export const bookAppointment = async (req, res) => {
   const {
     date,
     doctorId,
-    Hospital,
+    hospital,
     slotNumber,
     reason,
     payStatus,
@@ -26,6 +26,10 @@ export const bookAppointment = async (req, res) => {
   } = req.body;
   const patientId = req.user?.id;
   try {
+    if (!reason || reason.trim() === "") {
+      return res.status(400).json({ message: "Reason is required" });
+    }
+
     let generatedLink = "Link";
     if (consultStatus === "Online") {
       const uniqueRoom = `HAMS_${doctorId}_${patientId}_${Date.now()}`;
@@ -36,7 +40,7 @@ export const bookAppointment = async (req, res) => {
       date,
       patientId,
       doctorId,
-      Hospital,
+      hospital,
       slotNumber,
       reason,
       payStatus,
@@ -47,7 +51,41 @@ export const bookAppointment = async (req, res) => {
 
     await appointment.save();
 
-    res.status(201).json({ message: "Appointment booked", appointment });
+    // Email and reminder logic
+    try {
+      const patient = await Patient.findOne({ patientId });
+      const doctor = await Doctor.findOne({ doctorId });
+      // Format date and time
+      const formattedDate = format(new Date(date), "dd/MM/yyyy");
+      const formattedTime = `Slot ${slotNumber}`;
+      const appointmentData = {
+        patientName: patient.name,
+        date: formattedDate,
+        time: formattedTime,
+        location: hospital,
+        doctorName: doctor.name,
+      };
+      await sendConfirmationEmail(patient.email, appointmentData);
+      await scheduleReminderInDB(
+        appointment.appointmentId || appointment._id.toString(),
+        appointmentData,
+        patient.email,
+        new Date(date)
+      );
+      return res.status(201).json({
+        message: "Appointment booked and confirmation email sent",
+        appointment,
+        emailSent: true,
+        emailSentTo: patient.email,
+      });
+    } catch (emailError) {
+      console.error("Failed to send confirmation email:", emailError.message);
+      return res.status(201).json({
+        message: "Appointment booked, but failed to send email",
+        appointment,
+        emailError: emailError.message,
+      });
+    }
   } catch (error) {
     console.error("MongoDB Save Error:", error);
     res.status(500).json({
@@ -163,35 +201,148 @@ export const updateAppStatus = async (req, res) => {
 // Cancel Appointment
 export const cancelAppointment = async (req, res) => {
   const { appointmentId } = req.body;
-
   try {
-    await Appointment.findByIdAndDelete(appointmentId);
-    res.status(200).json({ message: "Appointment cancelled" });
+    let appointment = null;
+    if (appointmentId.match(/^[0-9a-fA-F]{24}$/)) {
+      appointment = await Appointment.findById(appointmentId);
+    }
+    if (!appointment) {
+      appointment = await Appointment.findOne({ appointmentId: appointmentId });
+    }
+    if (!appointment) {
+      return res.status(404).json({ message: "Appointment not found" });
+    }
+    const [patient, doctor, hospital] = await Promise.all([
+      Patient.findOne({ patientId: appointment.patientId }),
+      Doctor.findOne({ doctorId: appointment.doctorId }),
+      Hospital.findOne({ hospital: appointment.hospital })
+    ]);
+    await Appointment.findByIdAndDelete(appointment._id);
+    await cancelReminder(appointment.appointmentId || appointment._id.toString());
+    let emailSent = false;
+    let emailError = null;
+    if (patient && patient.email) {
+      try {
+        // Format date and time
+        const formattedDate = format(new Date(appointment.date), "dd/MM/yyyy");
+        const formattedTime = `Slot ${appointment.slotNumber}`;
+        const appointmentData = {
+          patientName: patient.name,
+          date: formattedDate,
+          time: formattedTime,
+          location: hospital,
+          doctorName: doctor ? doctor.name : "Doctor",
+          reason: appointment.reason || "No reason provided"
+        };
+        await sendCancellationEmail(patient.email, appointmentData);
+        emailSent = true;
+      } catch (error) {
+        console.log("Email sending failed:", error.message);
+        emailError = error.message;
+      }
+    }
+    return res.status(200).json({
+      message: emailSent
+        ? "Appointment cancelled and email sent"
+        : "Appointment cancelled (no email sent)",
+      appointmentId: appointmentId,
+      emailSent: emailSent,
+      emailSentTo: patient?.email || null,
+      emailError: emailError
+    });
   } catch (error) {
     console.error("Error cancelling appointment:", error);
-    res.status(500).json({ message: "Failed to cancel appointment" });
+    res.status(500).json({ message: "Failed to cancel appointment", error: error.message });
   }
 };
 
 // Reschedule Appointment
 export const rescheduleAppointment = async (req, res) => {
-  const { appointmentId, newDate, newSlot } = req.body;
-
+  const { appointmentId, newDate, newSlot, reason } = req.body;
   try {
-    const appointment = await Appointment.findById(appointmentId);
+    let appointment = null;
+    if (appointmentId.match(/^[0-9a-fA-F]{24}$/)) {
+      appointment = await Appointment.findById(appointmentId);
+    }
+    if (!appointment) {
+      appointment = await Appointment.findOne({ appointmentId: appointmentId });
+    }
     if (!appointment) {
       return res.status(404).json({ message: "Appointment not found" });
     }
-
+    const oldDate = appointment.date;
+    const oldSlotNumber = appointment.slotNumber;
+    // Check for slot conflict
+    const existingAppointment = await Appointment.findOne({
+      doctorId: appointment.doctorId,
+      date: new Date(newDate),
+      slotNumber: newSlot,
+      _id: { $ne: appointment._id }
+    });
+    if (existingAppointment) {
+      return res.status(409).json({
+        message: "New slot is already booked",
+        conflictingAppointment: existingAppointment._id
+      });
+    }
     appointment.date = newDate;
     appointment.slotNumber = newSlot;
     appointment.appStatus = "Rescheduled";
-
     await appointment.save();
-    res.status(200).json({ message: "Appointment rescheduled" });
+    let emailSent = false;
+    let emailError = null;
+    let patient = null;
+    let doctor = null;
+    let hospital = null;
+    try {
+      [patient, doctor, hospital] = await Promise.all([
+        Patient.findOne({ patientId: appointment.patientId }),
+        Doctor.findOne({ doctorId: appointment.doctorId }),
+        Hospital.findOne({ hospitalId: appointment.hospitalId })
+      ]);
+      if (patient && patient.email) {
+        // Format dates and times
+        const formattedOldDate = format(new Date(oldDate), "dd/MM/yyyy");
+        const formattedOldTime = `Slot ${oldSlotNumber}`;
+        const formattedNewDate = format(new Date(newDate), "dd/MM/yyyy");
+        const formattedNewTime = `Slot ${newSlot}`;
+        const appointmentData = {
+          patientName: patient.name,
+          oldDate: formattedOldDate,
+          oldTime: formattedOldTime,
+          newDate: formattedNewDate,
+          newTime: formattedNewTime,
+          location: hospital ? hospital.hospitalName : "Hospital",
+          doctorName: doctor ? doctor.name : "Doctor",
+          reason: reason || "Schedule change requested"
+        };
+        await sendRescheduleEmail(patient.email, appointmentData);
+        emailSent = true;
+      }
+    } catch (emailSendError) {
+      console.error("Failed to send reschedule email:", emailSendError.message);
+      emailError = emailSendError.message;
+    }
+    return res.status(200).json({
+      message: emailSent
+        ? "Appointment rescheduled and email sent"
+        : "Appointment rescheduled (no email sent)",
+      appointmentId: appointmentId,
+      oldDetails: {
+        date: oldDate,
+        slot: oldSlotNumber
+      },
+      newDetails: {
+        date: newDate,
+        slot: newSlot
+      },
+      emailSent: emailSent,
+      emailSentTo: patient?.email || null,
+      emailError: emailError
+    });
   } catch (error) {
     console.error("Error rescheduling appointment:", error);
-    res.status(500).json({ message: "Failed to reschedule appointment" });
+    res.status(500).json({ message: "Failed to reschedule appointment", error: error.message });
   }
 };
 

@@ -6,7 +6,7 @@ export const scheduleReminderInDB = async (appointmentId, appointmentData, patie
   try {
     const reminderTime = new Date(appointmentDate.getTime() - (24 * 60 * 60 * 1000));
     const now = new Date();
-    
+    console.log(`[ReminderService] Attempting to schedule reminder for ${patientEmail} at ${reminderTime.toLocaleString()} (now: ${now.toLocaleString()})`);
     if (reminderTime > now) {
       const reminder = new Reminder({
         appointmentId,
@@ -15,14 +15,15 @@ export const scheduleReminderInDB = async (appointmentId, appointmentData, patie
         appointmentData,
         status: 'pending'
       });
-      
       const saved = await reminder.save();
-      console.log("Reminder scheduled for:", patientEmail, "at", reminderTime.toLocaleString());
+      console.log(`[ReminderService] Reminder saved for: ${patientEmail} at ${reminderTime.toLocaleString()}`);
       return saved;
+    } else {
+      console.log(`[ReminderService] Reminder NOT scheduled for ${patientEmail} because reminderTime is in the past.`);
     }
     return null;
   } catch (error) {
-    console.error("Error scheduling reminder:", error.message);
+    console.error("[ReminderService] Error scheduling reminder:", error.message);
     return null;
   }
 };
@@ -30,34 +31,31 @@ export const scheduleReminderInDB = async (appointmentId, appointmentData, patie
 export const processPendingReminders = async () => {
   try {
     const now = new Date();
+    console.log(`[ReminderService] Cron running at ${now.toLocaleString()}`);
     const pendingReminders = await Reminder.find({
       status: 'pending',
       reminderTime: { $lte: now }
     });
-
+    console.log(`[ReminderService] Found ${pendingReminders.length} pending reminders to process.`);
     for (const reminder of pendingReminders) {
       try {
         await sendReminderEmail(reminder.patientEmail, reminder.appointmentData);
-        
         await Reminder.findByIdAndUpdate(reminder._id, {
           status: 'sent',
           sentAt: now
         });
-        
-        console.log("Reminder sent to:", reminder.patientEmail);
-        
+        console.log(`[ReminderService] Reminder sent to: ${reminder.patientEmail}`);
       } catch (emailError) {
         await Reminder.findByIdAndUpdate(reminder._id, {
           status: 'failed',
           error: emailError.message,
           failedAt: now
         });
-        
-        console.error("Failed to send reminder to:", reminder.patientEmail, emailError.message);
+        console.error(`[ReminderService] Failed to send reminder to: ${reminder.patientEmail} - ${emailError.message}`);
       }
     }
   } catch (error) {
-    console.error("Error processing reminders:", error.message);
+    console.error("[ReminderService] Error processing reminders:", error.message);
   }
 };
 

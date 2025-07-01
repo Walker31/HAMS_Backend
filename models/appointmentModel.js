@@ -17,7 +17,7 @@ const AppointmentSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  hospitalId: {
+  hospital: {
     type: String,
     required: true,
     trim: true,
@@ -57,9 +57,9 @@ const AppointmentSchema = new mongoose.Schema({
     type: String,
     default: '',
   },
-  MeetLink: {
+  meetLink: {
     type: String,
-    default: 'Link',
+    
   },
 }, {
   timestamps: true,
