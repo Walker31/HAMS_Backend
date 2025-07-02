@@ -128,7 +128,7 @@ export const getBookedSlots = async (req, res) => {
 
 export const showAppointments = async (req, res) => {
   const { date } = req.params;
-  const { doctorId } = req.query;
+  const doctorId = req.user.id;
 
 
   if (!doctorId || !date) {

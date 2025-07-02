@@ -216,7 +216,7 @@ class DoctorControllers {
     }
   }
   async editProfile(req, res) {
-    
+    console.log("input data:", req.body)
     if (req.body.location && typeof req.body.location === "string") {
         try {
           req.body.location = JSON.parse(req.body.location);
@@ -236,7 +236,7 @@ class DoctorControllers {
         console.error("Error in parsing the available slots")
       }
     try {
-      const doctorId = req.body._id;
+      const doctorId = req.body.doctorId
 
       const updatedData = { ...req.body };
       
@@ -248,8 +248,8 @@ class DoctorControllers {
         updatedData.photo = photoData;
       }
       console.log(updatedData)
-      const updatedDoctor = await Doctor.findByIdAndUpdate(
-        doctorId,
+      const updatedDoctor = await Doctor.findOneAndUpdate(
+        {doctorId: doctorId},
         { $set: updatedData },
         { new: true }
       );

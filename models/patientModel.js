@@ -54,6 +54,16 @@ const PatientSchema = new mongoose.Schema(
       minlength: 6,
       select: false,
     },
+    photo: {
+      publicId: {
+        type: String,
+        required: false,
+      },
+      url: {
+        type: String,
+        required: false,
+      },
+    },
   },
   { timestamps: true, collection: "Patients" }
 );
