@@ -24,22 +24,22 @@ export const bookAppointment = async (req, res) => {
     payStatus,
     consultStatus,
   } = req.body;
-  const patientId = req.user?.id;
 
-  /* if (!doctorId || !date || !slotNumber || !reason || !consultStatus) {
-    return res.status(400).json({ message: "Missing required appointment details" });
-  } */
+  const patientId = req.user?.id;
 
   try {
     if (!reason || reason.trim() === "") {
       return res.status(400).json({ message: "Reason is required" });
     }
 
-    let generatedLink = "Link";
+    // ✅ Generate Jitsi link only if Online — WITHOUT patientId
+    let generatedLink = "";
     if (consultStatus === "Online") {
-      const uniqueRoom = `HAMS_${doctorId}_${patientId}_${Date.now()}`;
-      generatedLink = `https://meet.jit.si/${uniqueRoom}`;
-    }
+  const safeSlot = slotNumber.replace(":", "-"); // or remove colon entirely
+  const uniqueRoom = `HAMS_${doctorId}_${safeSlot}_${Date.now()}`;
+  generatedLink = `https://meet.jit.si/${uniqueRoom}`;
+}
+
 
     const appointment = new Appointment({
       date,
@@ -51,18 +51,18 @@ export const bookAppointment = async (req, res) => {
       payStatus,
       consultStatus,
       appStatus: "Pending",
-      MeetLink: generatedLink,
+      meetLink: generatedLink, // ✅ This adds the link
     });
 
     await appointment.save();
 
-    // Email and reminder logic
     try {
       const patient = await Patient.findOne({ patientId });
       const doctor = await Doctor.findOne({ doctorId });
-      // Format date and time
+
       const formattedDate = format(new Date(date), "dd/MM/yyyy");
       const formattedTime = `Slot ${slotNumber}`;
+
       const appointmentData = {
         patientName: patient.name,
         date: formattedDate,
@@ -70,6 +70,7 @@ export const bookAppointment = async (req, res) => {
         location: hospital,
         doctorName: doctor.name,
       };
+
       await sendConfirmationEmail(patient.email, appointmentData);
       await scheduleReminderInDB(
         appointment.appointmentId || appointment._id.toString(),
@@ -77,6 +78,7 @@ export const bookAppointment = async (req, res) => {
         patient.email,
         new Date(date)
       );
+
       return res.status(201).json({
         message: "Appointment booked and confirmation email sent",
         appointment,
@@ -99,6 +101,7 @@ export const bookAppointment = async (req, res) => {
     });
   }
 };
+
 
 // Get Booked Slots for a Doctor on a Given Date
 export const getBookedSlots = async (req, res) => {
