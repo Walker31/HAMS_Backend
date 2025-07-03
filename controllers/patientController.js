@@ -20,7 +20,6 @@ class PatientController {
         try {
             const appointments = await Appointment.find({patientId}).lean();
             for (let i = 0; i < appointments.length; i++) {
-                
                 const doctorId = appointments[i].doctorId;
 
                 if (doctorId) {
@@ -35,7 +34,7 @@ class PatientController {
                         prescription: appointments[i].prescription,
                         meetLink : appointments[i]?.meetLink || 'N/A',
                         consultStatus: appointments[i].consultStatus || 'Offline',
-                        Hospital: appointments[i]?.hospital || 'Own Practice'
+                        hospital: appointments[i]?.hospital || 'Own Practice'
                     }
                     responseData.push(response);
                 }
