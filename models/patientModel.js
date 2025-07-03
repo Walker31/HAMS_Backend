@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import { customAlphabet,nanoid } from "nanoid";
+import { nanoid } from "nanoid";
 
-const nanoidNumeric = customAlphabet("1234567890", 6);
 
 const PatientSchema = new mongoose.Schema(
   {
@@ -11,7 +10,7 @@ const PatientSchema = new mongoose.Schema(
       required: true,
       unique: true,
       index: true,
-      default: () => nanoidNumeric
+      default: () => nanoid(6)
     },
     name: {
       type: String,
