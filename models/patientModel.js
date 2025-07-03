@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import { customAlphabet,nanoid } from "nanoid";
+import { nanoid } from "nanoid";
 
 const PatientSchema = new mongoose.Schema(
   {
