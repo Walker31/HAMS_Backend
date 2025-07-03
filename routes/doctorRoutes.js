@@ -27,4 +27,7 @@ router.get('/:doctorId/booked-slots', doctorControllers.getBookedSlots);
 
 router.put("/editProfile", upload.single("photo"),doctorControllers.editProfile);
 
+router.get('/appointments/reschedule-requests', authenticateToken, doctorControllers.getRescheduleRequests);
+router.post('/appointments/handle-reschedule', authenticateToken, doctorControllers.handleRescheduleRequest);
+
 export default router;

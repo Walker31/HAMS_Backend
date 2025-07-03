@@ -92,16 +92,30 @@ class DoctorControllers {
 
   async profile(req, res) {
     const doctorId = req.user?.id;
+
     try {
-      const doctor = await Doctor.findOne({doctorId});
-      if (!doctor) return res.status(404).json({ message: "Doctor not found" });
-      res.status(200).json({ doctor });
+      const doctor = await Doctor.findOne({ doctorId });
+
+      if (!doctor) {
+        return res.status(404).json({ message: "Doctor not found" });
+      }
+      const appointmentCount = await Appointment.countDocuments({ doctorId });
+
+      const revenue = (doctor.basicFee || 0) * appointmentCount;
+
+      res.status(200).json({
+        doctor,
+        revenue
+      });
+
     } catch (error) {
-      res
-        .status(500)
-        .json({ message: "Error fetching profile", error: error.message });
+      res.status(500).json({
+        message: "Error fetching profile",
+        error: error.message
+      });
     }
   }
+
 
   async publicDoctorProfile(req, res) {
     const { doctorId } = req.params;
@@ -257,6 +271,68 @@ class DoctorControllers {
     } catch (error) {
       console.error("Edit doctor error: ", error);
       res.status(500).json({ error: "Server error while updating profile" });
+    }
+  }
+
+  // Doctor: Get all reschedule requests
+  async getRescheduleRequests(req, res) {
+    const doctorId = req.user?.id;
+    try {
+      const requests = await Appointment.find({
+        doctorId,
+        appStatus: 'Request for rescheduling',
+      });
+      res.status(200).json({ requests });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  // Doctor: Handle reschedule request (approve or reject)
+  async handleRescheduleRequest(req, res) {
+    const doctorId = req.user?.id;
+    const { appointmentId, action, reason } = req.body;
+    try {
+      const appointment = await Appointment.findOne({ appointmentId, doctorId });
+      if (!appointment) {
+        return res.status(404).json({ message: 'Appointment not found' });
+      }
+      if (appointment.appStatus !== 'Request for rescheduling') {
+        return res.status(400).json({ message: 'No pending reschedule request for this appointment' });
+      }
+      if (action === 'approve') {
+        // Find the next available slot (iterate over availableSlots)
+        const doctor = await Doctor.findOne({ doctorId });
+        if (!doctor) return res.status(404).json({ message: 'Doctor not found' });
+        let assignedDate = null;
+        let assignedSlot = null;
+        let found = false;
+        for (let [date, slots] of doctor.availableSlots.entries()) {
+          if (slots && slots.length > 0) {
+            assignedDate = date;
+            assignedSlot = slots[0];
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          return res.status(400).json({ message: 'No available slots to reschedule' });
+        }
+        appointment.date = assignedDate;
+        appointment.slotNumber = assignedSlot;
+        appointment.appStatus = 'Rescheduled';
+        await appointment.save();
+        return res.status(200).json({ message: 'Appointment rescheduled', appointment });
+      } else if (action === 'reject') {
+        appointment.appStatus = 'Rejected';
+        if (reason) appointment.reasonForReject = reason;
+        await appointment.save();
+        return res.status(200).json({ message: 'Reschedule request rejected', appointment });
+      } else {
+        return res.status(400).json({ message: 'Invalid action. Use "approve" or "reject".' });
+      }
+    } catch (error) {
+      res.status(500).json({ message: error.message });
     }
   }
 }

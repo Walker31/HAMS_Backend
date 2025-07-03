@@ -36,12 +36,34 @@ class PatientController {
                         consultStatus: appointments[i].consultStatus || 'Offline',
                         hospital: appointments[i]?.hospital || 'Own Practice'
                     }
+                    if (appointments[i].appStatus === 'Cancelled') response.reason = appointments[i].reason;
+                    if (appointments[i].appStatus === 'Completed') response.prescription = appointments[i].prescription;
                     responseData.push(response);
                 }
             }
             res.status(200).json(responseData);
         } catch (error) {
             res.status(500).json({message: error.message});
+        }
+    }
+
+    // Patient requests rescheduling: sets appStatus to 'Request for rescheduling'.
+    async requestReschedule(req, res) {
+        const patientId = req.user.id;
+        const { appointmentId } = req.body;
+        try {
+            const appointment = await Appointment.findOne({ appointmentId, patientId });
+            if (!appointment) {
+                return res.status(404).json({ message: 'Appointment not found' });
+            }
+            if (appointment.appStatus === 'Cancelled' || appointment.appStatus === 'Completed') {
+                return res.status(400).json({ message: 'Cannot reschedule a completed or cancelled appointment' });
+            }
+            appointment.appStatus = 'Request for rescheduling';
+            await appointment.save();
+            res.status(200).json({ message: 'Reschedule request sent to doctor', appointment });
+        } catch (error) {
+            res.status(500).json({ message: error.message });
         }
     }
 }

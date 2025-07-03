@@ -216,7 +216,7 @@ export const updateAppStatus = async (req, res) => {
 
 // Cancel Appointment
 export const cancelAppointment = async (req, res) => {
-  const { appointmentId,reason } = req.body;
+  const { appointmentId } = req.body;
   try {
     
     const appointment = await Appointment.findOne({ appointmentId: appointmentId });
@@ -230,7 +230,6 @@ export const cancelAppointment = async (req, res) => {
     ]);
     await Appointment.findByIdAndUpdate(appointment._id, {
       consultStatus: "Cancelled",
-      reason: reason,
     });
     await cancelReminder(appointment.appointmentId || appointment._id.toString());
     let emailSent = false;
