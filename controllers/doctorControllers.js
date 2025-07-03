@@ -274,7 +274,6 @@ class DoctorControllers {
     }
   }
 
-  // Doctor: Get all reschedule requests
   async getRescheduleRequests(req, res) {
     const doctorId = req.user?.id;
     try {

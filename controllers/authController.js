@@ -53,7 +53,6 @@ class authController {
           .status(400)
           .json({ message: "Doctor already exists with this phone number" });
       }
-      //image for profileeeee by incorporating cloudinary
       let photoData = {};
       if (req.file) {
         photoData = await uploadToCloudinaryFromBuffer(
