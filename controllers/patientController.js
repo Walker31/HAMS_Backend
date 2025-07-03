@@ -1,6 +1,7 @@
 import Patient from "../models/patientModel.js";
 import Appointment from '../models/appointmentModel.js';
 import Doctor from "../models/doctorModel.js";
+import bcrypt from "bcrypt";
 
 class PatientController {
     async profile(req,res){
@@ -66,5 +67,61 @@ class PatientController {
             res.status(500).json({ message: error.message });
         }
     }
+    async updateProfile(req, res) {
+    const patientId = req.user.id;
+    const {
+      name,
+      phone,
+      email,
+      gender,
+      dateOfBirth,
+      password,
+      address = {},
+      emergencyContact = {},
+    } = req.body;
+
+    try {
+      const patient = await Patient.findOne({ patientId });
+      if (!patient) {
+        return res.status(404).json({ message: "Patient not found" });
+      }
+
+      // Update fields
+      patient.name = name ?? patient.name;
+      patient.phone = phone ?? patient.phone;
+      patient.email = email ?? patient.email;
+      patient.gender = gender ?? patient.gender;
+      patient.dateOfBirth = dateOfBirth ?? patient.dateOfBirth;
+
+      // Update address fields
+      patient.address = {
+        ...patient.address,
+        ...address,
+      };
+
+      // Update emergency contact fields
+      patient.emergencyContact = {
+        ...patient.emergencyContact,
+        ...emergencyContact,
+      };
+
+      // Update password if provided
+      if (password && password.trim() !== "") {
+        // Hash the password before saving (recommended)
+        const salt = await bcrypt.genSalt(10);
+        patient.password = await bcrypt.hash(password, salt);
+      }
+
+      await patient.save();
+
+      // Exclude password from response
+      const { password: _, ...patientData } = patient.toObject();
+
+      res.status(200).json(patientData);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
 }
 export default new PatientController();

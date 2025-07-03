@@ -11,5 +11,6 @@ router.post('/signup',upload.single("photo"),authController.patientSignup);
 router.get('/profile',authenticateToken,patientController.profile);
 router.get('/appointments',authenticateToken,patientController.allAppointments);
 router.post('/appointments/request-reschedule', authenticateToken, patientController.requestReschedule);
+router.put('/update-profile',authenticateToken,patientController.updateProfile);
 
 export default router;
