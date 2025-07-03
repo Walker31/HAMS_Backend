@@ -11,7 +11,7 @@ const PatientSchema = new mongoose.Schema(
       required: true,
       unique: true,
       index: true,
-      default: () => nanoidNumeric
+      default: () => nanoid(6)
     },
     name: {
       type: String,
