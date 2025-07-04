@@ -9,6 +9,8 @@ router.post("/multiple",controllers.createMultipleReviews);
 
 router.get("/:doctorId", controllers.getReviewsByDoctor);
 
+router.get('/patient/:patientId', controllers.getReviewsByPatient);
+
 router.delete("/:reviewId", controllers.deleteReview);
 
 router.put("/:reviewId", controllers.updateReview);
