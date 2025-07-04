@@ -237,7 +237,11 @@ export const cancelAppointment = async (req, res) => {
       Hospital.findOne({ hospital: appointment.hospital })
     ]);
     await Appointment.findByIdAndDelete(appointment._id);
+
+
     await cancelReminder(appointment.appointmentId || appointment._id.toString());
+
+
     let emailSent = false;
     let emailError = null;
     if (patient && patient.email) {
@@ -253,7 +257,11 @@ export const cancelAppointment = async (req, res) => {
           doctorName: doctor ? doctor.name : "Doctor",
           reason: appointment.reason || "No reason provided"
         };
+
+
         await sendCancellationEmail(patient.email, appointmentData);
+        
+        
         emailSent = true;
       } catch (error) {
         console.log("Email sending failed:", error.message);
@@ -335,7 +343,12 @@ export const rescheduleAppointment = async (req, res) => {
           doctorName: doctor ? doctor.name : "Doctor",
           reason: reason || "Schedule change requested"
         };
+
+
         await sendRescheduleEmail(patient.email, appointmentData);
+
+
+        
         emailSent = true;
       }
     } catch (emailSendError) {

@@ -21,7 +21,7 @@ export async function sendConfirmationEmail(to, appt) {
   const mailOptions = {
     from: `"Your Clinic" <${transporter.options.auth.user}>`,
     to,
-    subject: 'Appointment Booked ✔️',
+    subject: 'Appointment Booked',
     text: `Hello ${patientName},\n\nYour appointment has been booked successfully.\n\n• Date: ${date}\n• Time: ${time}\n• Doctor: ${doctorName || 'Doctor'}\n• Location: ${location}\n\nSee you then!`,
     html: `<p>Hello <strong>${patientName}</strong>,</p><p>Your appointment has been <strong>booked successfully</strong>.</p><ul><li><strong>Date:</strong> ${date}</li><li><strong>Time:</strong> ${time}</li><li><strong>Doctor:</strong> ${doctorName || 'Doctor'}</li><li><strong>Location:</strong> ${location}</li></ul><p>See you then!</p>`
   };
@@ -34,7 +34,7 @@ export async function sendReminderEmail(to, appt) {
   const mailOptions = {
     from: `"Your Clinic" <${transporter.options.auth.user}>`,
     to,
-    subject: 'Reminder: Appointment Tomorrow ⏰',
+    subject: 'Reminder: Appointment Tomorrow ',
     text: `Hi ${patientName},\n\nThis is a friendly reminder that you have an appointment tomorrow.\n\n• Date: ${date}\n• Time: ${time}\n• Doctor: ${doctorName || 'Doctor'}\n• Location: ${location}\n\nPlease let us know if you need to reschedule.`,
     html: `<p>Hi <strong>${patientName}</strong>,</p><p>This is a reminder for your appointment <strong>tomorrow</strong>:</p><ul><li><strong>Date:</strong> ${date}</li><li><strong>Time:</strong> ${time}</li><li><strong>Doctor:</strong> ${doctorName || 'Doctor'}</li><li><strong>Location:</strong> ${location}</li></ul><p>If you need to reschedule, please get in touch.</p>`
   };
@@ -49,7 +49,7 @@ export async function sendCancellationEmail(to, appt) {
   const mailOptions = {
     from: `"Your Clinic" <${transporter.options.auth.user}>`,
     to,
-    subject: 'Appointment Cancelled ❌',
+    subject: 'Appointment Cancelled ',
     text: `Hello ${patientName},\n\nWe're writing to confirm that your appointment has been cancelled.\n\n• Date: ${date}\n• Time: ${time}\n• Doctor: ${doctorName || 'Doctor'}\n• Location: ${location}${reasonText}\n\nIf you'd like to reschedule, please contact us. We apologize for any inconvenience.`,
     html: `
       <p>Hello <strong>${patientName}</strong>,</p>
@@ -77,7 +77,7 @@ export async function sendRescheduleEmail(to, appt) {
   const mailOptions = {
     from: `"Your Clinic" <${transporter.options.auth.user}>`,
     to,
-    subject: 'Appointment Rescheduled 🔄',
+    subject: 'Appointment Rescheduled ',
     text: `Hello ${patientName},\n\nYour appointment has been rescheduled.\n\nPrevious Details:\n• Date: ${oldDate}\n• Time: ${oldTime}\n\nNew Details:\n• Date: ${newDate}\n• Time: ${newTime}\n• Doctor: ${doctorName || 'Doctor'}\n• Location: ${location}\n\nSee you at the new time!`,
     html: `
       <p>Hello <strong>${patientName}</strong>,</p>

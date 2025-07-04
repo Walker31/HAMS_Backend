@@ -1,0 +1,4161 @@
+[{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940522"
+  },
+  "name": "Kumar",
+  "phone": 9876540053,
+  "email": "kiran.kumar53@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2707,
+      13.0827
+    ]
+  },
+  "medicalReg": "TNMC2025053",
+  "specialization": "Oncology",
+  "photo": {
+    "url": "https://res.cloudinary.com/dpj8o6x5s/image/upload/v1751258168/my-profile/esjd0tafmnswrz9jxq0b.png",
+    "publicId": "my-profile/esjd0tafmnswrz9jxq0b"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$rfRY4hQXnlFAI4t5iP8Quuc16B6Ao2THRVhTOaUvntm8XH71JfEuG",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": "251076",
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.356Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-30T04:54:26.164Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394052f"
+  },
+  "name": "Dr. Ranjani S",
+  "phone": {
+    "$numberLong": "9876540066"
+  },
+  "email": "ranjani.s66@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2142,
+      13.1117
+    ]
+  },
+  "medicalReg": "TNMC2025066",
+  "specialization": "Oncology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/66.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$JxQmEcuEZILGIbi1/cGWP.WkwBO6.TUBnzGWem6g6/BW5o9f5bwRi",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 268306,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940530"
+  },
+  "name": "Dr. Sriram Nair",
+  "phone": {
+    "$numberLong": "9876540067"
+  },
+  "email": "sriram.nair67@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2218,
+      13.1203
+    ]
+  },
+  "medicalReg": "TNMC2025067",
+  "specialization": "Rheumatology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/67.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$HRyfBy35oT6gib8l2zp90.WkzKotGQ7tQZi6FoA2fN9zJSykJfiNG",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 484878,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394053b"
+  },
+  "name": "Dr. Roshni R",
+  "phone": {
+    "$numberLong": "9876540078"
+  },
+  "email": "roshni.r78@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2183,
+      13.1271
+    ]
+  },
+  "medicalReg": "TNMC2025078",
+  "specialization": "Neurology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/78.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$UsEToxFfWdicFCsTTrPv.OhCqgw7taypIxeLBgzgHG6OwgtA0AC9K",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 787474,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394053f"
+  },
+  "name": "Dr. Shweta Jain",
+  "phone": {
+    "$numberLong": "9876540082"
+  },
+  "email": "shweta.jain82@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2419,
+      13.1124
+    ]
+  },
+  "medicalReg": "TNMC2025082",
+  "specialization": "ENT",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/82.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$TE0PaHf3WLft7v.JPP0EAO3HA2cYBgxju9tNipoFrNm8plfw8Sqa2",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 103167,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940540"
+  },
+  "name": "Dr. Rohit Pillai",
+  "phone": {
+    "$numberLong": "9876540083"
+  },
+  "email": "rohit.pillai83@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2103,
+      13.1208
+    ]
+  },
+  "medicalReg": "TNMC2025083",
+  "specialization": "Ophthalmology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/83.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$4mAmZwRAkB9Bd2rRAFfat.gMZC82nv4NB4cf66z1fncC.NAg2WMjC",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 660903,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940543"
+  },
+  "name": "Dr. Shilpa Nair",
+  "phone": {
+    "$numberLong": "9876540086"
+  },
+  "email": "shilpa.nair86@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2197,
+      13.1082
+    ]
+  },
+  "medicalReg": "TNMC2025086",
+  "specialization": "Urology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/86.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$eZBwMAelHOO3BMCdXl.KwOBbX1yXdPAmVEaBt7Zda2re689TBUkQ2",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 677839,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940544"
+  },
+  "name": "Dr. Arjun S",
+  "phone": {
+    "$numberLong": "9876540087"
+  },
+  "email": "arjun.s87@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2338,
+      13.1277
+    ]
+  },
+  "medicalReg": "TNMC2025087",
+  "specialization": "Pulmonology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/87.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$Pl2WBVVYmO3wlw3u98IPZOgYf60n74LKvjsWo01/Cj6hjmfdMJU6G",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 453068,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394054b"
+  },
+  "name": "Dr. Gayathri V",
+  "phone": {
+    "$numberLong": "9876540094"
+  },
+  "email": "gayathri.v94@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2158,
+      13.1137
+    ]
+  },
+  "medicalReg": "TNMC2025094",
+  "specialization": "Hematology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/94.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$uIL3TiOWfZFySUC.RoiB2ee26gvMgZu/0b9gia/68zd7/yEoRCm0C",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 507832,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394054f"
+  },
+  "name": "Dr. Riya Pillai",
+  "phone": {
+    "$numberLong": "9876540098"
+  },
+  "email": "riya.pillai98@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2204,
+      13.1107
+    ]
+  },
+  "medicalReg": "TNMC2025098",
+  "specialization": "Orthopedics",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/98.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$EZRo6Im8nqMOaK1pf7Cu6.jpum271f6Penv10axi6vokfn6u7i2/u",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 475924,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940557"
+  },
+  "name": "Dr. Priya Nair",
+  "phone": {
+    "$numberLong": "9876540006"
+  },
+  "email": "priya.nair6@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2461,
+      13.1105
+    ]
+  },
+  "medicalReg": "TNMC2025006",
+  "specialization": "Gynecology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/6.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$oTTGKm9eQDn7WQSCiIE9juLkvXZIHNlKr830YTn00ciAQX5/IhN5C",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 795292,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940558"
+  },
+  "name": "Dr. Karthik Raj",
+  "phone": {
+    "$numberLong": "9876540007"
+  },
+  "email": "karthik.raj7@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2079,
+      13.1277
+    ]
+  },
+  "medicalReg": "TNMC2025007",
+  "specialization": "ENT",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/7.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$GL85YysV2csN6ldjfhYZz.pVfOsytJGeY686Cp.SN1N9uCrhlY5Sy",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 924824,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394055b"
+  },
+  "name": "Dr. Kavya S",
+  "phone": {
+    "$numberLong": "9876540010"
+  },
+  "email": "kavya.s10@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2153,
+      13.1362
+    ]
+  },
+  "medicalReg": "TNMC2025010",
+  "specialization": "Psychiatry",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/10.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$m7GN7tddANpwFAqA3JHC/eIh8jXbbWga.brBIS.VOkwcIOv0n.1FS",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 579392,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394055f"
+  },
+  "name": "Dr. Ritu Agarwal",
+  "phone": {
+    "$numberLong": "9876540014"
+  },
+  "email": "ritu.agarwal14@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2177,
+      13.1088
+    ]
+  },
+  "medicalReg": "TNMC2025014",
+  "specialization": "Endocrinology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/14.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$Gt3mrTKz/CMR0PlfpQyvm.F7lv2KzuDOdMg/Fu/TwnRZyhDiwEr9C",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 979334,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940568"
+  },
+  "name": "Dr. Sanjay Rao",
+  "phone": {
+    "$numberLong": "9876540023"
+  },
+  "email": "sanjay.rao23@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2435,
+      13.1087
+    ]
+  },
+  "medicalReg": "TNMC2025023",
+  "specialization": "Orthopedics",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/23.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$xlrrLNYDauO2GdLZh4BoXu3a4VLLZH6f9isSe.Zzf4TI7lwndnydC",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 577345,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940569"
+  },
+  "name": "Dr. Pooja Sharma",
+  "phone": {
+    "$numberLong": "9876540024"
+  },
+  "email": "pooja.sharma24@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2244,
+      13.1401
+    ]
+  },
+  "medicalReg": "TNMC2025024",
+  "specialization": "Cardiology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/24.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$jHMVKwHYmzy7D5MHtMQ7g.9TtKar9URlmoM.AqlRqqdkYXCwKAcIq",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 64627,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940577"
+  },
+  "name": "Dr. Tara B",
+  "phone": {
+    "$numberLong": "9876540038"
+  },
+  "email": "tara.b38@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2431,
+      13.1186
+    ]
+  },
+  "medicalReg": "TNMC2025038",
+  "specialization": "Endocrinology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/38.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$/q30yG/7vGKDNO0jDItaleVgOQpUwK8biJkYbZCqWScQF76rL0VKa",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 388330,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940579"
+  },
+  "name": "Dr. Bhavana S",
+  "phone": {
+    "$numberLong": "9876540040"
+  },
+  "email": "bhavana.s40@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2182,
+      13.1317
+    ]
+  },
+  "medicalReg": "TNMC2025040",
+  "specialization": "Oncology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/40.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$nw0uEokWMaIy4jDHMX5NvO64zzkruFKu0gBYXqX/bGaEDsWsxr35q",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 173702,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394057f"
+  },
+  "name": "Dr. Sneha Bhat",
+  "phone": {
+    "$numberLong": "9876540046"
+  },
+  "email": "sneha.bhat46@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.245,
+      13.1097
+    ]
+  },
+  "medicalReg": "TNMC2025046",
+  "specialization": "Immunology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/46.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$2KiDPicTpHP4kMNzharsmeBfrAgDOfnsft0idELunfAH06qa9hN.C",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 599152,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940581"
+  },
+  "name": "Dr. Radhika S",
+  "phone": {
+    "$numberLong": "9876540048"
+  },
+  "email": "radhika.s48@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2111,
+      13.1392
+    ]
+  },
+  "medicalReg": "TNMC2025048",
+  "specialization": "Cardiology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/48.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$HNQxR.00m0oyFEUiQcDOE.XSzTA2itOPgCLPwQW3m.ScDb2wgL3rq",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 425650,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940525"
+  },
+  "name": "Dr. Reena Thomas",
+  "phone": {
+    "$numberLong": "9876540056"
+  },
+  "email": "reena.thomas56@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2267,
+      13.1261
+    ]
+  },
+  "medicalReg": "TNMC2025056",
+  "specialization": "Gynecology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/56.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$9F22FxDBEE6TAp3IpaprV.ROYEoerHoDVyRNzYnhjtqoS1y84qu4e",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 292425,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.356Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.356Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685b9004f75cd203ad8d880c"
+  },
+  "name": "Dr. Raghav Srinivasan",
+  "phone": {
+    "$numberLong": "9876540053"
+  },
+  "email": "raghav.srinivasan53@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.232,
+      12.8996
+    ]
+  },
+  "medicalReg": "TNMC2025053",
+  "specialization": "Orthopedics",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/53.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$OjEcIratOVQdWWHWI7Rvp.m8F2lhJl6nIbFGP9wamBu6uGL9X4q8y",
+  "Hospital": "Sholinganallur Ortho Care",
+  "doctorId": 343696,
+  "createdAt": {
+    "$date": "2025-06-25T05:58:28.123Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-25T05:58:28.123Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685b90c3f75cd203ad8d8825"
+  },
+  "name": "Dr. Kartik Nair",
+  "phone": {
+    "$numberLong": "9876541057"
+  },
+  "email": "karthik.nair57@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2707,
+      13.0827
+    ]
+  },
+  "medicalReg": "TNMC2025057",
+  "specialization": "General Medicine",
+  "photo": {
+    "publicId": "",
+    "url": "https://www.alamy.com/aggregator-api/download?url=https://c7.alamy.com/comp/2G6AHPA/closeup-portrait-of-confident-young-male-doctor-therapist-in-white-medical-robe-2G6AHPA.jpg"
+  },
+  "workingHours": {
+    "from": "09:00",
+    "to": "17:00"
+  },
+  "overview": "Dr. Karthik Nair is a trusted and experienced physician specializing in General Medicine, committed to providing comprehensive and patient-centered care. With a focus on accurate diagnosis, preventive medicine, and chronic disease management, Dr. Nair ensures each patient receives tailored treatment based on their individual health needs.\r\n\r\nHe is known for his compassionate approach, effective communication, and dedication to long-term patient wellness. From routine check-ups to complex internal health issues, Dr. Nair combines evidence-based practices with a deep understanding of general health to support and guide patients through their health journeys.",
+  "availableSlots": {
+    "2025-06-27": [
+      "09:00",
+      "09:15"
+    ],
+    "2025-06-26": [
+      "09:00",
+      "09:15",
+      "09:30"
+    ],
+    "2025-06-28": [
+      "09:00",
+      "09:15"
+    ],
+    "2025-06-30": [
+      "09:30",
+      "09:00",
+      "10:00",
+      "10:30"
+    ],
+    "2025-07-01": [
+      "09:00",
+      "13:00",
+      "16:00"
+    ],
+    "2025-07-03": [
+      "09:00",
+      "09:15",
+      "09:30",
+      "09:45"
+    ],
+    "2025-07-06": [
+      "09:00",
+      "09:15",
+      "13:45"
+    ],
+    "2025-07-04": [
+      "09:00"
+    ]
+  },
+  "averageRating": 3.5,
+  "password": "$2b$10$g0Y.yvbwX1iMVZA9Xf5JyeETYjEy35wQb4k.2Q.LVb4k4VKchMDOG",
+  "Hospital": "Oceanview Multispeciality Hospital",
+  "doctorId": 778899,
+  "createdAt": {
+    "$date": "2025-06-25T06:01:39.084Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-04T04:25:12.467Z"
+  },
+  "__v": 13,
+  "basicFee": 400,
+  "experience": 4
+},
+{
+  "_id": {
+    "$oid": "685c06fe290578784acb8dbd"
+  },
+  "name": "Rahul",
+  "phone": 9894612222,
+  "email": "spidersforlife@spider.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2707,
+      13.0827
+    ]
+  },
+  "medicalReg": "1234567890",
+  "specialization": "Neurology",
+  "photo": {
+    "url": "https://res.cloudinary.com/dpj8o6x5s/image/upload/v1751264802/my-profile/jioaepor1fmwtvbug15i.jpg",
+    "publicId": "my-profile/jioaepor1fmwtvbug15i"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$Sp6PqhNTV3AiGrR5u88saujzode3zlqIStLlC6AaeoH/qHN12ZB5e",
+  "Hospital": "Madras Medical Mission Hospital",
+  "doctorId": 969151,
+  "createdAt": {
+    "$date": "2025-06-25T14:26:06.803Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-30T06:32:30.601Z"
+  },
+  "__v": 0,
+  "basicFee": 0,
+  "experience": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940521"
+  },
+  "name": "Dr. Sneha Pillai",
+  "phone": {
+    "$numberLong": "9876540052"
+  },
+  "email": "sneha.pillai52@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2202,
+      13.1122
+    ]
+  },
+  "medicalReg": "TNMC2025052",
+  "specialization": "Dermatology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/52.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$XFqXEhGt6vhXx8U7sUqfW.iqMSw/ZPZySJ7rN6bOFdR9rZ3yvT.7W",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 568880,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.356Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.356Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394052b"
+  },
+  "name": "Dr. Shreya S",
+  "phone": {
+    "$numberLong": "9876540062"
+  },
+  "email": "shreya.s62@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2377,
+      13.1287
+    ]
+  },
+  "medicalReg": "TNMC2025062",
+  "specialization": "Pulmonology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/62.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$PYCyTNYbEvWG/XhhYPNJQO92DUZZwrgeIcOyBLFC2u6s9ihjjr09.",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 912384,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394052d"
+  },
+  "name": "Dr. Bhavya R",
+  "phone": {
+    "$numberLong": "9876540064"
+  },
+  "email": "bhavya.r64@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2108,
+      13.1055
+    ]
+  },
+  "medicalReg": "TNMC2025064",
+  "specialization": "Endocrinology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/64.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$5So8B.UpRkPC8fLRXc3ANOy21nqDkq1jWXr6DlAroxYwL3vtMDtPm",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 423625,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940534"
+  },
+  "name": "Dr. Vivek Reddy",
+  "phone": {
+    "$numberLong": "9876540071"
+  },
+  "email": "vivek.reddy71@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2388,
+      13.1111
+    ]
+  },
+  "medicalReg": "TNMC2025071",
+  "specialization": "Anesthesiology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/71.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$DK5uyHlFP3n06K/Qgt5VKO3e6AcVl/MlHSI0Xii3V9HpBfeXRA/i.",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 461529,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394053c"
+  },
+  "name": "Dr. Sanjay Menon",
+  "phone": {
+    "$numberLong": "9876540079"
+  },
+  "email": "sanjay.menon79@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2291,
+      13.1157
+    ]
+  },
+  "medicalReg": "TNMC2025079",
+  "specialization": "Pediatrics",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/79.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$yuK2lwbYpQhUTJpPoWoaMOWFYMzKENF4gns6nXG1tDXVA2IYmojq.",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 540628,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394053e"
+  },
+  "name": "Dr. Abhinav V",
+  "phone": {
+    "$numberLong": "9876540081"
+  },
+  "email": "abhinav.v81@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2161,
+      13.1057
+    ]
+  },
+  "medicalReg": "TNMC2025081",
+  "specialization": "Gynecology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/81.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$84Wxy/s.nUlKPwWN5P5WUOdtDRGQSrdh0Yf2r5hUo02d5cupd37ym",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 940176,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940546"
+  },
+  "name": "Dr. Karthik S",
+  "phone": {
+    "$numberLong": "9876540089"
+  },
+  "email": "karthik.s89@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2176,
+      13.1115
+    ]
+  },
+  "medicalReg": "TNMC2025089",
+  "specialization": "Endocrinology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/89.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$cP90LrNbQFrCVcKrCHfz4OUzwpfnFqOjqgqmgtB/OfbyHcWmZV3gu",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 960094,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940548"
+  },
+  "name": "Dr. Sumanth Nair",
+  "phone": {
+    "$numberLong": "9876540091"
+  },
+  "email": "sumanth.nair91@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2201,
+      13.1231
+    ]
+  },
+  "medicalReg": "TNMC2025091",
+  "specialization": "Oncology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/91.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$KZgleyRToHbzxwZDWKkUfuh7K1/xBu3bAanmoEGZtjniPZpG.fTTa",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 281276,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940547"
+  },
+  "name": "Dr. Nandini Rao",
+  "phone": {
+    "$numberLong": "9876540090"
+  },
+  "email": "nandini.rao90@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2315,
+      13.1196
+    ]
+  },
+  "medicalReg": "TNMC2025090",
+  "specialization": "Gastroenterology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/90.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$3.534HSs29pMl8WUssVjyOPA7c/Ay/lkICaCBCNDjGG7PX2luDoyG",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 508925,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394054c"
+  },
+  "name": "Dr. Rajat Singh",
+  "phone": {
+    "$numberLong": "9876540095"
+  },
+  "email": "rajat.singh95@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2255,
+      13.1164
+    ]
+  },
+  "medicalReg": "TNMC2025095",
+  "specialization": "Radiology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/95.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$xc1FiU008mvE7Dp70e9E3.z4Rk1wkIKNlqHQVX2DY0eWcJwws9txy",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 780638,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940550"
+  },
+  "name": "Dr. Keshav R",
+  "phone": {
+    "$numberLong": "9876540099"
+  },
+  "email": "keshav.r99@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2173,
+      13.1152
+    ]
+  },
+  "medicalReg": "TNMC2025099",
+  "specialization": "Cardiology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/99.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$oM4Tvk870MMlS8ta1Enpu.AztPM52UC/Sdfm4irfeaWDFvKaG1S2.",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 246932,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940551"
+  },
+  "name": "Dr. Nivedita S",
+  "phone": {
+    "$numberLong": "9876540100"
+  },
+  "email": "nivedita.s100@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2241,
+      13.1272
+    ]
+  },
+  "medicalReg": "TNMC2025100",
+  "specialization": "General Surgery",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/100.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$j1vSYFgDXoB3Dq/R2ICB8uiPK71UpeXLHERnvXj8xqlTdz2dmCOkG",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 60178,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940552"
+  },
+  "name": "Dr. Ravi Kumar",
+  "phone": {
+    "$numberLong": "9876540001"
+  },
+  "email": "ravi.kumar1@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.209,
+      13.1155
+    ]
+  },
+  "medicalReg": "TNMC2025001",
+  "specialization": "Cardiology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/1.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$S2Nk.bVvM3Tc65WScGsya.7m.mGHe88TNIJV3KnM4mE5kUX7N9ek2",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 790150,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940559"
+  },
+  "name": "Dr. Shalini Menon",
+  "phone": {
+    "$numberLong": "9876540008"
+  },
+  "email": "shalini.menon8@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2345,
+      13.1285
+    ]
+  },
+  "medicalReg": "TNMC2025008",
+  "specialization": "Ophthalmology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/8.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$2E68JiwqF/rBfLr.AvI42uXoWVol5cZLgcjJhi27eYsUBsoRLvdJq",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 815781,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394055a"
+  },
+  "name": "Dr. Manoj Das",
+  "phone": {
+    "$numberLong": "9876540009"
+  },
+  "email": "manoj.das9@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2222,
+      13.1023
+    ]
+  },
+  "medicalReg": "TNMC2025009",
+  "specialization": "General Medicine",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/9.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$6cJ.PFQfNAEKoAmmv4N7xeSkRgofx5MorxUXblTxk4j8e8cBonpyG",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 367885,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940560"
+  },
+  "name": "Dr. Ajay Pillai",
+  "phone": {
+    "$numberLong": "9876540015"
+  },
+  "email": "ajay.pillai15@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2411,
+      13.1345
+    ]
+  },
+  "medicalReg": "TNMC2025015",
+  "specialization": "Gastroenterology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/15.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$FpVWGCoImDtJb47XR.un5ee7Uk.AKdDTzCqRkji4MiwM35t2U4Jau",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 582008,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940563"
+  },
+  "name": "Dr. Sunita Gupta",
+  "phone": {
+    "$numberLong": "9876540018"
+  },
+  "email": "sunita.gupta18@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2382,
+      13.1302
+    ]
+  },
+  "medicalReg": "TNMC2025018",
+  "specialization": "Pathology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/18.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$8r/9Jt9FFqxZLppcK.jWLuZKGo08p6okSGA3QMW5.yocwsYFBV0XK",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 864223,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394056c"
+  },
+  "name": "Dr. Raghav Menon",
+  "phone": {
+    "$numberLong": "9876540027"
+  },
+  "email": "raghav.menon27@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2136,
+      13.1098
+    ]
+  },
+  "medicalReg": "TNMC2025027",
+  "specialization": "Cardiology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/27.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$pahBA4LXTWCNYAZPXZIlHOoNNcLITuvH5PJObkg6Po.kDagaCh0De",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 99226,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394056f"
+  },
+  "name": "Dr. Aishwarya Rao",
+  "phone": {
+    "$numberLong": "9876540030"
+  },
+  "email": "aishwarya.rao30@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2301,
+      13.1029
+    ]
+  },
+  "medicalReg": "TNMC2025030",
+  "specialization": "Pediatrics",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/30.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$6rxoSzdWpF6b0GnjtULGOuPNsstJldqA8iTzlX6ET3uodgtkwecy2",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 392906,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940573"
+  },
+  "name": "Dr. Rupa Joshi",
+  "phone": {
+    "$numberLong": "9876540034"
+  },
+  "email": "rupa.joshi34@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2245,
+      13.1167
+    ]
+  },
+  "medicalReg": "TNMC2025034",
+  "specialization": "Ophthalmology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/34.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$mthuiJzMgGcSGM9putYQROqBCeswzVzwwmeS9ONHbO8Bcv8EDaNaW",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 476062,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940575"
+  },
+  "name": "Dr. Mala Krishnan",
+  "phone": {
+    "$numberLong": "9876540036"
+  },
+  "email": "mala.krishnan36@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2399,
+      13.1257
+    ]
+  },
+  "medicalReg": "TNMC2025036",
+  "specialization": "Pulmonology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/36.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$s3hrfwAaKXfxSvr1OFq0qeMH7dnqbSDSVOiDhARp/1/8nuTNrC6lO",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 629720,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394057b"
+  },
+  "name": "Dr. Sangeeta Iyer",
+  "phone": {
+    "$numberLong": "9876540042"
+  },
+  "email": "sangeeta.iyer42@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2037,
+      13.1049
+    ]
+  },
+  "medicalReg": "TNMC2025042",
+  "specialization": "Pathology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/42.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$P7NtfnrBCr.56LNOq0/uD.PUFEkCua2BgzX/ra/Kzj8fS92Qs3qZ.",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 861041,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394057c"
+  },
+  "name": "Dr. Vivek Sharma",
+  "phone": {
+    "$numberLong": "9876540043"
+  },
+  "email": "vivek.sharma43@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2099,
+      13.1289
+    ]
+  },
+  "medicalReg": "TNMC2025043",
+  "specialization": "Hematology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/43.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$V49AD4r6P5nRPVlAE0dbseM58fcJhe3YR3QwP1BWIlpqF3l/n1OUi",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 483238,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940580"
+  },
+  "name": "Dr. Ajith Kumar",
+  "phone": {
+    "$numberLong": "9876540047"
+  },
+  "email": "ajith.kumar47@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2235,
+      13.1211
+    ]
+  },
+  "medicalReg": "TNMC2025047",
+  "specialization": "Orthopedics",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/47.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$exqZoWj7v1CUDyLZ9qOuRe53Mcvw46EUtA1yr5BY3Ibw86EN8OcZG",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 972771,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940582"
+  },
+  "name": "Dr. Santosh Iyer",
+  "phone": {
+    "$numberLong": "9876540049"
+  },
+  "email": "santosh.iyer49@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2387,
+      13.1273
+    ]
+  },
+  "medicalReg": "TNMC2025049",
+  "specialization": "General Surgery",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/49.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$0GSJYIdtSlUHZN9UD.NZhOYI.Ydp8xenGRot2pHupdYIRUkiXKpZm",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 325072,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940524"
+  },
+  "name": "Dr. Vishal Desai",
+  "phone": {
+    "$numberLong": "9876540055"
+  },
+  "email": "vishal.desai55@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2295,
+      13.1199
+    ]
+  },
+  "medicalReg": "TNMC2025055",
+  "specialization": "Orthopedics",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/55.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$9hDXe./wVx0MukPGB5Pk4uKvBmh0CBTlZ.bQ2X/27uwljTqjWV82u",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 824991,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.356Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.356Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685b9092f75cd203ad8d881c"
+  },
+  "name": "Dr. Meera Rajan",
+  "phone": {
+    "$numberLong": "9876541054"
+  },
+  "email": "meera.rajan54@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.229,
+      12.902
+    ]
+  },
+  "medicalReg": "TNMC2025054",
+  "specialization": "Pediatrics",
+  "photo": {
+    "publicId": "",
+    "url": "https://www.alamy.com/aggregator-api/download?url=https://c7.alamy.com/comp/CWW5X5/asian-indian-female-doctor-drawing-over-white-background-medical-concept-CWW5X5.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$3VH5yBpGI7k5W.h2Lj6Z3edO9OM4qhZ8x243I1BdEc08AMMZMvRcq",
+  "Hospital": "Sunrise Children's Hospital",
+  "doctorId": 717327,
+  "createdAt": {
+    "$date": "2025-06-25T06:00:50.917Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-25T06:00:50.917Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940523"
+  },
+  "name": "Dr. Lavanya S",
+  "phone": {
+    "$numberLong": "9876540054"
+  },
+  "email": "lavanya.s54@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2244,
+      13.1077
+    ]
+  },
+  "medicalReg": "TNMC2025054",
+  "specialization": "Pediatrics",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/54.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$X2nT.5jvNfOKoQK0iHDzg.EiPjPkJazLgnc8uQnH1jzZUz5copKQ6",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 103208,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.356Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.356Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940529"
+  },
+  "name": "Dr. Megha Jain",
+  "phone": {
+    "$numberLong": "9876540060"
+  },
+  "email": "megha.jain60@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2135,
+      13.1089
+    ]
+  },
+  "medicalReg": "TNMC2025060",
+  "specialization": "Psychiatry",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/60.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$x3bAT0ObFDjGdBY2h7rn1u/8DI.UVmLy2yfx6StYrLbb8VJZG3x4i",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 665727,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.356Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.356Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940528"
+  },
+  "name": "Dr. Sandeep Nair",
+  "phone": {
+    "$numberLong": "9876540059"
+  },
+  "email": "sandeep.nair59@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2122,
+      13.1206
+    ]
+  },
+  "medicalReg": "TNMC2025059",
+  "specialization": "General Medicine",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/59.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$KGH7DlE97s.2LpiKv4mygeNcxm5kxVfrFaTcVbRj7fMAErRvCUphK",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 987672,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.356Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.356Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394052c"
+  },
+  "name": "Dr. Pranav Iyer",
+  "phone": {
+    "$numberLong": "9876540063"
+  },
+  "email": "pranav.iyer63@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2328,
+      13.1228
+    ]
+  },
+  "medicalReg": "TNMC2025063",
+  "specialization": "Nephrology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/63.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$OEWtX5J28bw7T1KUxozUUODymAvzyZTCR1jYi1CVBrEooY/pCjNd.",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 401194,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940533"
+  },
+  "name": "Dr. Deepa Menon",
+  "phone": {
+    "$numberLong": "9876540070"
+  },
+  "email": "deepa.menon70@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2199,
+      13.1177
+    ]
+  },
+  "medicalReg": "TNMC2025070",
+  "specialization": "Radiology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/70.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$UvNJOxNuwJrn5friewpcV.ftRLG70CLiygT/HW9lxapjY11EToirC",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 551857,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940535"
+  },
+  "name": "Dr. Kavitha S",
+  "phone": {
+    "$numberLong": "9876540072"
+  },
+  "email": "kavitha.s72@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2113,
+      13.1345
+    ]
+  },
+  "medicalReg": "TNMC2025072",
+  "specialization": "Immunology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/72.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$ebRRjI5Xe6WeCnil49UrAu2qT6n9bZoRtHO5FyiW2quft1jAGI1Du",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 877699,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394053a"
+  },
+  "name": "Dr. Prakash S",
+  "phone": {
+    "$numberLong": "9876540077"
+  },
+  "email": "prakash.s77@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2228,
+      13.1136
+    ]
+  },
+  "medicalReg": "TNMC2025077",
+  "specialization": "Dermatology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/77.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$.kDiUF5kaYzi09Xbo.4VdON/wUiashMHUWO5YqgdUwwRnBHbsN55K",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 111532,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940531"
+  },
+  "name": "Dr. Nalini V",
+  "phone": {
+    "$numberLong": "9876540068"
+  },
+  "email": "nalini.v68@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2166,
+      13.1093
+    ]
+  },
+  "medicalReg": "TNMC2025068",
+  "specialization": "Pathology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/68.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$u5RAXt4chrx4/rkk5.6F0.ug0rXHCA8riuwzEnjgzykpOm8RZ/7O2",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 525874,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394053d"
+  },
+  "name": "Dr. Meera S",
+  "phone": {
+    "$numberLong": "9876540080"
+  },
+  "email": "meera.s80@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2129,
+      13.1091
+    ]
+  },
+  "medicalReg": "TNMC2025080",
+  "specialization": "Orthopedics",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/80.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$w8DbKgWRM32ihiXyKvPRbObLE/lOIuJSAq9gPP7XDNUrvgg8t27lW",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 639398,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940542"
+  },
+  "name": "Dr. Vignesh K",
+  "phone": {
+    "$numberLong": "9876540085"
+  },
+  "email": "vignesh.k85@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2259,
+      13.1264
+    ]
+  },
+  "medicalReg": "TNMC2025085",
+  "specialization": "Psychiatry",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/85.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$qURYTJpFpvL5RAAwy9K2geMu0Q/oOvP71HRAT2QX770szVvoMSGvW",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 103972,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940545"
+  },
+  "name": "Dr. Shruti Iyer",
+  "phone": {
+    "$numberLong": "9876540088"
+  },
+  "email": "shruti.iyer88@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2131,
+      13.1193
+    ]
+  },
+  "medicalReg": "TNMC2025088",
+  "specialization": "Nephrology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/88.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$oXmyI2ZvPp5LJ1NU0YJIruX.lHcIznrWA3XWSLCpNFZoc5ke/fxBe",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 103953,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394054a"
+  },
+  "name": "Dr. Nikhil Reddy",
+  "phone": {
+    "$numberLong": "9876540093"
+  },
+  "email": "nikhil.reddy93@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2189,
+      13.1296
+    ]
+  },
+  "medicalReg": "TNMC2025093",
+  "specialization": "Pathology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/93.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$SDJ3/Em0i4Z/aodsyv4AuOs.wy4mhR6gud7PK1b42kSB6xJp7vJRe",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 608577,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394054e"
+  },
+  "name": "Dr. Sudeep S",
+  "phone": {
+    "$numberLong": "9876540097"
+  },
+  "email": "sudeep.s97@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2312,
+      13.1095
+    ]
+  },
+  "medicalReg": "TNMC2025097",
+  "specialization": "Immunology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/97.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$tokdoTzeBOh999WJjF5GSeTvaRI10AUgzuNiDtUkqHUQDIGQH.TJu",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 277837,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394055e"
+  },
+  "name": "Dr. Nitin Verma",
+  "phone": {
+    "$numberLong": "9876540013"
+  },
+  "email": "nitin.verma13@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2266,
+      13.1113
+    ]
+  },
+  "medicalReg": "TNMC2025013",
+  "specialization": "Nephrology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/13.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$Ysxt0pjRm1oUG83pOdmnd.ljcGFKbSsjEZ6uZtN5KwGFm0cTOs1Hy",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 167273,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940536"
+  },
+  "name": "Dr. Ramesh Babu",
+  "phone": {
+    "$numberLong": "9876540073"
+  },
+  "email": "ramesh.babu73@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2172,
+      13.1242
+    ]
+  },
+  "medicalReg": "TNMC2025073",
+  "specialization": "Orthopedics",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/73.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$iKyjW1brNx8ns1oNpwLPv.gm9rxCoNql/RlYBJ1LR28e4NHBCUASa",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 936939,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940562"
+  },
+  "name": "Dr. Prakash Jain",
+  "phone": {
+    "$numberLong": "9876540017"
+  },
+  "email": "prakash.jain17@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2134,
+      13.1176
+    ]
+  },
+  "medicalReg": "TNMC2025017",
+  "specialization": "Rheumatology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/17.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$uNYPYHukkOFOQxLny3GAm.PR/hVW8uyOpcJ/kIz0h1ShlA6wEtEp6",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 640794,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940561"
+  },
+  "name": "Dr. Lakshmi V",
+  "phone": {
+    "$numberLong": "9876540016"
+  },
+  "email": "lakshmi.v16@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2209,
+      13.1044
+    ]
+  },
+  "medicalReg": "TNMC2025016",
+  "specialization": "Oncology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/16.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$anXQYUYmwHyG86XRo5c.ZOPfSc9qFuRjBBqWG17EVch4Er8LtUVlO",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 749151,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940564"
+  },
+  "name": "Dr. Rajesh Nair",
+  "phone": {
+    "$numberLong": "9876540019"
+  },
+  "email": "rajesh.nair19@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2157,
+      13.1133
+    ]
+  },
+  "medicalReg": "TNMC2025019",
+  "specialization": "Hematology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/19.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$k23iloVD.B46FHgJd8j8UOfjINyI0nBQLX/x58P7LQ0.1g/ubfJsa",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 51486,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940565"
+  },
+  "name": "Dr. Divya Menon",
+  "phone": {
+    "$numberLong": "9876540020"
+  },
+  "email": "divya.menon20@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2024,
+      13.1339
+    ]
+  },
+  "medicalReg": "TNMC2025020",
+  "specialization": "Radiology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/20.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$zT5CafRhPcq2Pd/QmrSS2OxiiUHJMN93OkAMHVcmf9gJmZhPb4v8W",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 60266,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940567"
+  },
+  "name": "Dr. Neha S",
+  "phone": {
+    "$numberLong": "9876540022"
+  },
+  "email": "neha.s22@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2101,
+      13.1102
+    ]
+  },
+  "medicalReg": "TNMC2025022",
+  "specialization": "Immunology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/22.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$gzMqlayjX.yAdqncdlIDuu/P9KiUV6FVZ6ZYjeYikxHgrQTnGXeim",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 246437,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394056a"
+  },
+  "name": "Dr. Mohan Krishnan",
+  "phone": {
+    "$numberLong": "9876540025"
+  },
+  "email": "mohan.krishnan25@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.236,
+      13.1215
+    ]
+  },
+  "medicalReg": "TNMC2025025",
+  "specialization": "General Surgery",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/25.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$eCuXcQgzt1LYBfN2gcEd9eFaGo2rG73hl5lbU0hSrXPftjPvE7cgm",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 287503,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394056e"
+  },
+  "name": "Dr. Deepak S",
+  "phone": {
+    "$numberLong": "9876540029"
+  },
+  "email": "deepak.s29@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.226,
+      13.1325
+    ]
+  },
+  "medicalReg": "TNMC2025029",
+  "specialization": "Neurology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/29.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$e8bAYgW3jLXW30d3Nr7qRe8oujM6CHnbvGp165Ite1EEzcJ0wI2ba",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 578685,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940570"
+  },
+  "name": "Dr. Rajiv Kapoor",
+  "phone": {
+    "$numberLong": "9876540031"
+  },
+  "email": "rajiv.kapoor31@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2195,
+      13.1355
+    ]
+  },
+  "medicalReg": "TNMC2025031",
+  "specialization": "Orthopedics",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/31.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$IvyEmDrjtMhr8YGN/yW4XeIQyWvQssry9vN7.c1WnKy/ROgZKACgO",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 750467,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940571"
+  },
+  "name": "Dr. Preeti Singh",
+  "phone": {
+    "$numberLong": "9876540032"
+  },
+  "email": "preeti.singh32@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2372,
+      13.1119
+    ]
+  },
+  "medicalReg": "TNMC2025032",
+  "specialization": "Psychiatry",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/32.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$TwAAQ0elrMpEI3s25hLon.goMHXAUBcEda4cLCxfJIis5WRErYk/y",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 270794,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940572"
+  },
+  "name": "Dr. Harish Chandra",
+  "phone": {
+    "$numberLong": "9876540033"
+  },
+  "email": "harish.chandra33@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2057,
+      13.1306
+    ]
+  },
+  "medicalReg": "TNMC2025033",
+  "specialization": "General Medicine",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/33.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$MgrIkFcSQvanV00cnnuR/.5SiVO8L2zFCE8sgpygAk06qr6QUxtQe",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 209184,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394057d"
+  },
+  "name": "Dr. Priya Desai",
+  "phone": {
+    "$numberLong": "9876540044"
+  },
+  "email": "priya.desai44@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2362,
+      13.1165
+    ]
+  },
+  "medicalReg": "TNMC2025044",
+  "specialization": "Radiology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/44.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$ecrJsPfXEg85N3te.kyP7e8Rtb607lsG07bnsVDp57EUs3OUywbA.",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 512019,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940583"
+  },
+  "name": "Dr. Ananya Rao",
+  "phone": {
+    "$numberLong": "9876540050"
+  },
+  "email": "ananya.rao50@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2178,
+      13.1218
+    ]
+  },
+  "medicalReg": "TNMC2025050",
+  "specialization": "Gynecology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/50.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$pX5JbsJuhjRPOCxYi8wosu8WAlJRZmceiUGg/Ufi.vvsWLfl7FXfi",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 365083,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685b9004f75cd203ad8d880d"
+  },
+  "name": "Dr. Meera Rajan",
+  "phone": {
+    "$numberLong": "9876540054"
+  },
+  "email": "meera.rajan54@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.229,
+      12.902
+    ]
+  },
+  "medicalReg": "TNMC2025054",
+  "specialization": "Pediatrics",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/54.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$A0AWUy8gzs25aYz.cD95ZOflQZmVTnbYe2eYKi00k54SjAfWWDEZ6",
+  "Hospital": "Sunrise Children's Hospital",
+  "doctorId": 204551,
+  "createdAt": {
+    "$date": "2025-06-25T05:58:28.124Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-25T05:58:28.124Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685b90a3f75cd203ad8d881f"
+  },
+  "name": "Dr. Arjun Deshmukh",
+  "phone": {
+    "$numberLong": "9876541055"
+  },
+  "email": "arjun.deshmukh55@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2342,
+      12.9008
+    ]
+  },
+  "medicalReg": "TNMC2025055",
+  "specialization": "Neurology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/55.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$NycIc6mGWSiqmKpNGVXpMeq7HRRgbk0byiCBeCqfcC0q0K0tUYl7O",
+  "Hospital": "NeuroPlus Hospital, Sholinganallur",
+  "doctorId": 275635,
+  "createdAt": {
+    "$date": "2025-06-25T06:01:07.529Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-25T06:01:07.529Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685c0259f31814bcc6006c12"
+  },
+  "name": "Sarthak",
+  "phone": {
+    "$numberLong": "9876549051"
+  },
+  "email": "ramesh.kumar@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.239788,
+      12.909852
+    ]
+  },
+  "medicalReg": "TN10009",
+  "specialization": "Oncology",
+  "photo": {
+    "publicId": "",
+    "url": null
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$h4ja1HUXLxL2HXHvJ4gUFe2PGJv/UhGalbbND8Ul7c4mGm1/Z19sC",
+  "Hospital": "SIMS Hospital Vadapalani",
+  "doctorId": 753199,
+  "createdAt": {
+    "$date": "2025-06-25T14:06:17.766Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-25T14:06:17.766Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685c0deff109f387140c9c9f"
+  },
+  "name": "Shruuu",
+  "phone": {
+    "$numberLong": "9898989898"
+  },
+  "email": "shrudeepnitt105@gmail.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.239788,
+      12.909852
+    ]
+  },
+  "medicalReg": "1234567890",
+  "specialization": "Neurology",
+  "photo": {
+    "publicId": "",
+    "url": {
+      "publicId": "my-profile/trfr4hqeoqexq1eekcfi",
+      "url": "https://res.cloudinary.com/dpj8o6x5s/image/upload/v1750863342/my-profile/trfr4hqeoqexq1eekcfi.jpg"
+    }
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$prI19nSpV7880QjfdxvtFOzdIrApO4S5hkembOosi3dVnPRs.QozS",
+  "Hospital": "Dr. Mehta’s Hospitals",
+  "doctorId": 889272,
+  "createdAt": {
+    "$date": "2025-06-25T14:55:43.713Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-25T14:55:43.713Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940520"
+  },
+  "name": "Dr. Aditya Varma",
+  "phone": {
+    "$numberLong": "9876540051"
+  },
+  "email": "aditya.varma51@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2451,
+      13.1101
+    ]
+  },
+  "medicalReg": "TNMC2025051",
+  "specialization": "Cardiology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/51.jpg"
+  },
+  "overview": "",
+  "availableSlots": {
+    "2025-06-24": [
+      "9:00AM"
+    ]
+  },
+  "averageRating": 0,
+  "password": "$2b$10$eaSTWoEJVJN7zaNYrBzR2.oX1lbOHoRxNfeEjm7dNSc/b5vpiGKie",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 463723,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.356Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.356Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940526"
+  },
+  "name": "Dr. Dinesh R",
+  "phone": {
+    "$numberLong": "9876540057"
+  },
+  "email": "dinesh.r57@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2153,
+      13.1114
+    ]
+  },
+  "medicalReg": "TNMC2025057",
+  "specialization": "ENT",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/57.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$qscWdlhZEo7tFBVitiQTJ.bBv1g0Y2Jz8EkOmZtBHLEKRNcA2dMAm",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 844385,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.356Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.356Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940527"
+  },
+  "name": "Dr. Pooja Menon",
+  "phone": {
+    "$numberLong": "9876540058"
+  },
+  "email": "pooja.menon58@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2401,
+      13.1172
+    ]
+  },
+  "medicalReg": "TNMC2025058",
+  "specialization": "Ophthalmology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/58.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$MiP/k6rfIUe4pK4hDKGlG.P6XTnSPAuIuSYGjZxO3rF0Y1A8ZrIFC",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 189970,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.356Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.356Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394052a"
+  },
+  "name": "Dr. Arvind Rao",
+  "phone": {
+    "$numberLong": "9876540061"
+  },
+  "email": "arvind.rao61@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2231,
+      13.1362
+    ]
+  },
+  "medicalReg": "TNMC2025061",
+  "specialization": "Urology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/61.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$H/0zwU1eFcGDxlsK0QZvI.MioZpVk4r.uSsgDNN2b5C0JtULRPZq6",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 146035,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394052e"
+  },
+  "name": "Dr. Gokul Krishnan",
+  "phone": {
+    "$numberLong": "9876540065"
+  },
+  "email": "gokul.krishnan65@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2395,
+      13.1247
+    ]
+  },
+  "medicalReg": "TNMC2025065",
+  "specialization": "Gastroenterology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/65.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$gQM829X16vO8mpDq2eyWdez6SUQexLycB8GgWcB0TCLYvneUqchdK",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 575660,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940532"
+  },
+  "name": "Dr. Ajay Singh",
+  "phone": {
+    "$numberLong": "9876540069"
+  },
+  "email": "ajay.singh69@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2257,
+      13.1281
+    ]
+  },
+  "medicalReg": "TNMC2025069",
+  "specialization": "Hematology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/69.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$SyJshW51WjnAGXgwZd9zD.sZPunJhterL3RPm8IyTtJwQH4FV7RtG",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 717588,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940537"
+  },
+  "name": "Dr. Priya K",
+  "phone": {
+    "$numberLong": "9876540074"
+  },
+  "email": "priya.k74@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2247,
+      13.1104
+    ]
+  },
+  "medicalReg": "TNMC2025074",
+  "specialization": "Cardiology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/74.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$ZllIGUSl16rJIJ7b./E19OgLHkhz0ZQoZwtUdtE8xZuyU9XWi.AiK",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 869761,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940538"
+  },
+  "name": "Dr. Manoj Nair",
+  "phone": {
+    "$numberLong": "9876540075"
+  },
+  "email": "manoj.nair75@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2107,
+      13.1186
+    ]
+  },
+  "medicalReg": "TNMC2025075",
+  "specialization": "General Surgery",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/75.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$4qcUslWhpWIIacvzWDInD.Drx0PJoGhoZ1FvIszd3/zR8KwMhPRlO",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 693452,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940539"
+  },
+  "name": "Dr. Anu Joseph",
+  "phone": {
+    "$numberLong": "9876540076"
+  },
+  "email": "anu.joseph76@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2397,
+      13.1292
+    ]
+  },
+  "medicalReg": "TNMC2025076",
+  "specialization": "Gynecology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/76.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$gV0nVIN9/7kTQzO2OsjHD.K38bx.PhEmtRB8synWfS2aBHmK4Gkpq",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 413537,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940541"
+  },
+  "name": "Dr. Aarti S",
+  "phone": {
+    "$numberLong": "9876540084"
+  },
+  "email": "aarti.s84@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2225,
+      13.1109
+    ]
+  },
+  "medicalReg": "TNMC2025084",
+  "specialization": "General Medicine",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/84.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$5lwH1riJ4Y/5k0h.a2LTSOK4LnQynlrAoXKgeGIWhEg1ctrecqsI2",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 299322,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940549"
+  },
+  "name": "Dr. Rachana S",
+  "phone": {
+    "$numberLong": "9876540092"
+  },
+  "email": "rachana.s92@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2127,
+      13.1072
+    ]
+  },
+  "medicalReg": "TNMC2025092",
+  "specialization": "Rheumatology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/92.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$/WIK4z7F25K5zOaHh8Bk6ORZkn0V9tIxaCC09/J/Bw32KR6DfOjyy",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 205583,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394054d"
+  },
+  "name": "Dr. Divya Nair",
+  "phone": {
+    "$numberLong": "9876540096"
+  },
+  "email": "divya.nair96@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2125,
+      13.1217
+    ]
+  },
+  "medicalReg": "TNMC2025096",
+  "specialization": "Anesthesiology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/96.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$5HO7MVb4n4ZYzZLe9w6p6.VwPFpfb3C7b5m1vImqTS23KQg2rylWi",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 266656,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.357Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940553"
+  },
+  "name": "Dr. Anjali Sharma",
+  "phone": {
+    "$numberLong": "9876540002"
+  },
+  "email": "anjali.sharma2@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2337,
+      13.1193
+    ]
+  },
+  "medicalReg": "TNMC2025002",
+  "specialization": "Dermatology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/2.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$vzPSzAb/zBofgCuNbw7pA.VK9sr6NXE0p/UEilATAs9.DDQ2IPwYO",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 300026,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940554"
+  },
+  "name": "Dr. Suresh Patel",
+  "phone": {
+    "$numberLong": "9876540003"
+  },
+  "email": "suresh.patel3@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2457,
+      13.1142
+    ]
+  },
+  "medicalReg": "TNMC2025003",
+  "specialization": "Neurology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/3.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$ZQj/.yfDgSBL0pEuxYtCreAu6r0d1RkJWselC2wlPiBNDfQlhJITC",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 366870,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940555"
+  },
+  "name": "Dr. Meena Iyer",
+  "phone": {
+    "$numberLong": "9876540004"
+  },
+  "email": "meena.iyer4@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.1986,
+      13.1067
+    ]
+  },
+  "medicalReg": "TNMC2025004",
+  "specialization": "Pediatrics",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/4.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$v2fTb.4mm3jk7khVoFNqHeIhlt.A.Clu6Qvx8jOquvsfJgg.jqDMK",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 217476,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940556"
+  },
+  "name": "Dr. Arjun Singh",
+  "phone": {
+    "$numberLong": "9876540005"
+  },
+  "email": "arjun.singh5@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2012,
+      13.1398
+    ]
+  },
+  "medicalReg": "TNMC2025005",
+  "specialization": "Orthopedics",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/5.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$xmrP.DGjSYKAz6bm1ci97eovPIzpc.0O2Kf24faYV2mQqJdjov5hG",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 494387,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394055c"
+  },
+  "name": "Dr. Vinod Reddy",
+  "phone": {
+    "$numberLong": "9876540011"
+  },
+  "email": "vinod.reddy11@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2321,
+      13.1245
+    ]
+  },
+  "medicalReg": "TNMC2025011",
+  "specialization": "Urology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/11.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$6BlDONatvihg0tDYk85tm.ilGxdt68tG64ACTDfcJL7QBTe/AEPhy",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 513989,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394055d"
+  },
+  "name": "Dr. Sneha Rao",
+  "phone": {
+    "$numberLong": "9876540012"
+  },
+  "email": "sneha.rao12@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2107,
+      13.1201
+    ]
+  },
+  "medicalReg": "TNMC2025012",
+  "specialization": "Pulmonology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/12.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$3PUJ7Lam0Sy24J6riD149.eRJi/nz6.nnE/C7Jqv4gMuOhOcb/LEm",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 95690,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940566"
+  },
+  "name": "Dr. Gaurav Singh",
+  "phone": {
+    "$numberLong": "9876540021"
+  },
+  "email": "gaurav.singh21@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2288,
+      13.1374
+    ]
+  },
+  "medicalReg": "TNMC2025021",
+  "specialization": "Anesthesiology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/21.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$s8rCmdJiyNuIxjcfVZSMp.LNftZSpjs4YxbaHureagwmKvAj2Da6u",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 785201,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.358Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394056b"
+  },
+  "name": "Dr. Nisha Reddy",
+  "phone": {
+    "$numberLong": "9876540026"
+  },
+  "email": "nisha.reddy26@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2415,
+      13.1202
+    ]
+  },
+  "medicalReg": "TNMC2025026",
+  "specialization": "Dermatology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/26.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$oY1Csa583NYJExlYBRFCFOQ99GL28.zw6Gua6RzOYpLFzemNuftbe",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 135416,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394056d"
+  },
+  "name": "Dr. Swati Gupta",
+  "phone": {
+    "$numberLong": "9876540028"
+  },
+  "email": "swati.gupta28@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2188,
+      13.1282
+    ]
+  },
+  "medicalReg": "TNMC2025028",
+  "specialization": "Gynecology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/28.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$HZVNpLFmamxCcATd8ODWqukHr/LxzepFRmOR06hohJ.nMxPJqU7EK",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 554613,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940574"
+  },
+  "name": "Dr. Nitin S",
+  "phone": {
+    "$numberLong": "9876540035"
+  },
+  "email": "nitin.s35@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2278,
+      13.1068
+    ]
+  },
+  "medicalReg": "TNMC2025035",
+  "specialization": "Urology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/35.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$pz19fXtFRdpjbtbe15VRKOD7.PFwn7.b8QfIrH69Vq1YiU9grRfwy",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 538468,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940576"
+  },
+  "name": "Dr. Ashok Kumar",
+  "phone": {
+    "$numberLong": "9876540037"
+  },
+  "email": "ashok.kumar37@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2213,
+      13.1092
+    ]
+  },
+  "medicalReg": "TNMC2025037",
+  "specialization": "Nephrology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/37.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$KamSKTXpwJKprZtiErqi9.x/Qq.4q9ZSXwt4Q9CkxlC2FDuhAWT8m",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 951648,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b93940578"
+  },
+  "name": "Dr. Pradeep Reddy",
+  "phone": {
+    "$numberLong": "9876540039"
+  },
+  "email": "pradeep.reddy39@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2156,
+      13.1372
+    ]
+  },
+  "medicalReg": "TNMC2025039",
+  "specialization": "Gastroenterology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/39.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$Uk/fInQMJVlEeXoXVxLBnutMVs4uX7mFbHOOfolCuqApyP5S/m..a",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 346797,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394057a"
+  },
+  "name": "Dr. Manoj Pillai",
+  "phone": {
+    "$numberLong": "9876540041"
+  },
+  "email": "manoj.pillai41@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2418,
+      13.124
+    ]
+  },
+  "medicalReg": "TNMC2025041",
+  "specialization": "Rheumatology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/41.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$BcWRXhrh5xMunSjXHYqPQeu/Rhtuw6JWGc6/gNHyLDnMTC45.M0pG",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 945251,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8f9b3fdf070b9394057e"
+  },
+  "name": "Dr. Rohit Verma",
+  "phone": {
+    "$numberLong": "9876540045"
+  },
+  "email": "rohit.verma45@example.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2147,
+      13.1138
+    ]
+  },
+  "medicalReg": "TNMC2025045",
+  "specialization": "Anesthesiology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/men/45.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$0C1f3eihL.fPavQJIQ1rZOsOVC0SHakwsCf3oPhAq0u9Q4BS70prm",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 475580,
+  "createdAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:44:27.359Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685b90b0f75cd203ad8d8822"
+  },
+  "name": "Dr. Priya Subramaniam",
+  "phone": {
+    "$numberLong": "9876541056"
+  },
+  "email": "priya.subramaniam56@example.com",
+  "gender": "Female",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2381,
+      12.9035
+    ]
+  },
+  "medicalReg": "TNMC2025056",
+  "specialization": "Gynecology",
+  "photo": {
+    "publicId": "",
+    "url": "https://randomuser.me/api/portraits/women/56.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$NH4/6Yfb6kDbaPHe96GTZOIwozZ6dyw3wqVf1SoODDYzyG3mv0vrO",
+  "Hospital": "Sholinganallur Women's Clinic",
+  "doctorId": 354366,
+  "createdAt": {
+    "$date": "2025-06-25T06:01:20.991Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-25T06:01:20.991Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6862fb9df71ece8efc6b9e87"
+  },
+  "name": "Dr. Maaran. V",
+  "phone": 6969696969,
+  "email": "Mersalvijay@gmail.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2707,
+      13.0827
+    ]
+  },
+  "medicalReg": "123456",
+  "specialization": "Ophthalmology",
+  "overview": "\"It takes 10 months to bring a life into this world, 4 years to earn a degree, and 5 years to become a doctor. But to become a true leader, it takes a decade of dedication. I believe medicine is not a business — it's a service. I’m here to serve, not to sell.\"",
+  "availableSlots": {},
+  "averageRating": 0,
+  "password": "$2b$10$z/TiLuhYUBUGxV6zzuJAMuRF491mALWXIzz9AD2g9Ump4HGnsgHgu",
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 551957,
+  "createdAt": {
+    "$date": "2025-06-30T21:03:25.975Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-01T08:11:54.189Z"
+  },
+  "__v": 0,
+  "photo": {
+    "publicId": "",
+    "url": "https://wallpaperaccess.com/full/2776051.jpg"
+  },
+  "basicFee": 0,
+  "experience": 0
+},
+{
+  "_id": {
+    "$oid": "68662024e9c03370705c4f0a"
+  },
+  "name": "harsh",
+  "phone": 1234567890,
+  "email": "harshMitra@gmail.com",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2090984,
+      13.1189517
+    ]
+  },
+  "medicalReg": "1234567890",
+  "specialization": "Ophthalmology",
+  "photo": {
+    "publicId": "my-profile/hzukovy55ytlgvhzpzrq",
+    "url": "https://res.cloudinary.com/dpj8o6x5s/image/upload/v1751523365/my-profile/hzukovy55ytlgvhzpzrq.jpg"
+  },
+  "overview": "",
+  "availableSlots": {},
+  "averageRating": 3,
+  "basicFee": 234,
+  "experience": 12,
+  "password": "$2b$10$MP6dPPEczJvcMyZzwZ5zluhV46IOsQqSZHHF7DC3NPChc33IU/TjS",
+  "workingHours": {
+    "from": "09:00",
+    "to": "17:00"
+  },
+  "Hospital": "Prashanth Super Speciality Hospital",
+  "doctorId": 799845,
+  "createdAt": {
+    "$date": "2025-07-03T06:16:04.146Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-03T06:16:04.146Z"
+  },
+  "__v": 0
+}]

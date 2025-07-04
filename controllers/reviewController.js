@@ -1,5 +1,6 @@
 import Review from "../models/reviewModel.js";
 import Doctor from "../models/doctorModel.js";
+import Patient from "../models/patientModel.js";
 
 class reviewController {
   async createReview(req, res) {
@@ -71,9 +72,21 @@ class reviewController {
   async getReviewsByDoctor(req, res) {
     try {
       const { doctorId } = req.params;
-      const reviews = await Review.find({ doctorId }).sort({ createdAt: -1 });
+      const doctorIdNum = Number(doctorId);
+      const reviews = await Review.find({ doctorId: doctorIdNum }).sort({ createdAt: -1 });
 
-      res.status(200).json(reviews);
+    
+      const patientIds = reviews.map(r => r.patientId);
+      const patients = await Patient.find({ patientId: { $in: patientIds } }, { name: 1, photo: 1, patientId: 1 });
+      const patientMap = {};
+      patients.forEach(p => { patientMap[p.patientId] = p; });
+
+      const reviewsWithPatient = reviews.map(r => ({
+        ...r.toObject(),
+        patientId: patientMap[r.patientId] || r.patientId
+      }));
+
+      res.status(200).json(reviewsWithPatient);
     } catch (error) {
       console.error("Error fetching reviews:", error);
       res.status(500).json({ message: "Failed to fetch reviews", error });

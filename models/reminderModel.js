@@ -9,3 +9,4 @@ const reminderSchema = new mongoose.Schema({
 }, { timestamps: true,collection: 'Reminders' });
 
 export default mongoose.model('Reminders', reminderSchema);
+

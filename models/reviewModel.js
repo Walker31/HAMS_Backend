@@ -15,7 +15,7 @@ const ReviewSchema = new mongoose.Schema({
   },
   patientId: { 
     type: String, 
-    ref: 'Patient',
+    ref: 'Patients',
     required: true 
   },
   rating: {
