@@ -27,6 +27,7 @@ class PatientController {
                     const doctorInfo = await Doctor.findOne({ doctorId }).lean();
                     var response = {
                         appointmentId : appointments[i].appointmentId,
+                        doctorId: doctorId,
                         doctorName : doctorInfo.name,
                         reason : appointments[i].reason,
                         date : appointments[i].date,
@@ -123,5 +124,35 @@ class PatientController {
     }
   }
 
+  async getAppointmentsWithDoctorInfo(req, res) {
+    const patientId = req.user.id;
+    var responseData = [];
+    try {
+        const appointments = await Appointment.find({patientId}).lean();
+        for (let i = 0; i < appointments.length; i++) {
+            const doctorId = appointments[i].doctorId;
+            if (doctorId) {
+                const doctorInfo = await Doctor.findOne({ doctorId }).lean();
+                var response = {
+                    appointmentId : appointments[i].appointmentId,
+                    doctorId: doctorId,
+                    doctorName : doctorInfo?.name || '',
+                    reason : appointments[i].reason,
+                    date : appointments[i].date,
+                    slot : appointments[i].slotNumber,
+                    appStatus: appointments[i].appStatus,
+                    prescription: appointments[i].prescription,
+                    meetLink : appointments[i]?.meetLink || 'N/A',
+                    consultStatus: appointments[i].consultStatus || 'Offline',
+                    hospital: appointments[i]?.hospital || 'Own Practice'
+                }
+                responseData.push(response);
+            }
+        }
+        res.status(200).json(responseData);
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+  }
 }
 export default new PatientController();

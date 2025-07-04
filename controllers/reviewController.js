@@ -121,6 +121,33 @@ class reviewController {
       res.status(500).json({ message: "Failed to delete review", error });
     }
   }
+
+  async getReviewsByPatient(req, res) {
+    try {
+      const { patientId } = req.params;
+      // Populate doctor info using doctorId, not _id
+      const reviews = await Review.find({ patientId }).sort({ createdAt: -1 }).populate({
+        path: 'doctorId',
+        select: 'name photo doctorId',
+        model: 'Doctors',
+        localField: 'doctorId',
+        foreignField: 'doctorId',
+        justOne: true
+      });
+      // Format reviews to include doctor name and photo at top level
+      const reviewsWithDoctor = reviews.map(r => ({
+        ...r.toObject(),
+        doctor: r.doctorId ? {
+          doctorId: r.doctorId.doctorId,
+          name: r.doctorId.name,
+          photo: r.doctorId.photo?.url || null
+        } : null
+      }));
+      res.status(200).json(reviewsWithDoctor);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch patient reviews', error });
+    }
+  }
 }
 
 export default new reviewController;
