@@ -12,5 +12,6 @@ router.get('/profile',authenticateToken,patientController.profile);
 router.get('/appointments',authenticateToken,patientController.allAppointments);
 router.post('/appointments/request-reschedule', authenticateToken, patientController.requestReschedule);
 router.put('/update-profile',authenticateToken,patientController.updateProfile);
+router.post('/cancel-appointment', authenticateToken, patientController.cancelAppointment);
 
 export default router;

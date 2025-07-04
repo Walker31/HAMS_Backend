@@ -123,5 +123,26 @@ class PatientController {
     }
   }
 
+  // Cancel an appointment by patient
+  async cancelAppointment(req, res) {
+    const patientId = req.user?.id;
+    const { appointmentId } = req.body;
+
+    if (!appointmentId) {
+      return res.status(400).json({ message: 'Appointment ID is required' });
+    }
+
+    try {
+      const appointment = await Appointment.findOne({ appointmentId, patientId });
+      if (!appointment) {
+        return res.status(404).json({ message: 'Appointment not found' });
+      }
+      appointment.appStatus = 'Cancelled';
+      await appointment.save();
+      res.status(200).json({ message: 'Appointment cancelled successfully', appointment });
+    } catch (error) {
+      res.status(500).json({ message: 'Error cancelling appointment', error: error.message });
+    }
+  }
 }
 export default new PatientController();

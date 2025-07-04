@@ -11,4 +11,8 @@ router.get("/:doctorId", controllers.getReviewsByDoctor);
 
 router.delete("/:reviewId", controllers.deleteReview);
 
+router.put("/:reviewId", controllers.updateReview);
+
+router.get("/patient/:patientId", controllers.getReviewsByPatient);
+
 export default router;

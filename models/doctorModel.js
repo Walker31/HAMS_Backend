@@ -131,5 +131,5 @@ DoctorSchema.virtual("reviews", {
 
 DoctorSchema.index({ location: "2dsphere" });
 
-const Doctor = mongoose.model("Doctors", DoctorSchema);
+const Doctor = mongoose.model("Doctor", DoctorSchema);
 export default Doctor;

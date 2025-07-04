@@ -121,6 +121,64 @@ class reviewController {
       res.status(500).json({ message: "Failed to delete review", error });
     }
   }
+
+  async updateReview(req, res) {
+    try {
+      const { reviewId } = req.params;
+      const { rating, comment } = req.body;
+      const updatedReview = await Review.findByIdAndUpdate(
+        reviewId,
+        { rating, comment },
+        { new: true }
+      );
+      if (!updatedReview) {
+        return res.status(404).json({ message: "Review not found" });
+      }
+      // Recalculate average rating for the doctor
+      const reviews = await Review.find({ doctorId: updatedReview.doctorId });
+      const avgRating =
+        reviews.length > 0
+          ? reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length
+          : 0;
+      await Doctor.findOneAndUpdate(
+        { doctorId: updatedReview.doctorId },
+        {
+          averageRating: avgRating,
+          reviewsCount: reviews.length,
+        }
+      );
+      res.status(200).json({ message: "Review updated successfully", review: updatedReview });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to update review", error });
+    }
+  }
+
+  async getReviewsByPatient(req, res) {
+  try {
+    const { patientId } = req.params;
+
+    const reviews = await Review.find({ patientId });
+    const doctorIds = reviews.map(r => r.doctorId);
+    const doctors = await Doctor.find({ doctorId: { $in: doctorIds } }, 'doctorId name');
+
+    const doctorMap = {};
+    doctors.forEach(doc => {
+      doctorMap[doc.doctorId] = doc.name;
+    });
+
+    const enrichedReviews = reviews.map(r => ({
+      ...r.toObject(),
+      doctorName: doctorMap[r.doctorId] || 'Unknown Doctor'
+    }));
+
+    res.status(200).json(enrichedReviews);
+  } catch (error) {
+    console.error("❌ Error in getReviewsByPatient:", error);
+    res.status(500).json({ message: "Failed to fetch reviews by patient", error: error.message });
+  }
+}
+
+
 }
 
 export default new reviewController;
