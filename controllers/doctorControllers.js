@@ -1,6 +1,6 @@
 import Appointment from "../models/appointmentModel.js";
 import Doctor from "../models/doctorModel.js";
-import mongoose from "mongoose";
+import Patient from "../models/patientModel.js";
 import { uploadToCloudinaryFromBuffer } from "../services/cloudinary.js";
 
 class DoctorControllers {
@@ -281,7 +281,26 @@ class DoctorControllers {
         doctorId,
         appStatus: 'Request for rescheduling',
       });
-      res.status(200).json({ requests });
+      const formattedRequests = await Promise.all(requests.map(async (appt) => {
+        const patient = await Patient.findOne({ patientId: appt.patientId });
+        let time = '';
+        if (appt.date instanceof Date) {
+          time = appt.slotNumber && appt.slotNumber.match(/^\d{2}:\d{2}$/) ? appt.slotNumber : (appt.date.toISOString().substring(11, 16));
+        } else {
+          time = appt.slotNumber || '';
+        }
+        return {
+          appointmentId: appt.appointmentId,
+          patientName: patient ? patient.name : '',
+          patientPhoto: patient && patient.photo && patient.photo.url ? patient.photo.url : '',
+          reason: appt.reason,
+          date: appt.date instanceof Date ? appt.date.toISOString().substring(0, 10) : appt.date,
+          time,
+          doctorId: appt.doctorId,
+        };
+      }));
+      res.status(200).json({ requests: formattedRequests });
+      console.log(formattedRequests);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
