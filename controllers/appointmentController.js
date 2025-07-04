@@ -24,22 +24,22 @@ export const bookAppointment = async (req, res) => {
     payStatus,
     consultStatus,
   } = req.body;
-
   const patientId = req.user?.id;
+
+  /* if (!doctorId || !date || !slotNumber || !reason || !consultStatus) {
+    return res.status(400).json({ message: "Missing required appointment details" });
+  } */
 
   try {
     if (!reason || reason.trim() === "") {
       return res.status(400).json({ message: "Reason is required" });
     }
 
-    // ✅ Generate Jitsi link only if Online — WITHOUT patientId
-    let generatedLink = "";
+    let generatedLink = "Link";
     if (consultStatus === "Online") {
-  const safeSlot = slotNumber.replace(":", "-"); // or remove colon entirely
-  const uniqueRoom = `HAMS_${doctorId}_${safeSlot}_${Date.now()}`;
-  generatedLink = `https://meet.jit.si/${uniqueRoom}`;
-}
-
+      const uniqueRoom = `HAMS_${doctorId}_${patientId}_${Date.now()}`;
+      generatedLink = `https://meet.jit.si/${uniqueRoom}`;
+    }
 
     const appointment = new Appointment({
       date,
@@ -51,18 +51,18 @@ export const bookAppointment = async (req, res) => {
       payStatus,
       consultStatus,
       appStatus: "Pending",
-      meetLink: generatedLink, // ✅ This adds the link
+      meetLink: generatedLink,
     });
 
     await appointment.save();
 
+    // Email and reminder logic
     try {
       const patient = await Patient.findOne({ patientId });
       const doctor = await Doctor.findOne({ doctorId });
-
+      // Format date and time
       const formattedDate = format(new Date(date), "dd/MM/yyyy");
       const formattedTime = `Slot ${slotNumber}`;
-
       const appointmentData = {
         patientName: patient.name,
         date: formattedDate,
@@ -70,7 +70,6 @@ export const bookAppointment = async (req, res) => {
         location: hospital,
         doctorName: doctor.name,
       };
-
       await sendConfirmationEmail(patient.email, appointmentData);
       await scheduleReminderInDB(
         appointment.appointmentId || appointment._id.toString(),
@@ -78,7 +77,6 @@ export const bookAppointment = async (req, res) => {
         patient.email,
         new Date(date)
       );
-
       return res.status(201).json({
         message: "Appointment booked and confirmation email sent",
         appointment,
@@ -101,7 +99,6 @@ export const bookAppointment = async (req, res) => {
     });
   }
 };
-
 
 // Get Booked Slots for a Doctor on a Given Date
 export const getBookedSlots = async (req, res) => {
@@ -221,13 +218,8 @@ export const updateAppStatus = async (req, res) => {
 export const cancelAppointment = async (req, res) => {
   const { appointmentId } = req.body;
   try {
-    let appointment = null;
-    if (appointmentId.match(/^[0-9a-fA-F]{24}$/)) {
-      appointment = await Appointment.findById(appointmentId);
-    }
-    if (!appointment) {
-      appointment = await Appointment.findOne({ appointmentId: appointmentId });
-    }
+    
+    const appointment = await Appointment.findOne({ appointmentId: appointmentId });
     if (!appointment) {
       return res.status(404).json({ message: "Appointment not found" });
     }
@@ -236,9 +228,9 @@ export const cancelAppointment = async (req, res) => {
       Doctor.findOne({ doctorId: appointment.doctorId }),
       Hospital.findOne({ hospital: appointment.hospital })
     ]);
-    await Appointment.findByIdAndDelete(appointment._id);
-
-
+    await Appointment.findByIdAndUpdate(appointment._id, {
+      consultStatus: "Cancelled",
+    });
     await cancelReminder(appointment.appointmentId || appointment._id.toString());
 
 
@@ -378,17 +370,22 @@ export const rescheduleAppointment = async (req, res) => {
   }
 };
 
-// Get Appointments by Patient (for patient dashboard)
 export const getAppointmentsByPatient = async (req, res) => {
   const patientId = req.user?.id;
 
   if (!patientId) {
-    return res.status(400).json({ message: "Patient ID and date required" });
+    return res.status(400).json({ message: "Patient ID required" });
   }
 
   try {
-    const appointments = await Appointment.find({ patientId });
-    res.status(200).json(appointments);
+    const appointments = await Appointment.find({ patientId }).lean(); // use lean() for plain JS objects
+
+    const formattedAppointments = appointments.map((appt) => ({
+      ...appt,
+      date: format(new Date(appt.date), "dd/MM/yyyy"),
+    }));
+
+    res.status(200).json(formattedAppointments);
   } catch (error) {
     console.error("Error fetching patient appointments:", error);
     res.status(500).json({ message: "Failed to fetch patient appointments" });
@@ -435,7 +432,6 @@ export const appointmentDetail = async (req, res) => {
       appointmentId: { $ne: appointmentId },
     }).sort({date: -1}).lean();
     const formattedDate = format(new Date(appointment.date), "dd/MM/yyyy");
-    const formattedTime = format(new Date(appointment.date), "hh:mm a");
     const bookedOn = format(new Date(appointment.createdAt), "dd/MM/yyyy");
 
     const addressObj = patient.address || {};
