@@ -13,6 +13,5 @@ router.get('/appointments',authenticateToken,patientController.allAppointments);
 router.post('/appointments/request-reschedule', authenticateToken, patientController.requestReschedule);
 router.put('/update-profile',authenticateToken,patientController.updateProfile);
 router.post('/cancel-appointment', authenticateToken, patientController.cancelAppointment);
-router.get('/appointments/with-doctor-info',authenticateToken,patientController.getAppointmentsWithDoctorInfo);
 
 export default router;
