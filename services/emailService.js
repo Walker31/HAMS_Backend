@@ -106,3 +106,40 @@ export async function sendRescheduleEmail(to, appt) {
   };
   return _sendMail(mailOptions);
 }
+
+export async function sendAppointmentResponseEmail(to, appt, action) {
+  const { patientName, date, time, location, doctorName, reason, message } = appt;
+  
+  let subject;
+  if (action === 'accept') {
+    subject = 'Appointment Request Accepted ✅';
+  } else if (action === 'reject') {
+    subject = 'Appointment Request Rejected ❌';
+  } else if (action === 'request') {
+    subject = 'Appointment Request Submitted 📋';
+  } else {
+    subject = 'Appointment Update';
+  }
+  
+  const mailOptions = {
+    from: `"Your Clinic" <${transporter.options.auth.user}>`,
+    to,
+    subject,
+    text: `Hello ${patientName},\n\n${message}\n\n• Date: ${date}\n• Time: ${time}\n• Doctor: ${doctorName}\n• Location: ${location}${reason ? `\n• Reason: ${reason}` : ''}\n\nThank you for choosing our service.`,
+    html: `
+      <p>Hello <strong>${patientName}</strong>,</p>
+      <p>${message}</p>
+      <div style="background-color: #f8f9fa; padding: 15px; border-left: 4px solid ${action === 'accept' ? '#28a745' : action === 'reject' ? '#dc3545' : '#ffc107'}; margin: 15px 0;">
+        <ul style="margin: 0; padding-left: 20px;">
+          <li><strong>Date:</strong> ${date}</li>
+          <li><strong>Time:</strong> ${time}</li>
+          <li><strong>Doctor:</strong> ${doctorName}</li>
+          <li><strong>Location:</strong> ${location}</li>
+          ${reason ? `<li><strong>Reason:</strong> ${reason}</li>` : ''}
+        </ul>
+      </div>
+      <p>Thank you for choosing our service.</p>
+    `
+  };
+  return _sendMail(mailOptions);
+}

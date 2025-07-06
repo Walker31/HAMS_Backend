@@ -3721,4 +3721,40 @@
     "$date": "2025-07-03T06:48:02.386Z"
   },
   "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68678c8492fe325cda914cc5"
+  },
+  "name": "SHRUDEEP S",
+  "phone": "9894612222",
+  "email": "shrudeepnitt105@gmail.com",
+  "gender": "Male",
+  "dateOfBirth": {
+    "$date": "2004-08-03T00:00:00.000Z"
+  },
+  "address": {
+    "street": "76, F6, Mathaka Flats, Kamaraj Street",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "postalCode": "600099"
+  },
+  "emergencyContact": {
+    "name": "Senthil",
+    "phone": "9894612222",
+    "relation": "dad"
+  },
+  "password": "$2b$10$Gt3BngxZmLmih8gRW0KxQOtoA2E/ZGAKhtpyxIo3w0rdnTLEK2ray",
+  "photo": {
+    "publicId": "my-profile/sewofx0dwrzmlmbx5n5g",
+    "url": "https://res.cloudinary.com/dpj8o6x5s/image/upload/v1751616645/my-profile/sewofx0dwrzmlmbx5n5g.jpg"
+  },
+  "patientId": "GkGLKT",
+  "createdAt": {
+    "$date": "2025-07-04T08:10:44.676Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-04T08:10:44.676Z"
+  },
+  "__v": 0
 }]

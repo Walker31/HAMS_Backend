@@ -1,0 +1,785 @@
+[{
+  "_id": {
+    "$oid": "685a8b353fdf070b939404cc"
+  },
+  "hospitalName": "Apollo Hospitals Ahmedabad",
+  "phone": "9876501000",
+  "email": "apollo.ahmedabad@example.com",
+  "city": "Ahmedabad",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      72.5214,
+      22.9725
+    ]
+  },
+  "RegId": 1000,
+  "password": "$2b$10$eXC9LKHHKHLqMgo0yCUAmeeNh5tx19s8Vxg4DUHxVhYtnNfm2ZDS.",
+  "hospitalId": "jI21D5",
+  "createdAt": {
+    "$date": "2025-06-24T11:25:41.319Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:25:41.319Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8b3e3fdf070b939404cf"
+  },
+  "hospitalName": "Shalby Multispeciality Hospital",
+  "phone": "9876501001",
+  "email": "shalby.ahmedabad@example.com",
+  "city": "Ahmedabad",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      72.5314,
+      22.9825
+    ]
+  },
+  "RegId": 1001,
+  "password": "$2b$10$jRa5pSRB6jfa7xsh68LC2erPz8pfJTg29SgeY1VEFaJB8XN3abaUK",
+  "hospitalId": "iXNfkG",
+  "createdAt": {
+    "$date": "2025-06-24T11:25:50.790Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:25:50.790Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8b803fdf070b939404d2"
+  },
+  "hospitalName": "Manipal Hospitals Bangalore",
+  "phone": "9876501010",
+  "email": "manipal.bangalore@example.com",
+  "city": "Bangalore",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      77.5446,
+      12.9216
+    ]
+  },
+  "RegId": 1010,
+  "password": "$2b$10$MRk3I7gxuOSApRfUMwBTWOsey.FJlWgYgs8Uviuk9eTT2h4mtAHrG",
+  "hospitalId": "ZC6s09",
+  "createdAt": {
+    "$date": "2025-06-24T11:26:56.304Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:26:56.304Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8b853fdf070b939404d5"
+  },
+  "hospitalName": "Fortis Hospital Cunningham Road",
+  "phone": "9876501011",
+  "email": "fortis.cunningham.bangalore@example.com",
+  "city": "Bangalore",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      77.5546,
+      12.9316
+    ]
+  },
+  "RegId": 1011,
+  "password": "$2b$10$BZbwR3pUzT457A.H1NpHPOZIgq8cmGuasr2WE55XF55SAGOL/n2QG",
+  "hospitalId": "GlnFSe",
+  "createdAt": {
+    "$date": "2025-06-24T11:27:01.689Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:27:01.689Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8b8b3fdf070b939404d8"
+  },
+  "hospitalName": "Apollo Hospitals Greams Road",
+  "phone": "9876501020",
+  "email": "apollo.chennai@example.com",
+  "city": "Chennai",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2207,
+      13.0327
+    ]
+  },
+  "RegId": 1020,
+  "password": "$2b$10$dvo7TEY.Ajce1J/RUvi3HeNfFl7X6Levr4kJupceUFpOeGYubigsK",
+  "hospitalId": "NJfGJY",
+  "createdAt": {
+    "$date": "2025-06-24T11:27:07.361Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:27:07.361Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8b903fdf070b939404db"
+  },
+  "hospitalName": "MIOT International",
+  "phone": "9876501021",
+  "email": "miot.chennai@example.com",
+  "city": "Chennai",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2307,
+      13.0427
+    ]
+  },
+  "RegId": 1021,
+  "password": "$2b$10$h7.6TSHs3W0RghvSSI4QceCShT/eMLHtC/iIJbf.tFjuAyNLkW1Ni",
+  "hospitalId": "HRVD6W",
+  "createdAt": {
+    "$date": "2025-06-24T11:27:12.408Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:27:12.408Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8b943fdf070b939404de"
+  },
+  "hospitalName": "Aster Medcity",
+  "phone": "9876501030",
+  "email": "aster.cochin@example.com",
+  "city": "Cochin",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      76.2173,
+      9.8812
+    ]
+  },
+  "RegId": 1030,
+  "password": "$2b$10$lGUWLNTk32oZUVm8EsOtQech3XFqBb9J.ELYxVKmVBQbOYSSKoCjC",
+  "hospitalId": "TkUTsh",
+  "createdAt": {
+    "$date": "2025-06-24T11:27:16.656Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:27:16.656Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8b983fdf070b939404e1"
+  },
+  "hospitalName": "Amrita Institute of Medical Sciences",
+  "phone": "9876501031",
+  "email": "amrita.cochin@example.com",
+  "city": "Cochin",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      76.2273,
+      9.8912
+    ]
+  },
+  "RegId": 1031,
+  "password": "$2b$10$zJJywL24X8l8FwbJvPl7sO1FVsceK1aq84Aw1WpX.X2I8FyhGy/zG",
+  "hospitalId": "viHTy_",
+  "createdAt": {
+    "$date": "2025-06-24T11:27:20.921Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:27:20.921Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8b9d3fdf070b939404e4"
+  },
+  "hospitalName": "AIIMS Delhi",
+  "phone": "9876501040",
+  "email": "aiims.delhi@example.com",
+  "city": "Delhi",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      77.159,
+      28.5639
+    ]
+  },
+  "RegId": 1040,
+  "password": "$2b$10$K9pxmRjrKt26vYPyLofQku9Tr1O9boEp4z2PKZYBcEXgHyQuIJ6Te",
+  "hospitalId": "M_ZSPc",
+  "createdAt": {
+    "$date": "2025-06-24T11:27:25.243Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:27:25.243Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8ba23fdf070b939404e7"
+  },
+  "hospitalName": "Fortis Escorts Heart Institute",
+  "phone": "9876501041",
+  "email": "fortis.escorts.delhi@example.com",
+  "city": "Delhi",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      77.169,
+      28.5739
+    ]
+  },
+  "RegId": 1041,
+  "password": "$2b$10$SLpBXdFbYNxaalcNoPFhZOthR.W57e4MxsO1o5mm97UFAmNTHmVYy",
+  "hospitalId": "MYNQRt",
+  "createdAt": {
+    "$date": "2025-06-24T11:27:30.384Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:27:30.384Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8ba73fdf070b939404ea"
+  },
+  "hospitalName": "Care Hospitals Banjara Hills",
+  "phone": "9876501051",
+  "email": "care.banjara.hyderabad@example.com",
+  "city": "Hyderabad",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      78.4467,
+      17.345
+    ]
+  },
+  "RegId": 1051,
+  "password": "$2b$10$n75wVEP/ASKHcpNP812iKevonEqUeJsIWUKJv3ZXXUmBOm2HW/Ieq",
+  "hospitalId": "JHOcE8",
+  "createdAt": {
+    "$date": "2025-06-24T11:27:35.232Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:27:35.232Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8bab3fdf070b939404ed"
+  },
+  "hospitalName": "AMRI Hospitals Dhakuria",
+  "phone": "9876501061",
+  "email": "amri.dhakuria.kolkata@example.com",
+  "city": "Kolkata",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      88.3239,
+      22.5326
+    ]
+  },
+  "RegId": 1061,
+  "password": "$2b$10$dx0ziE3eJcZM/LbXG3EMFui65OEDIu2dAGmKT4pe8X2Ffo.QC4qa.",
+  "hospitalId": "e_LjF9",
+  "createdAt": {
+    "$date": "2025-06-24T11:27:39.833Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:27:39.833Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8bb33fdf070b939404f0"
+  },
+  "hospitalName": "Fortis Hospital Anandapur",
+  "phone": "9876501060",
+  "email": "fortis.anandapur.kolkata@example.com",
+  "city": "Kolkata",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      88.3139,
+      22.5226
+    ]
+  },
+  "RegId": 1060,
+  "password": "$2b$10$OKyI6O2siT7wsGKFlS6CKuTHP3gBNNW77cm.OQr7zkaL0ZYlZ8rPC",
+  "hospitalId": "WMOv2w",
+  "createdAt": {
+    "$date": "2025-06-24T11:27:47.096Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:27:47.096Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8bb93fdf070b939404f3"
+  },
+  "hospitalName": "Sahara Hospital",
+  "phone": "9876501070",
+  "email": "sahara.lucknow@example.com",
+  "city": "Lucknow",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.8962,
+      26.7967
+    ]
+  },
+  "RegId": 1070,
+  "password": "$2b$10$yb7iE/5nTc2KPG0bxfipa.hHzPYPU5DcJZH6tkL.xkkYUOtTBXMNu",
+  "hospitalId": "N3A695",
+  "createdAt": {
+    "$date": "2025-06-24T11:27:53.490Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:27:53.490Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8bbe3fdf070b939404f6"
+  },
+  "hospitalName": "King George's Medical University",
+  "phone": "9876501071",
+  "email": "kgmu.lucknow@example.com",
+  "city": "Lucknow",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.9062,
+      26.8067
+    ]
+  },
+  "RegId": 1071,
+  "password": "$2b$10$Igubjt4Rl24jsmvDxkdcku4cJcMk8u0tVGXHSeFtUU/L1FvgsICBu",
+  "hospitalId": "FLR9DS",
+  "createdAt": {
+    "$date": "2025-06-24T11:27:58.032Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:27:58.032Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8bc33fdf070b939404f9"
+  },
+  "hospitalName": "Kokilaben Dhirubhai Ambani Hospital",
+  "phone": "9876501081",
+  "email": "kokilaben.mumbai@example.com",
+  "city": "Mumbai",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      72.8377,
+      19.036
+    ]
+  },
+  "RegId": 1081,
+  "password": "$2b$10$J/G7cXdFsD0IEv/RQoThhuT8JKl2uAlycsNuxeqStsTvG6sU0/yJS",
+  "hospitalId": "A--prK",
+  "createdAt": {
+    "$date": "2025-06-24T11:28:03.911Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:28:03.911Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8bc83fdf070b939404fc"
+  },
+  "hospitalName": "MGM Hospital Warangal",
+  "phone": "9876501090",
+  "email": "mgm.warangal@example.com",
+  "city": "Warangal",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      79.5441,
+      17.9284
+    ]
+  },
+  "RegId": 1090,
+  "password": "$2b$10$RsV4VxWCNjElVmGDG1gWeu.DK4Jk1iaIQi1sZqZvM8JXY5DdBstcm",
+  "hospitalId": "Fv4HL-",
+  "createdAt": {
+    "$date": "2025-06-24T11:28:08.158Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:28:08.158Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8bcd3fdf070b939404ff"
+  },
+  "hospitalName": "Kakatiya Medical College Hospital",
+  "phone": "9876501091",
+  "email": "kakatiya.warangal@example.com",
+  "city": "Warangal",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      79.5541,
+      17.9384
+    ]
+  },
+  "RegId": 1091,
+  "password": "$2b$10$uphtWmyZInyYWK332Z3w.eU3iQzkzm6/Wnz8.MpzK/rPzz.ZxLzda",
+  "hospitalId": "hP9aqf",
+  "createdAt": {
+    "$date": "2025-06-24T11:28:13.298Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:28:13.298Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8bd43fdf070b93940502"
+  },
+  "hospitalName": "Prashanth Super Speciality Hospital",
+  "phone": "9876501100",
+  "email": "info@prashanthhospitals.com",
+  "city": "Chennai",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2732,
+      13.0821
+    ]
+  },
+  "RegId": 1100,
+  "password": "$2b$10$P6KX9jLl8JOk7U2zNRGl/OLB6KBFsMaBKniEIXqm9vywtz2jVr4xW",
+  "hospitalId": "MMyBxM",
+  "createdAt": {
+    "$date": "2025-06-24T11:28:20.211Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:28:20.211Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8bd83fdf070b93940505"
+  },
+  "hospitalName": "SIMS Hospital Vadapalani",
+  "phone": "9876501101",
+  "email": "contact@simshospitals.com",
+  "city": "Chennai",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2658,
+      13.0708
+    ]
+  },
+  "RegId": 1101,
+  "password": "$2b$10$tl/n9DBaU7PCFCwivW6aTeTnr3uZHzxEfrwnYI37nq1FC8p4nYMRS",
+  "hospitalId": "6J9If1",
+  "createdAt": {
+    "$date": "2025-06-24T11:28:24.298Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:28:24.298Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8bdc3fdf070b93940508"
+  },
+  "hospitalName": "Madras Medical Mission Hospital",
+  "phone": "9876501102",
+  "email": "hello@mmmhospital.com",
+  "city": "Chennai",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2791,
+      13.0895
+    ]
+  },
+  "RegId": 1102,
+  "password": "$2b$10$KKwGKa6KgSpNtNzPFTCZg.N3Alf1wICf8oJgXedlb6kqosZiPHfOy",
+  "hospitalId": "Aa4d5B",
+  "createdAt": {
+    "$date": "2025-06-24T11:28:28.128Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:28:28.128Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8be03fdf070b9394050b"
+  },
+  "hospitalName": "Dr. Mehta’s Hospitals",
+  "phone": "9876501103",
+  "email": "enquiry@mehtahospital.com",
+  "city": "Chennai",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2603,
+      13.0805
+    ]
+  },
+  "RegId": 1103,
+  "password": "$2b$10$zjpb0o4pVjjKeklKttqWIeUSyty9luFc9Vxs0bKN4taTynv5Iaeky",
+  "hospitalId": "qmGk2X",
+  "createdAt": {
+    "$date": "2025-06-24T11:28:32.055Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:28:32.055Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8be43fdf070b9394050e"
+  },
+  "hospitalName": "Hindu Mission Hospital",
+  "phone": "9876501104",
+  "email": "support@hindumissionhospital.com",
+  "city": "Chennai",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2756,
+      13.0872
+    ]
+  },
+  "RegId": 1104,
+  "password": "$2b$10$ugXHawdhmcQzrq3o5Eev5.jAZdiCwmcDsh/B8yGKdeeTTTq4E8YlW",
+  "hospitalId": "QM2rpE",
+  "createdAt": {
+    "$date": "2025-06-24T11:28:36.521Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:28:36.521Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8be83fdf070b93940511"
+  },
+  "hospitalName": "Frontier Lifeline Hospital",
+  "phone": "9876501105",
+  "email": "info@frontierlifeline.com",
+  "city": "Chennai",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2839,
+      13.0854
+    ]
+  },
+  "RegId": 1105,
+  "password": "$2b$10$AQVr07OsYOG2ccgRcNoL0OH2.kfGJ6bkFwuy1xVeuStFvlaH1leu2",
+  "hospitalId": "McC7Ll",
+  "createdAt": {
+    "$date": "2025-06-24T11:28:40.634Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:28:40.634Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8bec3fdf070b93940514"
+  },
+  "hospitalName": "Government Royapettah Hospital",
+  "phone": "9876501106",
+  "email": "info@royapettahhospital.tn.gov.in",
+  "city": "Chennai",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2787,
+      13.0759
+    ]
+  },
+  "RegId": 1106,
+  "password": "$2b$10$W4fIADqxEX48vGtBzfqi6O3mKJHH4aZBe1gWDyAvNnHn9DNc6jRG.",
+  "hospitalId": "BsBPR2",
+  "createdAt": {
+    "$date": "2025-06-24T11:28:44.577Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:28:44.577Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8bf13fdf070b93940517"
+  },
+  "hospitalName": "St. Isabel’s Hospital",
+  "phone": "9876501107",
+  "email": "contact@stisabelshospital.com",
+  "city": "Chennai",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2695,
+      13.0932
+    ]
+  },
+  "RegId": 1107,
+  "password": "$2b$10$rVK5FRvVYDNngECujBI2ceNqeYm2JnXpAvvd/Rdbl4es55hPUJ1my",
+  "hospitalId": "s2Sq5C",
+  "createdAt": {
+    "$date": "2025-06-24T11:28:49.728Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:28:49.728Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8bf63fdf070b9394051a"
+  },
+  "hospitalName": "Sankara Nethralaya",
+  "phone": "9876501108",
+  "email": "info@sankaranethralaya.org",
+  "city": "Chennai",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2711,
+      13.0798
+    ]
+  },
+  "RegId": 1108,
+  "password": "$2b$10$7VMqiAXQcOAZplblEBFE9.BP1/4NOtiYeYF6egWsUhyXZLh/IhxF6",
+  "hospitalId": "5rlGlD",
+  "createdAt": {
+    "$date": "2025-06-24T11:28:54.050Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:28:54.050Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685a8bfc3fdf070b9394051d"
+  },
+  "hospitalName": "Institute of Child Health and Hospital for Children",
+  "phone": "9876501109",
+  "email": "contact@ichchennai.org",
+  "city": "Chennai",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2683,
+      13.0881
+    ]
+  },
+  "RegId": 1109,
+  "password": "$2b$10$G5KyyHynsGDJ1U8xdtLk5.RghkQtUyxfNw/u/bmYxMkrs3ac28wd.",
+  "hospitalId": "T0Uu28",
+  "createdAt": {
+    "$date": "2025-06-24T11:29:00.631Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-24T11:29:00.631Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68619b964982e565eb0db4c2"
+  },
+  "hospitalName": "Aditya's Clinic",
+  "phone": "9877540051",
+  "email": "walker31@gmaiil.com",
+  "location": {
+    "coordinates": [
+      13.0827,
+      80.2707
+    ],
+    "type": "Point"
+  },
+  "RegId": "HOB8997",
+  "password": "$2b$10$k.vveWuhxFbSedFLrE7D.O95WZkf2l/X19eSmqn1f57nBdAxlpEi2",
+  "hospitalId": "me65ry",
+  "createdAt": {
+    "$date": "2025-06-29T20:01:26.431Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-29T20:01:26.431Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68619ee282d33dfe7227e199"
+  },
+  "hospitalName": "Aditya's Clinic",
+  "phone": "9827520051",
+  "email": "walker31@gmaiil.com",
+  "city": "kjj",
+  "address": {
+    "addressLine": "hbjk",
+    "city": "kjj",
+    "state": " njkb",
+    "pincode": 90909
+  },
+  "location": {
+    "coordinates": [
+      13.0827,
+      80.2707
+    ],
+    "type": "Point"
+  },
+  "RegId": "HOB8933",
+  "password": "$2b$10$pLxHui54FKtNJnjAEY7dXePFLDPSeKAWMphwCdakGRaVOmVVLdWb.",
+  "hospitalId": "0rUbiD",
+  "createdAt": {
+    "$date": "2025-06-29T20:15:30.035Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-29T20:15:30.035Z"
+  },
+  "__v": 0
+}]

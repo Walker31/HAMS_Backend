@@ -1,0 +1,903 @@
+[{
+  "_id": {
+    "$oid": "685cb983551ef7bf585d0a55"
+  },
+  "patientId": "QOXdOa",
+  "doctorId": 463723,
+  "hospitalId": "TkUTsh",
+  "date": "Fri Jun 27 2025 11:30:00 GMT+0530 (India Standard Time)",
+  "slotNumber": "SLOT03",
+  "reason": "Routine health check-up",
+  "appStatus": "Pending",
+  "consultStatus": "Offline",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "MeetLink": "Link",
+  "appointmentId": "su2k837e",
+  "createdAt": {
+    "$date": "2025-06-26T03:07:47.807Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-26T03:07:47.807Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685cb9ca551ef7bf585d0a5b"
+  },
+  "patientId": "QOXdOa",
+  "doctorId": 463723,
+  "hospitalId": "TkUTsh",
+  "date": "Fri Jun 27 2025 10:30:00 GMT+0530 (India Standard Time)",
+  "slotNumber": "SLOT03",
+  "reason": "Routine health check-up",
+  "appStatus": "Pending",
+  "consultStatus": "Offline",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "MeetLink": "Link",
+  "appointmentId": "0URJd9iV",
+  "createdAt": {
+    "$date": "2025-06-26T03:08:58.171Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-26T03:08:58.171Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685d259b56c667248d32ee08"
+  },
+  "patientId": "QOXdOa",
+  "doctorId": 463723,
+  "hospitalId": "TkUTsh",
+  "date": "Fri Jun 27 2025 10:10:00 GMT+0530 (India Standard Time)",
+  "slotNumber": "SLOT01",
+  "reason": "Routine health check-up",
+  "appStatus": "Pending",
+  "consultStatus": "Offline",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "MeetLink": "Link",
+  "appointmentId": "TL3cOOJJ",
+  "createdAt": {
+    "$date": "2025-06-26T10:48:59.858Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-26T10:48:59.858Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685d25fa56c667248d32ee16"
+  },
+  "patientId": "QOXdOa",
+  "doctorId": 463723,
+  "hospitalId": "TkUTsh",
+  "date": "Fri Jun 27 2025 10:10:00 GMT+0530 (India Standard Time)",
+  "slotNumber": "SLOT01",
+  "reason": "Routine health check-up",
+  "appStatus": "Pending",
+  "consultStatus": "Offline",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "MeetLink": "Link",
+  "appointmentId": "SpHYcstu",
+  "createdAt": {
+    "$date": "2025-06-26T10:50:34.675Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-26T10:50:34.675Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685d263c56c667248d32ee23"
+  },
+  "patientId": "QOXdOa",
+  "doctorId": 463723,
+  "hospitalId": "TkUTsh",
+  "date": "Fri Jun 27 2025 10:10:00 GMT+0530 (India Standard Time)",
+  "slotNumber": "SLOT01",
+  "reason": "Routine health check-up",
+  "appStatus": "Pending",
+  "consultStatus": "Offline",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "MeetLink": "Link",
+  "appointmentId": "-S7gNbnZ",
+  "createdAt": {
+    "$date": "2025-06-26T10:51:40.207Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-26T10:51:40.207Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685e6a9b8c0992982f613715"
+  },
+  "patientId": "dYRPDR",
+  "doctorId": 778899,
+  "hospitalId": "Apollo Hospitals Greams Road",
+  "date": "2025-06-27",
+  "slotNumber": "09:00",
+  "reason": "Fever",
+  "appStatus": "Rescheduled",
+  "consultStatus": "Offline",
+  "payStatus": "Unpaid",
+  "prescription": "",
+  "reasonForReject": "",
+  "MeetLink": "Link",
+  "appointmentId": "PtvOQ70y",
+  "createdAt": {
+    "$date": "2025-06-27T09:55:39.817Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-04T09:33:04.853Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685e72ac8c0992982f613773"
+  },
+  "patientId": "dYRPDR",
+  "doctorId": 778899,
+  "hospitalId": "Apollo Hospitals Greams Road",
+  "date": "Fri Jun 27 2025 05:30:00 GMT+0530 (India Standard Time)",
+  "slotNumber": "09:15",
+  "reason": "Fever",
+  "appStatus": "Cancelled",
+  "consultStatus": "Offline",
+  "payStatus": "Unpaid",
+  "prescription": "",
+  "reasonForReject": "",
+  "MeetLink": "Link",
+  "appointmentId": "HZV7PGwB",
+  "createdAt": {
+    "$date": "2025-06-27T10:30:04.254Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-04T10:01:21.151Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6862cab122dbe21e0029204e"
+  },
+  "patientId": "QOXdOa",
+  "doctorId": 778899,
+  "hospital": "Oceanview Multispeciality Hospital",
+  "date": {
+    "$date": "2025-07-01T10:00:00.000Z"
+  },
+  "slotNumber": "SLOT03",
+  "reason": "Routine health check-up",
+  "appStatus": "Pending",
+  "consultStatus": "Online",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "appointmentId": "IIXVjTyM",
+  "createdAt": {
+    "$date": "2025-06-30T17:34:41.574Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-30T17:34:41.574Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6862cad422dbe21e00292053"
+  },
+  "patientId": "QOXdOa",
+  "doctorId": 778899,
+  "hospital": "Oceanview Multispeciality Hospital",
+  "date": {
+    "$date": "2025-06-27T00:00:00.000Z"
+  },
+  "slotNumber": "09:00",
+  "reason": "Routine health check-up",
+  "appStatus": "Rescheduled",
+  "consultStatus": "Online",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "appointmentId": "5l5F0pda",
+  "createdAt": {
+    "$date": "2025-06-30T17:35:16.999Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-04T09:34:13.843Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6862cd07caaee17bb0e871a9"
+  },
+  "patientId": "QOXdOa",
+  "doctorId": 778899,
+  "hospital": "Oceanview Multispeciality Hospital",
+  "date": {
+    "$date": "2025-07-03T10:00:00.000Z"
+  },
+  "slotNumber": "SLOT03",
+  "reason": "Routine health check-up",
+  "appStatus": "Pending",
+  "consultStatus": "Online",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "appointmentId": "xXObbwFM",
+  "createdAt": {
+    "$date": "2025-06-30T17:44:39.456Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-30T17:44:39.456Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6862f38e1390c4efdab52d72"
+  },
+  "patientId": "dYRPDR",
+  "doctorId": 778899,
+  "date": {
+    "$date": "2025-07-01T00:00:00.000Z"
+  },
+  "slotNumber": "13:00",
+  "reason": "Cold and Cough",
+  "appStatus": "Rejected",
+  "consultStatus": "Online",
+  "payStatus": "Unpaid",
+  "prescription": "",
+  "reasonForReject": "",
+  "MeetLink": "https://meet.jit.si/HAMS_778899_dYRPDR_1751315342612",
+  "appointmentId": "LIy9BP-r",
+  "createdAt": {
+    "$date": "2025-06-30T20:29:02.624Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-04T09:33:36.383Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6862f4471390c4efdab52d8b"
+  },
+  "patientId": "dYRPDR",
+  "doctorId": 778899,
+  "Hospital": "Oceanview Multispeciality Hospital",
+  "date": {
+    "$date": "2025-07-01T00:00:00.000Z"
+  },
+  "slotNumber": "16:00",
+  "reason": "Cold and Cough",
+  "appStatus": "Pending",
+  "consultStatus": "Online",
+  "payStatus": "Unpaid",
+  "prescription": "",
+  "reasonForReject": "",
+  "MeetLink": "https://meet.jit.si/HAMS_778899_dYRPDR_1751315527168",
+  "appointmentId": "AXMeDuwH",
+  "createdAt": {
+    "$date": "2025-06-30T20:32:07.171Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-30T20:32:07.171Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6862f5041390c4efdab52da2"
+  },
+  "patientId": "dYRPDR",
+  "doctorId": 778899,
+  "Hospital": "Oceanview Multispeciality Hospital",
+  "date": {
+    "$date": "2025-07-01T00:00:00.000Z"
+  },
+  "slotNumber": "10:00",
+  "reason": "Cold and Cough",
+  "appStatus": "Pending",
+  "consultStatus": "Offline",
+  "payStatus": "Unpaid",
+  "prescription": "",
+  "reasonForReject": "",
+  "MeetLink": "Link",
+  "appointmentId": "5JLmWs8O",
+  "createdAt": {
+    "$date": "2025-07-01T20:35:16.801Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-01T20:35:16.801Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6863d4c80f2a701c90df49c3"
+  },
+  "patientId": "dYRPDR",
+  "doctorId": 778899,
+  "date": {
+    "$date": "2025-07-01T00:00:00.000Z"
+  },
+  "slotNumber": "09:00",
+  "reason": "Fever",
+  "appStatus": "Pending",
+  "consultStatus": "Online",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "appointmentId": "oYxX_1R_",
+  "createdAt": {
+    "$date": "2025-07-01T12:30:01.008Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-01T12:30:01.008Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68641e1c52b283edc55142fd"
+  },
+  "patientId": "dYRPDR",
+  "doctorId": 778899,
+  "date": {
+    "$date": "2025-07-01T00:00:00.000Z"
+  },
+  "slotNumber": "16:00",
+  "reason": "Cold and Cough",
+  "appStatus": "Request for rescheduling",
+  "consultStatus": "Online",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "appointmentId": "f1KRsa",
+  "createdAt": {
+    "$date": "2025-07-01T17:42:52.369Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-01T17:42:52.369Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68653e00a7499cfdc0a76791"
+  },
+  "patientId": "8WvOC6",
+  "doctorId": 778899,
+  "date": {
+    "$date": "2025-07-01T00:00:00.000Z"
+  },
+  "slotNumber": "13:00",
+  "reason": "General Checkup",
+  "appStatus": "Completed",
+  "consultStatus": "Online",
+  "payStatus": "Unpaid",
+  "prescription": "Don't drink",
+  "reasonForReject": "",
+  "appointmentId": "FI40T2",
+  "createdAt": {
+    "$date": "2025-07-02T14:11:12.063Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-02T14:11:12.063Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68663c430259ed52648ac9d8"
+  },
+  "patientId": "dYRPDR",
+  "doctorId": 778899,
+  "date": {
+    "$date": "2025-07-03T00:00:00.000Z"
+  },
+  "slotNumber": "09:30",
+  "reason": "Cold and Cough",
+  "appStatus": "Rescheduled",
+  "consultStatus": "Offline",
+  "payStatus": "Unpaid",
+  "prescription": "",
+  "reasonForReject": "",
+  "meetLink": "",
+  "appointmentId": "wr2DFR",
+  "createdAt": {
+    "$date": "2025-07-03T08:16:03.728Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-03T16:40:56.880Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6866555f936a566efeae1350"
+  },
+  "patientId": "dYRPDR",
+  "doctorId": 778899,
+  "date": {
+    "$date": "2025-07-03T00:00:00.000Z"
+  },
+  "slotNumber": "09:00",
+  "reason": "General Checkup",
+  "appStatus": "Pending",
+  "consultStatus": "Online",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "meetLink": "https://meet.jit.si/HAMS_778899_09-00_1751536991787",
+  "appointmentId": "KmuTEA",
+  "createdAt": {
+    "$date": "2025-07-03T10:03:11.788Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-03T10:03:11.788Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6866592e70395cad4ee8342c"
+  },
+  "patientId": "QOXdOa",
+  "doctorId": 778899,
+  "hospital": "Oceanview Multispeciality Hospital",
+  "date": {
+    "$date": "2025-07-05T10:00:00.000Z"
+  },
+  "slotNumber": "SLOT03",
+  "reason": "Routine health check-up",
+  "appStatus": "Pending",
+  "consultStatus": "Online",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "meetLink": "https://meet.jit.si/HAMS_778899_SLOT03_1751537966110",
+  "appointmentId": "LdvgFN",
+  "createdAt": {
+    "$date": "2025-07-03T10:19:26.135Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-03T10:19:26.135Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686659c66437feea80daee80"
+  },
+  "patientId": "dYRPDR",
+  "doctorId": 778899,
+  "date": {
+    "$date": "2025-07-03T00:00:00.000Z"
+  },
+  "slotNumber": "09:00",
+  "reason": "Cold and Cough",
+  "appStatus": "Pending",
+  "consultStatus": "Offline",
+  "payStatus": "Unpaid",
+  "prescription": "",
+  "reasonForReject": "",
+  "meetLink": "Link",
+  "appointmentId": "nSrbvE",
+  "createdAt": {
+    "$date": "2025-07-03T10:21:58.900Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-03T10:21:58.900Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6866c754071f50a282f352a0"
+  },
+  "patientId": "dYRPDR",
+  "doctorId": 778899,
+  "date": {
+    "$date": "2025-07-03T00:00:00.000Z"
+  },
+  "slotNumber": "09:15",
+  "reason": "Fever",
+  "appStatus": "Pending",
+  "consultStatus": "Online",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "meetLink": "https://meet.jit.si/HAMS_778899_dYRPDR_1751566164604",
+  "appointmentId": "CUiqck",
+  "createdAt": {
+    "$date": "2025-07-03T18:09:24.609Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-03T18:09:24.609Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6866c7ddf8b2317f1c40f87f"
+  },
+  "patientId": "sgkvTo",
+  "doctorId": 778899,
+  "date": {
+    "$date": "2025-07-03T00:00:00.000Z"
+  },
+  "slotNumber": "09:45",
+  "reason": "Fever",
+  "appStatus": "Pending",
+  "consultStatus": "Online",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "meetLink": "https://meet.jit.si/HAMS_778899_sgkvTo_1751566301402",
+  "appointmentId": "Dubmag",
+  "createdAt": {
+    "$date": "2025-07-03T18:11:41.409Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-03T18:11:41.409Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6866c93f9be5dea74c0edd52"
+  },
+  "patientId": "Wc11D_",
+  "doctorId": 778899,
+  "date": {
+    "$date": "2025-07-06T00:00:00.000Z"
+  },
+  "slotNumber": "09:00",
+  "reason": "General Checkup",
+  "appStatus": "Pending",
+  "consultStatus": "Offline",
+  "payStatus": "Unpaid",
+  "prescription": "",
+  "reasonForReject": "",
+  "meetLink": "Link",
+  "appointmentId": "GXxISB",
+  "createdAt": {
+    "$date": "2025-07-03T18:17:35.242Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-03T18:17:35.242Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6866ca259be5dea74c0edd79"
+  },
+  "patientId": "Wc11D_",
+  "doctorId": 778899,
+  "date": {
+    "$date": "2025-07-06T00:00:00.000Z"
+  },
+  "slotNumber": "09:15",
+  "reason": "General Checkup",
+  "appStatus": "Pending",
+  "consultStatus": "Offline",
+  "payStatus": "Unpaid",
+  "prescription": "",
+  "reasonForReject": "",
+  "meetLink": "Link",
+  "appointmentId": "NueHMj",
+  "createdAt": {
+    "$date": "2025-07-03T18:21:25.321Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-03T18:21:25.321Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6867689421e2a62270d86f39"
+  },
+  "patientId": "dYRPDR",
+  "doctorId": 778899,
+  "date": {
+    "$date": "2025-07-04T00:00:00.000Z"
+  },
+  "slotNumber": "09:00",
+  "reason": "Fever",
+  "appStatus": "Pending",
+  "consultStatus": "Online",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "meetLink": "https://meet.jit.si/HAMS_778899_dYRPDR_1751607444604",
+  "appointmentId": "qYYBHG",
+  "createdAt": {
+    "$date": "2025-07-04T05:37:24.615Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-04T05:37:24.615Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686788abcea307a02279a6d4"
+  },
+  "patientId": "969151",
+  "doctorId": 64609,
+  "date": {
+    "$date": "2025-07-04T00:00:00.000Z"
+  },
+  "slotNumber": "14:00",
+  "reason": "Cancer Screening",
+  "appStatus": "Completed",
+  "consultStatus": "Offline",
+  "payStatus": "Unpaid",
+  "prescription": "Two to three visits in the upcoming month. Tablet A - 3 doses\n",
+  "reasonForReject": "",
+  "meetLink": "Link",
+  "appointmentId": "VnZ4Ie",
+  "createdAt": {
+    "$date": "2025-07-04T07:54:19.518Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-04T07:55:43.520Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68678cce92fe325cda914ce1"
+  },
+  "patientId": "GkGLKT",
+  "doctorId": 64609,
+  "date": {
+    "$date": "2025-07-04T00:00:00.000Z"
+  },
+  "slotNumber": "10:00",
+  "reason": "Cancer Screening",
+  "appStatus": "Rescheduled",
+  "consultStatus": "Offline",
+  "payStatus": "Unpaid",
+  "prescription": "",
+  "reasonForReject": "",
+  "meetLink": "Link",
+  "appointmentId": "lo9MTF",
+  "createdAt": {
+    "$date": "2025-07-04T08:11:58.081Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-04T08:13:32.815Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68678cd092fe325cda914ce5"
+  },
+  "patientId": "GkGLKT",
+  "doctorId": 64609,
+  "date": {
+    "$date": "2025-07-04T00:00:00.000Z"
+  },
+  "slotNumber": "10:00",
+  "reason": "Cancer Screening",
+  "appStatus": "Completed",
+  "consultStatus": "Offline",
+  "payStatus": "Unpaid",
+  "prescription": "Tablet - A - 3doses",
+  "reasonForReject": "",
+  "meetLink": "Link",
+  "appointmentId": "AIUMDv",
+  "createdAt": {
+    "$date": "2025-07-04T08:12:00.596Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-04T08:13:50.385Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6867901e92fe325cda914d42"
+  },
+  "patientId": "GkGLKT",
+  "doctorId": 64609,
+  "date": {
+    "$date": "2025-07-04T00:00:00.000Z"
+  },
+  "slotNumber": "12:15",
+  "reason": "Chemotherapy",
+  "appStatus": "Pending",
+  "consultStatus": "Online",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "meetLink": "https://meet.jit.si/HAMS_64609_GkGLKT_1751617566051",
+  "appointmentId": "nRvPjj",
+  "createdAt": {
+    "$date": "2025-07-04T08:26:06.052Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-04T08:26:06.052Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68679f7274d6a3366f1bd82b"
+  },
+  "patientId": "dYRPDR",
+  "doctorId": 778899,
+  "date": {
+    "$date": "2025-07-04T00:00:00.000Z"
+  },
+  "slotNumber": "09:15",
+  "reason": "Fever",
+  "appStatus": "Pending",
+  "consultStatus": "Online",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "meetLink": "https://meet.jit.si/HAMS_778899_dYRPDR_1751621490639",
+  "appointmentId": "1-Yjmb",
+  "createdAt": {
+    "$date": "2025-07-04T09:31:30.651Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-04T09:31:30.651Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6867b054beb3e39e05c74499"
+  },
+  "patientId": "dYRPDR",
+  "doctorId": 778899,
+  "date": {
+    "$date": "2025-07-04T00:00:00.000Z"
+  },
+  "slotNumber": "09:30",
+  "reason": "General Checkup",
+  "appStatus": "Pending",
+  "consultStatus": "Offline",
+  "payStatus": "Unpaid",
+  "prescription": "",
+  "reasonForReject": "",
+  "meetLink": "Link",
+  "appointmentId": "Ahyldk",
+  "createdAt": {
+    "$date": "2025-07-04T10:43:32.392Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-04T10:43:32.392Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6868ea72e951d8e162d02201"
+  },
+  "patientId": "dYRPDR",
+  "doctorId": 778899,
+  "date": {
+    "$date": "2025-07-05T00:00:00.000Z"
+  },
+  "slotNumber": "09:00",
+  "reason": "Fever",
+  "appStatus": "Pending",
+  "consultStatus": "Offline",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "meetLink": "Link",
+  "appointmentId": "ayQsxq",
+  "createdAt": {
+    "$date": "2025-07-05T09:03:46.067Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-05T09:03:46.067Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686a32fdc0abb971bd90f232"
+  },
+  "patientId": "dYRPDR",
+  "doctorId": 778899,
+  "date": {
+    "$date": "2025-07-06T00:00:00.000Z"
+  },
+  "slotNumber": "13:45",
+  "reason": "Fever",
+  "appStatus": "Pending",
+  "consultStatus": "Online",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "meetLink": "https://meet.jit.si/HAMS_778899_dYRPDR_1751790333979",
+  "appointmentId": "xvD2pJ",
+  "createdAt": {
+    "$date": "2025-07-06T08:25:33.990Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-06T08:25:33.990Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686a62006bb4a5d850c06b18"
+  },
+  "patientId": "dYRPDR",
+  "doctorId": 778899,
+  "date": {
+    "$date": "2025-07-05T00:00:00.000Z"
+  },
+  "slotNumber": "09:30",
+  "reason": "Fever",
+  "appStatus": "Pending",
+  "consultStatus": "Offline",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "meetLink": "Link",
+  "appointmentId": "PxcNkQ",
+  "createdAt": {
+    "$date": "2025-07-06T11:46:08.969Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-06T11:47:56.566Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686a62056bb4a5d850c06b1c"
+  },
+  "patientId": "dYRPDR",
+  "doctorId": 778899,
+  "date": {
+    "$date": "2025-07-05T00:00:00.000Z"
+  },
+  "slotNumber": "09:30",
+  "reason": "Fever",
+  "appStatus": "Rejected",
+  "consultStatus": "Offline",
+  "payStatus": "Paid",
+  "prescription": "",
+  "reasonForReject": "",
+  "meetLink": "Link",
+  "appointmentId": "aUJDGH",
+  "createdAt": {
+    "$date": "2025-07-06T11:46:13.379Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-06T11:48:39.001Z"
+  },
+  "__v": 0
+}]
