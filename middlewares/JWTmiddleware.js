@@ -20,7 +20,7 @@ export function generateToken(user) {
     phone: user.phone,
     role: user.role || determineUserRole(user),
     name: user.name,    
-    email: user.email,                           // optional
+    email: user.email,                           
     photo: user.photo,
   };
 
