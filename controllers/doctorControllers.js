@@ -1,3 +1,4 @@
+import { response } from "express";
 import Appointment from "../models/appointmentModel.js";
 import Doctor from "../models/doctorModel.js";
 import Patient from "../models/patientModel.js";
@@ -351,24 +352,42 @@ class DoctorControllers {
     }
   }
 
-  async getRequestedAppointments(req, res) {
+ async getRequestedAppointments(req, res){
     const doctorId = req.user?.id;
 
     try {
       const appointments = await Appointment.find({ 
         doctorId: doctorId,
         appStatus: 'Requested'
-      }).populate('patientId', 'name phone email');
-
-      res.status(200).json({ appointments });
-    } catch (error) {
-      console.error("Error fetching requested appointments:", error);
-      res.status(500).json({ 
-        message: "Error fetching requested appointments", 
-        error: error.message 
       });
+
+      const responseData = [];
+
+      for (const app of appointments) {
+        // Assuming app.patientId is an ObjectId referring to Patient
+        const patientId = app.patientId;
+        const patient = await Patient.findOne({patientId}); 
+
+        responseData.push({
+          appointmentId: app.appointmentId,
+          patientId: {
+            name: patient?.name || "Unknown"
+          },
+          reason: app.reason,
+          date: app.date,
+          slotNumber: app.slotNumber
+        });
+      }
+
+      res.status(200).json({ appointments: responseData });
+
+    } catch (err) {
+      console.error("Error fetching appointment requests:", err);
+      res.status(500).json({ error: "Failed to fetch appointment requests." });
     }
-  }
+  };
+
+
 }
 
 export default new DoctorControllers();
