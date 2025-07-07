@@ -8,7 +8,6 @@ import { startReminderCronJob } from './services/reminderService.js';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-// Load environment variables
 
 dotenv.config();
 
@@ -27,13 +26,11 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Health-check route
 app.get('/', (req, res) => {
   res.send({ message: 'Route working perfectly' });
 });
 
 startReminderCronJob();
-// Mount domain routes
 app.use('/doctors', doctorRoutes);
 app.use('/patients', patientRoutes);
 app.use('/appointments', appointmentRoutes);

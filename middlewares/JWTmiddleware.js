@@ -21,7 +21,7 @@ export function generateToken(user) {
     role: user.role || determineUserRole(user),
     name: user.name,    
     email: user.email,                           
-    photo: user.photo,
+    photo: user.photo || null,
   };
 
   return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "7d" });

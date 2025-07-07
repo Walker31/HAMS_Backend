@@ -6,22 +6,18 @@ import upload from '../middlewares/multer.js';
 
 const router = express.Router();
 
-// AUTH routes
 router.post("/login", authController.doctorLogin);
 router.post("/signup", upload.single("photo"),authController.doctorSignup);
 
-// Doctor location-based queries
 router.get('/nearby/:lat/:lon', doctorControllers.getNearbyDoctors);
 router.get('/top/:lat/:lon', doctorControllers.getTopDoctorsByLocation);
 
-// Doctor profile and appointments
 router.get('/:doctorId/appointments', doctorControllers.getAppointments);
 router.get('/profile',authenticateToken, doctorControllers.profile);
 router.put('/update/:id', doctorControllers.updateDoctorOverview);
 router.get('/requested-appointments', authenticateToken, doctorControllers.getRequestedAppointments);
 router.get('/:doctorId/profile', doctorControllers.publicDoctorProfile);
 
-// Doctor slots management
 router.post('/:doctorId/slots', doctorControllers.updateAvailableSlots);
 router.get('/:doctorId/slots', doctorControllers.getAvailableSlots);
 router.get('/:doctorId/booked-slots', doctorControllers.getBookedSlots);
