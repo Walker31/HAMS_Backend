@@ -230,7 +230,6 @@ class DoctorControllers {
     }
   }
   async editProfile(req, res) {
-    console.log("input data:", req.body)
     if (req.body.location && typeof req.body.location === "string") {
         try {
           req.body.location = JSON.parse(req.body.location);
@@ -261,7 +260,6 @@ class DoctorControllers {
         );
         updatedData.photo = photoData;
       }
-      console.log(updatedData)
       const updatedDoctor = await Doctor.findOneAndUpdate(
         {doctorId: doctorId},
         { $set: updatedData },
@@ -300,7 +298,6 @@ class DoctorControllers {
         };
       }));
       res.status(200).json({ requests: formattedRequests });
-      console.log(formattedRequests);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -351,6 +348,25 @@ class DoctorControllers {
       }
     } catch (error) {
       res.status(500).json({ message: error.message });
+    }
+  }
+
+  async getRequestedAppointments(req, res) {
+    const doctorId = req.user?.id;
+
+    try {
+      const appointments = await Appointment.find({ 
+        doctorId: doctorId,
+        appStatus: 'Requested'
+      }).populate('patientId', 'name phone email');
+
+      res.status(200).json({ appointments });
+    } catch (error) {
+      console.error("Error fetching requested appointments:", error);
+      res.status(500).json({ 
+        message: "Error fetching requested appointments", 
+        error: error.message 
+      });
     }
   }
 }

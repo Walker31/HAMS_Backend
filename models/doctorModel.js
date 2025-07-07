@@ -76,6 +76,7 @@ const DoctorSchema = new mongoose.Schema(
       default: 3,
       min: 0,
       max: 5,
+      set: (val) => Math.round(val * 100) / 100,
     },
     basicFee: {
       type: Number,
