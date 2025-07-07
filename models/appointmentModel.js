@@ -35,8 +35,18 @@ const AppointmentSchema = new mongoose.Schema({
   },
   appStatus: {
     type: String,
-    enum: ['Pending', 'Confirmed', 'Cancelled', 'Completed', 'Rescheduled', 'Incomplete','Rejected'],
-    default: 'Pending',
+    enum: [
+      'Requested',           // Initial booking
+      'Pending',             // Awaiting doctor confirmation
+      'Confirmed',           // Doctor confirmed
+      'Request for Rescheduling', // Patient requested reschedule
+      'Rescheduled',         // Appointment rescheduled
+      'Completed',           // Appointment finished
+      'Cancelled',           // Patient/doctor cancelled
+      'Rejected',            // Doctor rejected
+      'Incomplete'           // Appointment not completed
+    ],
+    default: 'Requested',
   },
   consultStatus: {
     type: String,
@@ -53,6 +63,10 @@ const AppointmentSchema = new mongoose.Schema({
     default: '',
   },
   reasonForReject: {
+    type: String,
+    default: '',
+  },
+  rescheduleReason: {
     type: String,
     default: '',
   },

@@ -875,10 +875,21 @@
       "13:45"
     ],
     "2025-07-04": [
-      "09:00"
+      "09:00",
+      "09:15",
+      "09:30",
+      "09:45",
+      "10:00"
+    ],
+    "2025-07-05": [
+      "09:00",
+      "09:15",
+      "09:30",
+      "09:45",
+      "10:00"
     ]
   },
-  "averageRating": 3.5,
+  "averageRating": 4.428571428571429,
   "password": "$2b$10$g0Y.yvbwX1iMVZA9Xf5JyeETYjEy35wQb4k.2Q.LVb4k4VKchMDOG",
   "Hospital": "Oceanview Multispeciality Hospital",
   "doctorId": 778899,
@@ -886,9 +897,9 @@
     "$date": "2025-06-25T06:01:39.084Z"
   },
   "updatedAt": {
-    "$date": "2025-07-04T04:25:12.467Z"
+    "$date": "2025-07-06T08:26:02.682Z"
   },
-  "__v": 13,
+  "__v": 15,
   "basicFee": 400,
   "experience": 4
 },
@@ -4158,4 +4169,57 @@
     "$date": "2025-07-03T06:16:04.146Z"
   },
   "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686787a8cea307a02279a681"
+  },
+  "name": "SHRUDEEP S",
+  "phone": 9444721250,
+  "email": "107122105@nitt.edu",
+  "gender": "Male",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      80.2091522,
+      13.1189613
+    ]
+  },
+  "medicalReg": "1234567890",
+  "specialization": "Oncology",
+  "photo": {
+    "publicId": "my-profile/igawdciq5tds7yf98uli",
+    "url": "https://res.cloudinary.com/dpj8o6x5s/image/upload/v1751615402/my-profile/igawdciq5tds7yf98uli.jpg"
+  },
+  "overview": "",
+  "availableSlots": {
+    "2025-07-04": [
+      "09:15",
+      "11:30",
+      "11:45",
+      "10:00",
+      "12:00",
+      "12:15",
+      "10:30",
+      "14:00",
+      "15:45"
+    ]
+  },
+  "averageRating": 3,
+  "basicFee": 310,
+  "experience": 10,
+  "password": "$2b$10$48UW0yNN2CLmRnr5FFLkOuzI/8/yzR1L9ItR8kQ8kPr9E0QZngZ8K",
+  "workingHours": {
+    "from": "10:00",
+    "to": "17:00"
+  },
+  "Hospital": "Apollo Hospitals Greams Road",
+  "doctorId": 64609,
+  "createdAt": {
+    "$date": "2025-07-04T07:50:00.984Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-04T07:52:25.619Z"
+  },
+  "__v": 1
 }]

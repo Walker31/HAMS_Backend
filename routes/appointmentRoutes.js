@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.post("/book",authenticateToken, AppointmentController.bookAppointment);
 
+router.put("/respond", authenticateToken, AppointmentController.respondToAppointmentRequest);
 
 router.put("/reschedule", AppointmentController.rescheduleAppointment);
 router.put("/cancel", AppointmentController.cancelAppointment);

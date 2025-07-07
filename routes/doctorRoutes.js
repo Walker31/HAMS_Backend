@@ -18,6 +18,7 @@ router.get('/top/:lat/:lon', doctorControllers.getTopDoctorsByLocation);
 router.get('/:doctorId/appointments', doctorControllers.getAppointments);
 router.get('/profile',authenticateToken, doctorControllers.profile);
 router.put('/update/:id', doctorControllers.updateDoctorOverview);
+router.get('/requested-appointments', authenticateToken, doctorControllers.getRequestedAppointments);
 router.get('/:doctorId/profile', doctorControllers.publicDoctorProfile);
 
 // Doctor slots management
