@@ -111,7 +111,7 @@ class reviewController {
       await Doctor.findOneAndUpdate(
         { doctorId: deletedReview.doctorId },
         { 
-          avgRating: avgRating,
+          averageRating: avgRating,
           reviewsCount: reviews.length 
         }
       );
@@ -126,7 +126,7 @@ class reviewController {
     try {
       const { reviewId } = req.params;
       const { rating, comment } = req.body;
-      const updatedReview = await Review.findByIdAndUpdate(
+      const updatedReview = await Review.findOneAndUpdate(
         reviewId,
         { rating, comment },
         { new: true }
@@ -152,32 +152,6 @@ class reviewController {
       res.status(500).json({ message: "Failed to update review", error });
     }
   }
-
-  async getReviewsByPatient(req, res) {
-  try {
-    const { patientId } = req.params;
-
-    const reviews = await Review.find({ patientId });
-    const doctorIds = reviews.map(r => r.doctorId);
-    const doctors = await Doctor.find({ doctorId: { $in: doctorIds } }, 'doctorId name');
-
-    const doctorMap = {};
-    doctors.forEach(doc => {
-      doctorMap[doc.doctorId] = doc.name;
-    });
-
-    const enrichedReviews = reviews.map(r => ({
-      ...r.toObject(),
-      doctorName: doctorMap[r.doctorId] || 'Unknown Doctor'
-    }));
-
-    res.status(200).json(enrichedReviews);
-  } catch (error) {
-    console.error("❌ Error in getReviewsByPatient:", error);
-    res.status(500).json({ message: "Failed to fetch reviews by patient", error: error.message });
-  }
-}
-
 
   async getReviewsByPatient(req, res) {
     try {

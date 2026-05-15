@@ -5,6 +5,7 @@ import hospcontrollers from '../controllers/hospitalControllers.js'
 const router = express.Router();
 
 router.post("/signup", controllers.hospitalSignup);
+router.post("/login", controllers.hospitalLogin);
 router.get("/getAll/:lat/:lon",hospcontrollers.getNearbyHospital);
 
 export default router;

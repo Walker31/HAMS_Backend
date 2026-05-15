@@ -14,7 +14,6 @@ const HospitalSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      required: true,
     },
     phone: {
       type: String,

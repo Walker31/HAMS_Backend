@@ -1,0 +1,180 @@
+[{
+  "_id": {
+    "$oid": "68a23176b9e2650c515ef987"
+  },
+  "projectName": "To automate document screening and risk analysis u",
+  "workflow": "defaultWorkflow",
+  "template": "Third-party AI System",
+  "owner": {
+    "$oid": "68a22d1a4d30ef2f613bab6c"
+  },
+  "status": "Opened",
+  "projectId": "P-0956",
+  "createdAt": {
+    "$date": "2025-08-17T19:45:58.326Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-17T19:45:58.326Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a231beb9e2650c515ef9aa"
+  },
+  "projectName": "To automate document screening and risk analysis u",
+  "workflow": "defaultWorkflow",
+  "template": "Third-party AI System",
+  "owner": {
+    "$oid": "68a22d1a4d30ef2f613bab6c"
+  },
+  "status": "Opened",
+  "projectId": "P-4070",
+  "createdAt": {
+    "$date": "2025-08-17T19:47:10.362Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-17T19:47:10.362Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a2321eb9e2650c515ef9cd"
+  },
+  "projectName": "To automate document screening and risk analysis u",
+  "workflow": "defaultWorkflow",
+  "template": "Third-party AI System",
+  "owner": {
+    "$oid": "68a22d1a4d30ef2f613bab6c"
+  },
+  "status": "Opened",
+  "projectId": "P-1265",
+  "createdAt": {
+    "$date": "2025-08-17T19:48:46.938Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-17T19:48:46.938Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a232e3b9e2650c515ef9f0"
+  },
+  "projectName": "To automate document screening and risk analysis u",
+  "workflow": "defaultWorkflow",
+  "template": "Third-party AI System",
+  "owner": {
+    "$oid": "68a22d1a4d30ef2f613bab6c"
+  },
+  "status": "Opened",
+  "projectId": "P-1170",
+  "createdAt": {
+    "$date": "2025-08-17T19:52:03.938Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-17T19:52:03.938Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a23355b9e2650c515efa13"
+  },
+  "projectName": "To automate document screening and risk analysis u",
+  "workflow": "defaultWorkflow",
+  "template": "Third-party AI System",
+  "owner": {
+    "$oid": "68a22d1a4d30ef2f613bab6c"
+  },
+  "status": "Opened",
+  "projectId": "P-5431",
+  "createdAt": {
+    "$date": "2025-08-17T19:53:57.031Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-17T19:53:57.031Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a233a9b9e2650c515efa36"
+  },
+  "projectName": "To automate document screening and risk analysis u",
+  "workflow": "defaultWorkflow",
+  "template": "Third-party AI System",
+  "owner": {
+    "$oid": "68a22d1a4d30ef2f613bab6c"
+  },
+  "status": "Opened",
+  "projectId": "P-8518",
+  "createdAt": {
+    "$date": "2025-08-17T19:55:21.969Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-17T19:55:21.969Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a233f4b9e2650c515efa59"
+  },
+  "projectName": "To automate document screening and risk analysis u",
+  "workflow": "defaultWorkflow",
+  "template": "Third-party AI System",
+  "owner": {
+    "$oid": "68a22d1a4d30ef2f613bab6c"
+  },
+  "status": "Opened",
+  "projectId": "P-9871",
+  "createdAt": {
+    "$date": "2025-08-17T19:56:36.371Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-17T19:56:36.371Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a23435b9e2650c515efa7c"
+  },
+  "projectName": "To automate document screening and risk analysis u",
+  "workflow": "defaultWorkflow",
+  "template": "Third-party AI System",
+  "owner": {
+    "$oid": "68a22d1a4d30ef2f613bab6c"
+  },
+  "status": "Opened",
+  "projectId": "P-9738",
+  "createdAt": {
+    "$date": "2025-08-17T19:57:41.266Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-17T19:57:41.266Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a23504b9e2650c515efafc"
+  },
+  "projectName": "To automate document screening and risk analysis u",
+  "workflow": "defaultWorkflow",
+  "template": "Third-party AI System",
+  "owner": {
+    "$oid": "68a22d1a4d30ef2f613bab6c"
+  },
+  "status": "Opened",
+  "projectId": "P-7227",
+  "createdAt": {
+    "$date": "2025-08-17T20:01:08.529Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-17T20:01:08.529Z"
+  },
+  "__v": 0
+}]

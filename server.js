@@ -1,4 +1,5 @@
 import express from 'express';
+import authRoutes from './routes/authRoutes.js';
 import patientRoutes from './routes/patientRoutes.js';
 import doctorRoutes from './routes/doctorRoutes.js';
 import appointmentRoutes from './routes/appointmentRoutes.js';
@@ -31,6 +32,7 @@ app.get('/', (req, res) => {
 });
 
 startReminderCronJob();
+app.use('/auth', authRoutes);
 app.use('/doctors', doctorRoutes);
 app.use('/patients', patientRoutes);
 app.use('/appointments', appointmentRoutes);

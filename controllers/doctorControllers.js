@@ -1,4 +1,3 @@
-import { response } from "express";
 import Appointment from "../models/appointmentModel.js";
 import Doctor from "../models/doctorModel.js";
 import Patient from "../models/patientModel.js";

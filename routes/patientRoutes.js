@@ -6,8 +6,20 @@ import upload from '../middlewares/multer.js';
 
 const router = express.Router();
 
+// Signup route with error handling for multer
+router.post('/signup', (req, res, next) => {
+  console.log("POST /signup received");
+  upload.single("photo")(req, res, (err) => {
+    if (err) {
+      console.error("Multer error:", err.message);
+      return res.status(400).json({ message: `File upload error: ${err.message}` });
+    }
+    console.log("Multer processing completed, passing to authController");
+    next();
+  });
+}, authController.patientSignup);
+
 router.post('/login',authController.patientLogin);
-router.post('/signup',upload.single("photo"),authController.patientSignup);
 router.get('/profile',authenticateToken,patientController.profile);
 router.get('/appointments',authenticateToken,patientController.allAppointments);
 router.post('/appointments/request-reschedule', authenticateToken, patientController.requestReschedule);

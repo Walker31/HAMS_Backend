@@ -1,0 +1,202 @@
+[{
+  "_id": {
+    "$oid": "68a22d1a4d30ef2f613bab6c"
+  },
+  "name": "Admin User",
+  "email": "admin@governance.com",
+  "googleId": null,
+  "password": "$2a$12$DBIFYq45Mu6wMJ3IfNIRMumSER4FY7PKWR1Tc1WmOAa9odcQYL3Wu",
+  "role": "admin",
+  "isActive": true,
+  "lastLogin": {
+    "$date": "2025-08-22T09:31:05.572Z"
+  },
+  "avatar": "https://ui-avatars.com/api/?name=Admin%20User&background=random",
+  "createdAt": {
+    "$date": "2025-08-17T19:27:22.292Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-22T09:31:05.581Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a22d1a4d30ef2f613bab6e"
+  },
+  "name": "John Doe",
+  "email": "john@example.com",
+  "googleId": null,
+  "password": "$2a$12$WM..3UMmOCFsLTiUJ0AsquKx/3c6fOKPTDdd1PuDHTrlrWjhYJVHK",
+  "role": "user",
+  "isActive": true,
+  "lastLogin": null,
+  "avatar": "https://ui-avatars.com/api/?name=John%20Doe&background=random",
+  "createdAt": {
+    "$date": "2025-08-17T19:27:22.630Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-17T19:27:22.630Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a22d1a4d30ef2f613bab70"
+  },
+  "name": "Jane Smith",
+  "email": "jane@example.com",
+  "googleId": null,
+  "password": "$2a$12$72nsf7e2xSDUCRiL.u28K.vQRYRy2V3Wi8wj6gCEPsPbKd1FBmCYW",
+  "role": "user",
+  "isActive": true,
+  "lastLogin": null,
+  "avatar": "https://ui-avatars.com/api/?name=Jane%20Smith&background=random",
+  "createdAt": {
+    "$date": "2025-08-17T19:27:22.955Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-17T19:27:22.955Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a22d1b4d30ef2f613bab72"
+  },
+  "name": "Bob Johnson",
+  "email": "bob@example.com",
+  "googleId": null,
+  "password": "$2a$12$n7JaIKeK1YdkDVs88reb5u3k/j/mpW/LS4hthlOgpQ29HYzFj.FCq",
+  "role": "user",
+  "isActive": true,
+  "lastLogin": null,
+  "avatar": "https://ui-avatars.com/api/?name=Bob%20Johnson&background=random",
+  "createdAt": {
+    "$date": "2025-08-17T19:27:23.275Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-17T19:27:23.275Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a22d1b4d30ef2f613bab74"
+  },
+  "name": "Alice Brown",
+  "email": "alice@example.com",
+  "googleId": null,
+  "password": "$2a$12$VbLo0FVsBKVLe1gqWOVPCeoi.fZBYsuF5RyPVVZtlp827gQRz5WjK",
+  "role": "user",
+  "isActive": true,
+  "lastLogin": null,
+  "avatar": "https://ui-avatars.com/api/?name=Alice%20Brown&background=random",
+  "createdAt": {
+    "$date": "2025-08-17T19:27:23.597Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-17T19:27:23.597Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a22d1b4d30ef2f613bab76"
+  },
+  "name": "Charlie Wilson",
+  "email": "charlie@example.com",
+  "googleId": null,
+  "password": "$2a$12$hWw2ZyyqtqpV482aFhGqk.2Ygdio/OL95uuHMf.nFR071zDKDpnSq",
+  "role": "user",
+  "isActive": true,
+  "lastLogin": null,
+  "avatar": "https://ui-avatars.com/api/?name=Charlie%20Wilson&background=random",
+  "createdAt": {
+    "$date": "2025-08-17T19:27:23.920Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-17T19:27:23.920Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a22d1c4d30ef2f613bab78"
+  },
+  "name": "Diana Davis",
+  "email": "diana@example.com",
+  "googleId": null,
+  "password": "$2a$12$3yYlSyUEWygRQZu4eC/mo.SGBFe13do/tObGoeqKN.92flkJh29r6",
+  "role": "user",
+  "isActive": true,
+  "lastLogin": null,
+  "avatar": "https://ui-avatars.com/api/?name=Diana%20Davis&background=random",
+  "createdAt": {
+    "$date": "2025-08-17T19:27:24.239Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-17T19:27:24.239Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a22d1c4d30ef2f613bab7a"
+  },
+  "name": "Edward Miller",
+  "email": "edward@example.com",
+  "googleId": null,
+  "password": "$2a$12$RlLJzIBic35QAVq/lmCCwelzc1Eoasg.4ykJWBhqUHI5v2Z5h.x5i",
+  "role": "user",
+  "isActive": true,
+  "lastLogin": null,
+  "avatar": "https://ui-avatars.com/api/?name=Edward%20Miller&background=random",
+  "createdAt": {
+    "$date": "2025-08-17T19:27:24.581Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-17T19:27:24.581Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a22d1c4d30ef2f613bab7c"
+  },
+  "name": "Fiona Garcia",
+  "email": "fiona@example.com",
+  "googleId": null,
+  "password": "$2a$12$YaHtpoGVmc5NBnBNhRBF4uBQuBJRT/oonPq2ut6v0BTZAm7mLgMbK",
+  "role": "user",
+  "isActive": true,
+  "lastLogin": null,
+  "avatar": "https://ui-avatars.com/api/?name=Fiona%20Garcia&background=random",
+  "createdAt": {
+    "$date": "2025-08-17T19:27:24.902Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-17T19:27:24.902Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a22d1d4d30ef2f613bab7e"
+  },
+  "name": "George Martinez",
+  "email": "george@example.com",
+  "googleId": null,
+  "password": "$2a$12$89siocfTu4RfqXX6lYfzleM9T2GcOBXqATsbjadidrjK0u1ZQnoXC",
+  "role": "user",
+  "isActive": true,
+  "lastLogin": null,
+  "avatar": "https://ui-avatars.com/api/?name=George%20Martinez&background=random",
+  "createdAt": {
+    "$date": "2025-08-17T19:27:25.229Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-17T19:27:25.229Z"
+  },
+  "__v": 0
+}]

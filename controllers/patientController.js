@@ -89,6 +89,18 @@ class PatientController {
         return res.status(404).json({ message: "Patient not found" });
       }
 
+      // Check if new phone number is already taken by another patient
+      if (phone && phone !== patient.phone) {
+        const existingPatient = await Patient.findOne({ phone });
+        if (existingPatient) {
+          return res.status(409).json({
+            success: false,
+            message: "Phone number already exists",
+            errorCode: "PHONE_EXISTS"
+          });
+        }
+      }
+
       // Update fields
       patient.name = name ?? patient.name;
       patient.phone = phone ?? patient.phone;

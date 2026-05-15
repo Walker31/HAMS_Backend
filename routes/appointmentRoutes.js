@@ -14,8 +14,8 @@ router.put("/cancel", AppointmentController.cancelAppointment);
 router.put("/update-status/:appointmentId", AppointmentController.updateAppStatus);
 router.get("/pending/:date", authenticateToken,AppointmentController.showAppointments);
 router.get("/previous", authenticateToken,AppointmentController.getPreviousAppointments);
-router.get("/all/:doctorId", AppointmentController.getAllAppointmentsByDoctor);
-router.get('/detail',AppointmentController.appointmentDetail);
+router.get("/all/:doctorId", authenticateToken, AppointmentController.getAllAppointmentsByDoctor);
+router.get('/detail', authenticateToken, AppointmentController.appointmentDetail);
 router.get("/patient", authenticateToken,AppointmentController.getAppointmentsByPatient);
 
 export default router;

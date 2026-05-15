@@ -18,8 +18,9 @@ const DoctorSchema = new mongoose.Schema(
       trim: true,
     },
     phone: {
-      type: Number,
+      type: String,
       required: true,
+      match: /^[0-9]{10}$/,
     },
     email: {
       type: String,

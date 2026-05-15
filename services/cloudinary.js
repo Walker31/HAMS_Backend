@@ -4,6 +4,13 @@ import streamifier from 'streamifier'
 
 dotenv.config();
 
+// Validate required Cloudinary configuration
+const requiredCloudinaryVars = ['CLOUD_NAME', 'API_KEY', 'API_SECRET'];
+const missingCloudinaryVars = requiredCloudinaryVars.filter(v => !process.env[v]);
+if (missingCloudinaryVars.length > 0) {
+  console.warn(`Warning: Missing Cloudinary configuration variables: ${missingCloudinaryVars.join(', ')}`);
+}
+
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,

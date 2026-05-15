@@ -32,6 +32,13 @@ export const bookAppointment = async (req, res) => {
       return res.status(400).json({ message: "Reason is required" });
     }
 
+    const appointmentDate = new Date(date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (appointmentDate < today) {
+      return res.status(400).json({ message: "Cannot book appointments in the past" });
+    }
+
     let generatedLink = "Link";
     if (consultStatus === "Online") {
       const uniqueRoom = `HAMS_${doctorId}_${patientId}_${Date.now()}`;
@@ -234,10 +241,10 @@ export const cancelAppointment = async (req, res) => {
     const [patient, doctor, hospital] = await Promise.all([
       Patient.findOne({ patientId: appointment.patientId }),
       Doctor.findOne({ doctorId: appointment.doctorId }),
-      Hospital.findOne({ hospital: appointment.hospital }),
+      Hospital.findOne({ hospitalName: appointment.hospital }),
     ]);
     await Appointment.findByIdAndUpdate(appointment._id, {
-      consultStatus: "Cancelled",
+      appStatus: "Cancelled",
     });
     await cancelReminder(
       appointment.appointmentId || appointment._id.toString()
